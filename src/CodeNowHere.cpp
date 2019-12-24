@@ -10,9 +10,6 @@ CodeNowHere::CodeNowHere() {
 
 
 void CodeNowHere::blowExtensions() {
-    // commentMap[".py"], commentMap[".php"], commentMap[".rb"] = "#";
-    // commentMap[".cpp"], commentMap[".c"], commentMap[".java"], commentMap[".js"] = "//";
-    // commentMap[".ada"] = "--";
     commentMap[".py"] = "#";
     commentMap[".cpp"] = "//";
     commentMap[".c"] = "//";
@@ -73,13 +70,4 @@ void CodeNowHere::createCode() {
     file << comment << " **************************************************************************** " << endl;
     file.close();
 
-    // cout << comment << " **************************************************************************** " << endl;
-    // if (!author.empty()) {
-    //     cout << comment << " Author: " << author << endl;
-    // }
-    // if (!description.empty()) {
-    //     cout << comment << " Description: " << description << endl;
-    // }
-    // cout << comment << " Created: " << dateOfCreation;
-    // cout << comment << " **************************************************************************** " << endl;
 }

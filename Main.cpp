@@ -14,7 +14,6 @@ int main(int argc, char * argv[]) {
         // Print usage text in console
         cout << "Print usage text in console" << argc << endl;
     } else {
-        cout << "Capture input from console and process it" << argc  << endl;
         // Capture input from console and process it
         CodeNowHere cnh;
         cnh.captureConsoleInput(argc, argv);
