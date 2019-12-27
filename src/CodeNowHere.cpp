@@ -20,6 +20,7 @@ void CodeNowHere::blowExtensions() {
     commentMap[".js"] = "//";
     commentMap[".php"] = "#";
     commentMap[".rb"] = "#";
+    commentMap[".h"] = "//";
 }
 
 
@@ -30,13 +31,21 @@ void CodeNowHere::captureConsoleInput(int argc, char * argv[]) {
     fileName = argv[1];
     for (int i = 0; i < argc; i++) {
         string param = argv[i];
-        if (param == "-a"){
+        if (param == "-a" || param == "--author"){
             // Author param specified
-            author = argv[i+1];
+            if (argc == 2) {
+                cout << "Author option requires argument after (-a | --author)" << endl;
+            } else {
+                author = argv[i+1];
+            }
 
-        } else if (param == "-d") {
+        } else if (param == "-d" || param == "--desc") {
             // Description param specified
-            description = argv[i+1];
+            if (argc == 2) {
+                cout << "Description option requires argument after (-d | --desc)" << endl;
+            } else {
+                description = argv[i+1];
+            }
         }
     }
 }
@@ -80,7 +89,7 @@ Helper::Helper() {
 }
 
 void Helper::blowMessages() {
-    messages["badInput"] = "Some option is missing or some parameters are invalid! \nCheck help typing cnw -help";
+    messages["badInput"] = "Some option is missing or some parameters are invalid! \nCheck help typing cnw --help | -h";
     static const char USAGE[] =
     R"(CodeNowHere (cnh).
 
