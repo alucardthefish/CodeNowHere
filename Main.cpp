@@ -5,14 +5,14 @@
 using namespace std;
 
 int main(int argc, char * argv[]) {
-    if ((argc % 2) != 0){
-        // Bad input
-        cout << "Some option is missing or some parameters are invalid! Check help typing cnw -help" << endl;
-        return -1;
-    }
+    
     if (argc < 2) {
         // Print usage text in console
         cout << "Print usage text in console" << argc << endl;
+    } else if ((argc % 2) != 0){
+        // Bad input
+        cout << "Some option is missing or some parameters are invalid! Check help typing cnw -help" << endl;
+        return -1;
     } else {
         // Capture input from console and process it
         CodeNowHere cnh;
