@@ -1,7 +1,9 @@
-//*************************************************************************************
-// CodeNowHere.cpp
-// Class in charge of process the input data from console
-//*************************************************************************************
+//******************************************************************************************
+// File: CodeNowHere.cpp
+// Author: Sergio Ortiz Paz
+// Created: Mon Dec 23 22:18:25 2019
+// Description: Classes in charge of process the input data from console and showing output
+//******************************************************************************************
 #include "../headers/CodeNowHere.h"
 
 CodeNowHere::CodeNowHere() {
@@ -37,6 +39,8 @@ void CodeNowHere::captureConsoleInput(int argc, char * argv[]) {
             // Description param specified
             //cout << "Description of the file specified" << endl;
             description = argv[i+1];
+        } else if (param == "-h") {
+
         }
     }
 }
@@ -66,4 +70,40 @@ void CodeNowHere::createCode() {
     file << comment << " **************************************************************************** " << endl;
     file.close();
 
+}
+
+Helper::Helper() {
+    version = "1.0";
+    blowMessages();
+}
+
+void Helper::blowMessages() {
+    messages["badInput"] = "Some option is missing or some parameters are invalid! \nCheck help typing cnw -help";
+    static const char USAGE[] =
+    R"(CodeNowHere (cnh).
+
+        Usage:
+            cnh (<file name with extension>) [-option <argument>]...
+            cnh (-h | --help)
+            cnh --version
+        
+        Options:
+            -h --help       Show this screen.
+            --version       Show version.
+            -a --author     Specify the author of the code.
+            -d --desc       Specify a brief description of the file.
+    )";
+    messages["usage"] = string(USAGE);
+}
+
+string Helper::getBadInput(){
+    return messages["badInput"];
+}
+
+string Helper::getUsage(){
+    return messages["usage"];
+}
+
+string Helper::getVersion(){
+    return version;
 }

@@ -24,3 +24,16 @@ class CodeNowHere {
 
 };
 
+class Helper {
+    private:
+    string version;
+    map<string, string> messages;
+
+    public:
+    Helper();
+    void blowMessages();
+    string getBadInput();
+    string getUsage();
+    string getVersion();
+};
+
