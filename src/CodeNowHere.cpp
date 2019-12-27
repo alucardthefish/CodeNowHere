@@ -60,13 +60,9 @@ void CodeNowHere::createCode() {
     file.open(fileName);
     file << comment << " **************************************************************************** " << endl;
     file << comment << " File: " << fileName << endl;
-    if (!author.empty()) {
-        file << comment << " Author: " << author << endl;
-    }
+    file << comment << " Author: " << author << endl;
     file << comment << " Created: " << dateOfCreation;
-    if (!description.empty()) {
-        file << comment << " Description: " << description << endl;
-    }
+    file << comment << " Description: " << description << endl;
     file << comment << " **************************************************************************** " << endl;
     file.close();
 
