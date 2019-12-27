@@ -8,11 +8,9 @@ int main(int argc, char * argv[]) {
     Helper helper;
     if (argc < 2) {
         // Print usage text in console
-        //cout << "Print usage text in console" << argc << endl;
         cout << helper.getUsage() << endl;
     } else if ((argc % 2) != 0){
-        // Bad input
-        //cout << "Some option is missing or some parameters are invalid! Check help typing cnw -help" << endl;
+        // Bad input. No filename or no option
         cout << helper.getBadInput() << endl;
         return -1;
     } else {
@@ -32,9 +30,6 @@ int main(int argc, char * argv[]) {
             cnh.captureConsoleInput(argc, argv);
             cnh.createCode();
         }
-        
-        cnh.captureConsoleInput(argc, argv);
-        cnh.createCode();
     }
     return 0;
 }

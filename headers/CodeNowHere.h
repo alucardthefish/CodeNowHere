@@ -35,5 +35,6 @@ class Helper {
     string getBadInput();
     string getUsage();
     string getVersion();
+    bool validateFileName(string fileName);
 };
 

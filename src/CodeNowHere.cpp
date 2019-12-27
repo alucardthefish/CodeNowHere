@@ -32,15 +32,11 @@ void CodeNowHere::captureConsoleInput(int argc, char * argv[]) {
         string param = argv[i];
         if (param == "-a"){
             // Author param specified
-            //cout << "Author of the file specified" << endl;
             author = argv[i+1];
 
         } else if (param == "-d") {
             // Description param specified
-            //cout << "Description of the file specified" << endl;
             description = argv[i+1];
-        } else if (param == "-h") {
-
         }
     }
 }
@@ -53,22 +49,28 @@ string CodeNowHere::getExtension(string fileName) {
 }
 
 void CodeNowHere::createCode() {
-    string ext = getExtension(fileName);
-    string comment = commentMap[ext];
-    // file name validation here
-    time_t now = time(0);
-    char* dt = ctime(&now);
-    dateOfCreation = string(dt);
+    Helper helper;
+    // file name validation
+    if (helper.validateFileName(fileName)) {
+        string ext = getExtension(fileName);
+        string comment = commentMap[ext];
+        
+        time_t now = time(0);
+        char* dt = ctime(&now);
+        dateOfCreation = string(dt);
 
-    ofstream file;
-    file.open(fileName);
-    file << comment << " **************************************************************************** " << endl;
-    file << comment << " File: " << fileName << endl;
-    file << comment << " Author: " << author << endl;
-    file << comment << " Created: " << dateOfCreation;
-    file << comment << " Description: " << description << endl;
-    file << comment << " **************************************************************************** " << endl;
-    file.close();
+        ofstream file;
+        file.open(fileName);
+        file << comment << " **************************************************************************** " << endl;
+        file << comment << " File: " << fileName << endl;
+        file << comment << " Author: " << author << endl;
+        file << comment << " Created: " << dateOfCreation;
+        file << comment << " Description: " << description << endl;
+        file << comment << " **************************************************************************** " << endl;
+        file.close();
+    } else {
+        cout << fileName << " is not a valid file name. File name must be in this form 'filename.ext'" << endl;
+    }
 
 }
 
@@ -106,4 +108,19 @@ string Helper::getUsage(){
 
 string Helper::getVersion(){
     return version;
+}
+
+bool Helper::validateFileName(string fileName)
+// validateFileName: receives the file name string and evaluates if its a correct format
+// returns: true if is correct false otherwise.
+{
+    bool result = false;
+    try {
+        regex re("^[A-Za-z0-9_-]*(\\.)([a-z0-9]*)$");
+        smatch match;
+        result = regex_search(fileName, match, re) && (match.size() > 1);
+    } catch (regex_error& e) {
+        cout << "ERROR: syntax error in the regular expresion" << endl;
+    }
+    return result;
 }
