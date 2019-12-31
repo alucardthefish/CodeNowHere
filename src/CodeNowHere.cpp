@@ -13,14 +13,28 @@ CodeNowHere::CodeNowHere() {
 
 void CodeNowHere::blowExtensions() {
     commentMap[".py"] = "#";
+    commentMap[".pyc"] = "#";
+    commentMap[".pyo"] = "#";
+    commentMap[".pyd"] = "#";
     commentMap[".cpp"] = "//";
+    commentMap[".c++"] = "//";
+    commentMap[".cxx"] = "//";
     commentMap[".c"] = "//";
+    commentMap[".cc"] = "//";
     commentMap[".java"]  = "//";
+    commentMap[".j"]  = "//";
+    commentMap[".jav"]  = "//";
     commentMap[".ada"] = "--";
     commentMap[".js"] = "//";
     commentMap[".php"] = "#";
     commentMap[".rb"] = "#";
+    commentMap[".rbw"] = "#";
     commentMap[".h"] = "//";
+    commentMap[".hh"] = "//";
+    commentMap[".hpp"] = "//";
+    commentMap[".hxx"] = "//";
+    commentMap[".h++"] = "//";
+    commentMap[".go"] = "//";
 }
 
 
@@ -57,26 +71,59 @@ string CodeNowHere::getExtension(string fileName) {
     return ext;
 }
 
+void CodeNowHere::addCommentHeader() {
+    ofstream file;
+    file.open(fileName);
+    file << comment << " **************************************************************************** " << endl;
+    file << comment << " File: " << fileName << endl;
+    file << comment << " Author: " << author << endl;
+    file << comment << " Created: " << dateOfCreation;
+    file << comment << " Description: " << description << endl;
+    file << comment << " **************************************************************************** " << endl;
+    file.close();
+}
+
 void CodeNowHere::createCode() {
     Helper helper;
+    //string comment = "";
     // file name validation
     if (helper.validateFileName(fileName)) {
         string ext = getExtension(fileName);
-        string comment = commentMap[ext];
+        std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+        comment = commentMap[ext];
         
         time_t now = time(0);
         char* dt = ctime(&now);
         dateOfCreation = string(dt);
 
-        ofstream file;
-        file.open(fileName);
-        file << comment << " **************************************************************************** " << endl;
-        file << comment << " File: " << fileName << endl;
-        file << comment << " Author: " << author << endl;
-        file << comment << " Created: " << dateOfCreation;
-        file << comment << " Description: " << description << endl;
-        file << comment << " **************************************************************************** " << endl;
-        file.close();
+        if (comment.empty()) {
+            cout << "The program does not recognize this extension by now. Do you want to add a header comment to this unknown file (y/n): ";
+            string decision = "";
+            cin >> decision;
+            std::transform(decision.begin(), decision.end(), decision.begin(), ::tolower);
+            if (decision == "y" || decision == "yes") {
+                cout << "Enter the in-line comment syntax for this type of programming language: ";
+                cin.clear();
+                cin.ignore(10000, '\n');
+                getline(cin, comment);
+                while(comment.empty()) {
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    cout << "try again: ";
+                    getline(cin, comment);
+
+                }
+                if(!comment.empty()){
+                    addCommentHeader();
+                }
+            } else {
+                ofstream file;
+                file.open(fileName);
+                file.close();
+            }
+        } else {
+            addCommentHeader();
+        }
     } else {
         cout << fileName << " is not a valid file name. File name must be in this form 'filename.ext'" << endl;
     }
@@ -125,7 +172,7 @@ bool Helper::validateFileName(string fileName)
 {
     bool result = false;
     try {
-        regex re("^[A-Za-z0-9_-]*(\\.)([a-z0-9]*)$");
+        regex re("^[A-Za-z0-9_-]*(\\.)([A-Za-z0-9]*)$");
         smatch match;
         result = regex_search(fileName, match, re) && (match.size() > 1);
     } catch (regex_error& e) {

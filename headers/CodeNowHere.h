@@ -4,6 +4,8 @@
 #include <map>
 #include <regex>
 #include <ctime>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
@@ -14,12 +16,14 @@ class CodeNowHere {
     string author;
     string dateOfCreation;
     string description;
+    string comment;
 
     public:
     CodeNowHere();
     void blowExtensions();
     void captureConsoleInput(int argc, char * argv[]);
     string getExtension(string fileName);
+    void addCommentHeader();
     void createCode();
 
 };
