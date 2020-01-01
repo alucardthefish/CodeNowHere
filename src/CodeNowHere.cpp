@@ -12,29 +12,32 @@ CodeNowHere::CodeNowHere() {
 
 
 void CodeNowHere::blowExtensions() {
-    commentMap[".py"] = "#";
-    commentMap[".pyc"] = "#";
-    commentMap[".pyo"] = "#";
-    commentMap[".pyd"] = "#";
-    commentMap[".cpp"] = "//";
-    commentMap[".c++"] = "//";
-    commentMap[".cxx"] = "//";
-    commentMap[".c"] = "//";
-    commentMap[".cc"] = "//";
-    commentMap[".java"]  = "//";
-    commentMap[".j"]  = "//";
-    commentMap[".jav"]  = "//";
-    commentMap[".ada"] = "--";
-    commentMap[".js"] = "//";
-    commentMap[".php"] = "#";
-    commentMap[".rb"] = "#";
-    commentMap[".rbw"] = "#";
-    commentMap[".h"] = "//";
-    commentMap[".hh"] = "//";
-    commentMap[".hpp"] = "//";
-    commentMap[".hxx"] = "//";
-    commentMap[".h++"] = "//";
-    commentMap[".go"] = "//";
+    
+    // Parsing the extensions with their corresponding in-line comment syntax
+    ifstream file;
+    string fileOfCommentsByExtension = "../extdata/InlineComments.txt";
+
+    try {
+        file.open(fileOfCommentsByExtension);
+
+        while(file) {
+            string extRead;
+            getline(file, extRead, ':');
+            string commentRead;
+            file >> commentRead;
+            file.get();
+            commentMap[extRead] = commentRead;
+
+            if(!file) {
+                break;
+            }
+        }
+    } catch(const ifstream::failure& e) {
+        cout << "There was a problem with the extension provider" << endl;
+    }
+
+    file.close();
+
 }
 
 
