@@ -9,15 +9,24 @@ CLI application to create almost any programming language files from your termin
 ## What is the idea?
 The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorites code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description.
 
-This is a very humble project. I am not using any framework to develop this project. However, you can use *make* to build the project. I am learning while doing, so may be lots of mistakes and errors in designing and coding. I'll be thankful for any recomendation for improving the code.
+This is a very humble project. I am not using any framework to develop this project. However, you can use *make* to build the project. I am learning while doing, so may be lots of mistakes and errors in designing and coding. I'll be thankful for any recommendation for improving the code.
 
-## How to install on linux
-To get the code, build, and install the CLI app follow the commands below:
+To get the code, build, and install the CLI app; follow the commands below:
+
+## How to download and build on linux
 
 <pre>
 clone https://github.com/alucardthefish/CodeNowHere.git
 cd CodeNowHere
 make
+make install
+</pre>
+
+## How to install on linux
+
+After building you can install it in your machine this way:
+
+<pre>
 make install
 </pre>
 
