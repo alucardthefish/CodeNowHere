@@ -30,7 +30,7 @@ After building you can install it in your machine this way:
 make install
 </pre>
 
-*make install* can be reconfigure depending on your linux machine. Edit the makefile file in the section install according to the path to your private binaries. This can be check in the .profile file
+*make install* can be reconfigure depending on your linux machine. Edit the makefile file in the section install according to the path to your private binaries. This can be check in the .profile file in your home directory.
 
 <pre>
 cat ~/.profile
@@ -44,4 +44,55 @@ source ~/.profile
 
 Or whatever the path to your .profile is.
 
-## Under construction..
+## Usage
+
+Type in shell: 
+
+<code>$> cnh --help</code>
+
+<pre>
+Usage:
+        cnh (&lt;filename&gt;) [-option &lt;argument&gt;]...
+        cnh (-h | --help)
+        cnh --version
+        
+Options:
+        -h --help       Show this screen.
+        --version       Show version.
+        -a --author     Specify the author of the code.
+        -d --desc       Specify a brief description of the file.
+</pre>
+
+*Filename* is mandatory. Depend on the extension file it will create the header comment.
+
+### Examples:
+
+Create a code file for python
+<pre>cnh sample.py</pre>
+
+cnh generates a python file named *sample.py* with the following header comment:
+<pre>
+# **************************************************************************** 
+# File: sample.py
+# Author: 
+# Created: Sun Jan  5 03:18:05 2020
+# Description: 
+# **************************************************************************** 
+</pre>
+
+Create a code file in C++ with options arguments
+<pre>cnh sample.cpp -a "John Doe" -d "Sample of code file creation"</pre>
+
+cnh generates a c++ file named *sample.cpp* with the following header comment:
+<pre>
+// **************************************************************************** 
+// File: sample.cpp
+// Author: John Doe
+// Created: Sun Jan  5 03:27:15 2020
+// Description: Sample of code file creation
+// ****************************************************************************
+</pre>
+
+## Contribution
+
+Feel free to create issues and Pull Requests for improving this project. For instance, you can support it extending this utility adding more programming languages options.
