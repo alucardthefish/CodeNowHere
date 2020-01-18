@@ -31,5 +31,27 @@
 *.out
 *.app
 
+# Install and config
+*.swp
+*.DS_Store
+*.in
+
+aclocal.m4
+compile
+config.guess
+config.log
+config.status
+config.sub
+configure
+depcomp
+missing
+ltmain.sh
+libtool
+install-sh
+Makefile
+
 # Directories
 build/
+m4/*
+autom4te.cache/
+src/Makefile
