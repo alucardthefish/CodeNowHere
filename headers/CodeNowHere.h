@@ -6,8 +6,18 @@
 #include <ctime>
 #include <algorithm>
 #include <cctype>
+#include <bits/stdc++.h>
 
 using namespace std;
+
+#ifndef MYLIB_CONSTANTS_H
+#define MYLIB_CONSTANTS_H
+
+namespace LibConstants
+{
+    const string LOCAL_DATA = "../extdata/";
+}
+#endif
 
 class CodeNowHere {
     private:
@@ -17,13 +27,18 @@ class CodeNowHere {
     string dateOfCreation;
     string description;
     string comment;
+    string dataPath;
 
     public:
     CodeNowHere();
     void blowExtensions();
     void captureConsoleInput(int argc, char * argv[]);
     string getExtension(string fileName);
+    string getNameOfFile(string fileName);
     void addCommentHeader();
+    string getLang(string fileName);
+    void replaceClassName(string& className, string filename);
+    void addMainTmplate(ofstream& codeFile, string fileName);
     void createCode();
 
 };

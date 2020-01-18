@@ -7,6 +7,11 @@
 #include "../headers/CodeNowHere.h"
 
 CodeNowHere::CodeNowHere() {
+    dataPath = LibConstants::LOCAL_DATA;
+    #ifdef DATA_LOCATION
+        cout << "test es: " << DATA_LOCATION << endl;
+        dataPath = DATA_LOCATION;
+    #endif
     blowExtensions();
 }
 
@@ -15,18 +20,26 @@ void CodeNowHere::blowExtensions() {
     
     // Parsing the extensions with their corresponding in-line comment syntax
     ifstream file;
-    string fileOfCommentsByExtension = "../extdata/InlineComments.txt";
+
+    string fileOfCommentsByExtension =  dataPath + "InlineComments.txt";
 
     try {
         file.open(fileOfCommentsByExtension);
 
         while(file) {
             string extRead;
-            getline(file, extRead, ':');
-            string commentRead;
-            file >> commentRead;
-            file.get();
-            commentMap[extRead] = commentRead;
+			string commentRead;
+			
+			string extensions;
+			getline(file, extensions, ':');
+			stringstream extStreams(extensions);
+
+			file >> commentRead;
+			file.get();
+            
+			while(getline(extStreams, extRead, ' ')) {
+				commentMap[extRead] = commentRead;
+			}
 
             if(!file) {
                 break;
@@ -74,6 +87,13 @@ string CodeNowHere::getExtension(string fileName) {
     return ext;
 }
 
+string CodeNowHere::getNameOfFile(string fileName) {
+    string name;
+	size_t dotPosition = fileName.find(".");
+	name = fileName.substr(0, dotPosition);
+    return name;
+}
+
 void CodeNowHere::addCommentHeader() {
     ofstream file;
     file.open(fileName);
@@ -83,12 +103,102 @@ void CodeNowHere::addCommentHeader() {
     file << comment << " Created: " << dateOfCreation;
     file << comment << " Description: " << description << endl;
     file << comment << " **************************************************************************** " << endl;
+    addMainTmplate(file, fileName);
     file.close();
 }
 
+string CodeNowHere::getLang(string fileName) {
+    // Getting the extension of the file
+	string ext = getExtension(fileName);
+    ifstream file;
+    string fileOfLanguages = dataPath + "lang.dat";
+	string language = "";
+
+    try {
+        file.open(fileOfLanguages);
+
+        while(file) {
+            string extRead;
+			string commentRead;
+			bool found = false;
+			
+			string extensions;
+			getline(file, extensions, ':');
+			stringstream extStreams(extensions);
+
+			file >> commentRead;
+			file.get();
+            
+			while(getline(extStreams, extRead, ' ')) {
+				if (extRead == ext) {
+					found = true;
+					language = commentRead;
+					break;
+				}
+			}
+
+            if(!file || found) {
+                break;
+            }
+        }
+    } catch(const ifstream::failure& e) {
+        cout << "There was a problem with the extension provider" << endl;
+    }
+
+    file.close();
+	return language;
+}
+
+
+void CodeNowHere::replaceClassName(string& className, string filename) {
+	const string CLASSNAMETMPL = "HelloWorld";
+	int si_ze = CLASSNAMETMPL.length();
+	string namefile = getNameOfFile(filename);
+	size_t poss = className.find(CLASSNAMETMPL);
+	if (poss != string::npos) {
+		className.replace(poss, si_ze, namefile);
+	}
+}
+
+
+void CodeNowHere::addMainTmplate(ofstream& codeFile, string fileName) {
+    ifstream file;
+	string lang = getLang(fileName);
+    string fileOfFunction = dataPath;
+	fileOfFunction += lang;
+	fileOfFunction += ".tpl";
+
+    try {
+        file.open(fileOfFunction);
+
+        codeFile << endl << endl;
+		
+        while(file) {
+
+			string line = "";
+			getline(file, line);
+			replaceClassName(line, fileName);
+
+			if (line == "") {
+				codeFile << endl;
+			} else {
+				codeFile << line << endl;
+			}
+
+            if(!file) {
+                break;
+            }
+        }
+    } catch(const ifstream::failure& e) {
+        cout << "There was a problem with the extension provider" << endl;
+    }
+
+    file.close();
+}
+
+
 void CodeNowHere::createCode() {
     Helper helper;
-    //string comment = "";
     // file name validation
     if (helper.validateFileName(fileName)) {
         string ext = getExtension(fileName);

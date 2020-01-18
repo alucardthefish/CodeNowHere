@@ -1,0 +1,9 @@
+.py : python
+.php : php
+.rb .rbw : ruby
+.cpp .c++ .cxx : c++
+.c .cc : c
+.jav .j .java : java
+.js : javascript
+.go : go
+.ada : ada
