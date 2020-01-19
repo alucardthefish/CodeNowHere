@@ -37,6 +37,7 @@
 *.in
 
 aclocal.m4
+autoscan.log
 compile
 config.guess
 config.log
@@ -49,9 +50,15 @@ ltmain.sh
 libtool
 install-sh
 Makefile
+.dirstamp
+config.h
+stamp-h1
 
 # Directories
+.deps/
 build/
 m4/*
 autom4te.cache/
 src/Makefile
+headers/Makefile
+extdata/Makefile
