@@ -9,8 +9,8 @@
 CodeNowHere::CodeNowHere() {
     dataPath = LibConstants::LOCAL_DATA;
     #ifdef DATA_LOCATION
-        cout << "test es: " << DATA_LOCATION << endl;
         dataPath = DATA_LOCATION;
+        dataPath += "/";
     #endif
     blowExtensions();
 }
