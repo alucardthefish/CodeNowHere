@@ -7,17 +7,33 @@
 CLI application to create almost any programming language files from your terminal! It's thought to use in any bash or shell, also in IDEs, text editors with console or terminal integrated. The app is developed in C++ and currently is made for Linux Systems. But, with your help and contribution we together could extend this to other type of systems.
 
 ## What is the idea?
-The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorites code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description. Although, depends on the type of language it creates a trivial sample code like hello world in a main function or in a proper function.
+The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorites code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description. Although, depends on the type of language it creates a trivial sample code like hello world in a main function or in a proper function. After that you can open it with your favorite editor.
 
-This is a very humble project. I am not using any framework to develop this project. However, you can use *make* to build the project. I am learning while doing, so may there be lots of mistakes and errors in designing and coding. I'll be thankful for any recommendation for improving the code.
+This is a very humble project. I am not using any framework to develop this project. However, it uses autotools for generating the configuration files and *Makefile* to build and install the project. I am learning while doing, so may there be lots of mistakes and errors in designing and coding. I'll be thankful for any recommendation for improving the code.
+
+## Requirements
+
+* C++11
+* autotools (autoconf, automake, libtool)
+
+### Installing autotools
+
+<pre>
+sudo apt update
+sudo apt install autotools-dev
+sudo apt install autoconf
+sudo apt install libtool
+</pre>
 
 To get the code, build, and install the CLI app; follow the commands below:
 
 ## How to download and build on linux
 
 <pre>
-clone https://github.com/alucardthefish/CodeNowHere.git
+git clone https://github.com/alucardthefish/CodeNowHere.git
 cd CodeNowHere
+./autogen.sh
+./configure
 make
 </pre>
 
@@ -26,22 +42,24 @@ make
 After building you can install it in your machine this way:
 
 <pre>
-make install
+sudo make install
 </pre>
 
-*make install* can be reconfigure depending on your linux machine. Edit the makefile file in the section install according to the path to your private binaries. This can be check in the .profile file in your home directory.
+*make install* can be reverted through the uninstall command: 
+<pre>
+sudo make uninstall
+</pre>
+
+In the case you are building the project with an old C++ compiler and get an error message like this:
+
+`Error this file requires compiler and library support for the ISO C++ 2011 standard. This support may be enabled
+with the -std=c++11 or -std=gnu++11 compiler options.`
+
+Then, you can run the config file this way:
 
 <pre>
-cat ~/.profile
+./configure CXXFLAGS = "-std=gnu++11"
 </pre>
-
-After that, you can update the makefile with the path for private binaries in the copy (cp) and rename/move (mv) commands. Finally to make the executable available in your shell terminal type in console something like this for avoid restarting your machine:
-
-<pre>
-source ~/.profile
-</pre>
-
-Or whatever the path to your .profile is.
 
 ## Usage
 
@@ -62,14 +80,14 @@ Options:
         -d --desc       Specify a brief description of the file.
 </pre>
 
-*Filename* is mandatory. Depend on the extension file it will create the header comment.
+*Filename* is mandatory. Depending on the extension file it will create the header commentary.
 
 ### Examples:
 
-Create a code file for python
+* Creating a python code file
 <pre>cnh sample.py</pre>
 
-cnh generates a python file named *sample.py* with the following header comment:
+cnh generates a python file named `sample.py` with the following header comment:
 <pre>
 # **************************************************************************** 
 # File: sample.py
@@ -89,10 +107,11 @@ if __name__ == "__main__":
 
 </pre>
 
-Create a code file in C++ with options arguments
+* Creating a code file in C++ with options arguments
 <pre>cnh sample.cpp -a "John Doe" -d "Sample of code file creation"</pre>
 
-cnh generates a c++ file named *sample.cpp* with the following header comment:
+cnh generates a c++ file named `sample.cpp` with the following header comment:
+
 <pre>
 // **************************************************************************** 
 // File: sample.cpp
@@ -128,4 +147,4 @@ If a different programming language or unknown file for the program is passed, i
 
 ## Contribution
 
-Feel free to create issues and Pull Requests for improving this project. For instance, you can support it extending this utility adding more programming languages options.
+Feel free to create issues and Pull Requests for improving this project. For instance, you can support it extending this utility adding more programming languages options and features.
