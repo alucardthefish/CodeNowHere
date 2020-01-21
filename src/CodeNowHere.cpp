@@ -201,6 +201,16 @@ void CodeNowHere::createCode() {
     Helper helper;
     // file name validation
     if (helper.validateFileName(fileName)) {
+        // Decision in case file already exist
+        if (helper.fileExist(fileName)){
+            cout << "File " << fileName << " already exists in this directory. If you continue its content will be replaced" << endl;
+            string chose;
+            cout << "Do you want to continue (Y/n): ";
+            cin >> chose;
+            if (!helper.questionReceptor(chose)) {
+                return;
+            }
+        }
         string ext = getExtension(fileName);
         std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
         comment = commentMap[ext];
@@ -213,8 +223,8 @@ void CodeNowHere::createCode() {
             cout << "The program does not recognize this extension by now. Do you want to add a header comment to this unknown file (y/n): ";
             string decision = "";
             cin >> decision;
-            std::transform(decision.begin(), decision.end(), decision.begin(), ::tolower);
-            if (decision == "y" || decision == "yes") {
+            
+            if (helper.questionReceptor(decision)) {
                 cout << "Enter the in-line comment syntax for this type of programming language: ";
                 cin.clear();
                 cin.ignore(10000, '\n');
@@ -292,4 +302,28 @@ bool Helper::validateFileName(string fileName)
         cout << "ERROR: syntax error in the regular expresion" << endl;
     }
     return result;
+}
+
+bool Helper::fileExist(string fileName) {
+    ifstream file;
+    bool state = false;
+    try {
+        file.open(fileName);
+        if (file.is_open()) {
+            state = true;
+            file.close();
+        }
+    } catch(const ifstream::failure& e) {
+        cout << "PROBLEM" << endl;
+    }
+    return state;
+}
+
+bool Helper::questionReceptor(string answer) {
+    bool state = false;
+    std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+    if (answer == "y" || answer == "yes") {
+        state = true;
+    }
+    return state;
 }

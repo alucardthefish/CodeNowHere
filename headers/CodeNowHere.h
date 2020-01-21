@@ -55,5 +55,7 @@ class Helper {
     string getUsage();
     string getVersion();
     bool validateFileName(string fileName);
+    bool fileExist(string fileName);
+    bool questionReceptor(string answer);
 };
 
