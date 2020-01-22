@@ -61,6 +61,15 @@ Then, you can run the config file this way:
 ./configure CXXFLAGS = "-std=gnu++11"
 </pre>
 
+A bash script `build_local.sh` is provided to compile it locally in the build directory. You can edit it with your compiler.
+
+<pre>
+./build_local.sh
+cd build
+# Example
+./cnhtest File.ext -a "Author One" -d "Description one"
+</pre>
+
 ## Usage
 
 Type in shell: 
