@@ -143,8 +143,15 @@ int main(int argc, char * argv[]) {
 ## Programing Languages Supported by Now
 
 * Ada
+* Agda
+* AppleScript
 * C
+* C#
 * C++
+* Clojure
+* Cobol
+* CoffeeScript
+* Crystal
 * Go
 * Java
 * JavaScript
