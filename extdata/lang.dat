@@ -6,4 +6,11 @@
 .jav .j .java : java
 .js : javascript
 .go : go
-.ada : ada
+.ada .adb .ads : ada
+.agda .lagda : agda
+.scpt .scptd .applescript : applescript
+.cs : c#
+.clj .cljs .cljc .edn : clojure
+.cbl .cob .cpy : cobol
+.coffee .litcoffee : coffeescript
+.cr : crystal
