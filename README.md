@@ -155,6 +155,7 @@ int main(int argc, char * argv[]) {
 * Go
 * Java
 * JavaScript
+* Kotlin
 * Php
 * Python
 * Ruby
