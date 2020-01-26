@@ -1,5 +1,5 @@
-.py .pyc .pyo .pyd .php .rb .rbw .cr .coffee .litcoffee : #
-.cpp .c++ .cxx .c .cc .jav .j .java .js .h .hh .hpp .hxx .h++ .go .cs .kt : //
-.ada .adb .ads .scpt .scptd .applescript .agda .lagda : --
-.clj .cljs .cljc .edn : ;;
-.cbl .cob .cpy : *>
+.py .pyc .pyo .pyd .php .rb .rbw .cr .coffee .litcoffee : # {}
+.cpp .c++ .cxx .c .cc .jav .j .java .js .h .hh .hpp .hxx .h++ .go .cs .kt : // {}
+.ada .adb .ads .scpt .scptd .applescript .agda .lagda : -- {}
+.clj .cljs .cljc .edn : ;; {}
+.cbl .cob .cpy : *> {}
