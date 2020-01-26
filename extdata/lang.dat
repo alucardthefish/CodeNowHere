@@ -16,3 +16,4 @@
 .coffee .litcoffee : coffeescript
 .cr : crystal
 .kt : kotlin
+.cfm .cfml .cfc : coldfusion
