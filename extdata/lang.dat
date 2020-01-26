@@ -6,6 +6,7 @@
 .jav .j .java : java
 .js : javascript
 .go : go
+.html .htm .xhtml : html
 .ada .adb .ads : ada
 .agda .lagda : agda
 .scpt .scptd .applescript : applescript

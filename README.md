@@ -140,7 +140,7 @@ int main(int argc, char * argv[]) {
 
 </pre>
 
-## Programing Languages Supported by Now
+## Markup and Programing Languages Supported by Now
 
 * Ada
 * Agda
@@ -153,6 +153,7 @@ int main(int argc, char * argv[]) {
 * CoffeeScript
 * Crystal
 * Go
+* Html
 * Java
 * JavaScript
 * Kotlin
