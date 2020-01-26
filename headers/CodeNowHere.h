@@ -27,11 +27,12 @@ class CodeNowHere {
     string dateOfCreation;
     string description;
     string comment;
+    string commentClosureOpt;
     string dataPath;
 
     public:
     CodeNowHere();
-    void blowExtensions();
+    void blowCommentByExtensions(string ext);
     void captureConsoleInput(int argc, char * argv[]);
     string getExtension(string fileName);
     string getNameOfFile(string fileName);

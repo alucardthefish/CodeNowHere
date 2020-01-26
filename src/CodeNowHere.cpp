@@ -4,6 +4,7 @@
 // Created: Mon Dec 23 22:18:25 2019
 // Description: Classes in charge of process the input data from console and showing output
 //******************************************************************************************
+
 #include "../headers/CodeNowHere.h"
 
 CodeNowHere::CodeNowHere() {
@@ -12,11 +13,12 @@ CodeNowHere::CodeNowHere() {
         dataPath = DATA_LOCATION;
         dataPath += "/";
     #endif
-    blowExtensions();
+    comment = "";
+    commentClosureOpt = "";
 }
 
 
-void CodeNowHere::blowExtensions() {
+void CodeNowHere::blowCommentByExtensions(string ext) {
     
     // Parsing the extensions with their corresponding in-line comment syntax
     ifstream file;
@@ -25,20 +27,31 @@ void CodeNowHere::blowExtensions() {
 
     try {
         file.open(fileOfCommentsByExtension);
-
-        while(file) {
+        bool extWasFound = false;
+        while(file && !extWasFound) {
             string extRead;
 			string commentRead;
+            string commentOptRead;
 			
 			string extensions;
 			getline(file, extensions, ':');
 			stringstream extStreams(extensions);
 
-			file >> commentRead;
+			file >> commentRead >> commentOptRead;
 			file.get();
             
 			while(getline(extStreams, extRead, ' ')) {
-				commentMap[extRead] = commentRead;
+				
+                if (ext == extRead) {
+                    comment = commentRead;
+                    commentClosureOpt = commentOptRead;
+                    if (commentOptRead == "{}") {
+                        commentClosureOpt = "";
+                    }
+                    extWasFound = true;
+                    break;
+                    return;
+                }
 			}
 
             if(!file) {
@@ -97,12 +110,12 @@ string CodeNowHere::getNameOfFile(string fileName) {
 void CodeNowHere::addCommentHeader() {
     ofstream file;
     file.open(fileName);
-    file << comment << " **************************************************************************** " << endl;
-    file << comment << " File: " << fileName << endl;
-    file << comment << " Author: " << author << endl;
-    file << comment << " Created: " << dateOfCreation;
-    file << comment << " Description: " << description << endl;
-    file << comment << " **************************************************************************** " << endl;
+    file << comment << " **************************************************************************** " << commentClosureOpt << endl;
+    file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
+    file << comment << " Author: " << author << " " << commentClosureOpt << endl;
+    file << comment << " Created: " << dateOfCreation << " " << commentClosureOpt << endl;
+    file << comment << " Description: " << description << " " << commentClosureOpt << endl;
+    file << comment << " **************************************************************************** " << commentClosureOpt << endl;
     addMainTmplate(file, fileName);
     file.close();
 }
@@ -213,10 +226,12 @@ void CodeNowHere::createCode() {
         }
         string ext = getExtension(fileName);
         std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
-        comment = commentMap[ext];
+        
+        blowCommentByExtensions(ext);
         
         time_t now = time(0);
         char* dt = ctime(&now);
+        dt[strlen(dt) - 1] = '\0';
         dateOfCreation = string(dt);
 
         if (comment.empty()) {
