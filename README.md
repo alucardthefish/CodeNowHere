@@ -153,6 +153,7 @@ int main(int argc, char * argv[]) {
 * CoffeeScript
 * ColdFusion
 * Crystal
+* F#
 * Go
 * Html
 * Java
