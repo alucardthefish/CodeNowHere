@@ -17,3 +17,4 @@
 .cr : crystal
 .kt : kotlin
 .cfm .cfml .cfc : coldfusion
+.rs : rust

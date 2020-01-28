@@ -161,6 +161,7 @@ int main(int argc, char * argv[]) {
 * Php
 * Python
 * Ruby
+* Rust
 
 If a different programming language or unknown file for the program is passed, it will ask you for the inline comment character to create the header commentary.
 
