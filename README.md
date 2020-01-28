@@ -160,6 +160,7 @@ int main(int argc, char * argv[]) {
 * Kotlin
 * Lua
 * ObjectiveC
+* Perl
 * Php
 * Python
 * Ruby

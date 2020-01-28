@@ -21,3 +21,4 @@
 .vb : visualbasic
 .lua : lua
 .m .mm : objective-c
+.pl .pm : perl

@@ -1,4 +1,4 @@
-.py .pyc .pyo .pyd .php .rb .rbw .cr .coffee .litcoffee : # {}
+.py .pyc .pyo .pyd .php .rb .rbw .cr .coffee .litcoffee .pl .pm : # {}
 .cpp .c++ .cxx .c .cc .jav .j .java .js .h .hh .hpp .hxx .h++ .go .cs .kt .rs .m .mm : // {}
 .ada .adb .ads .scpt .scptd .applescript .agda .lagda .lua : -- {}
 .clj .cljs .cljc .edn : ;; {}
