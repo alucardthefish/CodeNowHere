@@ -151,7 +151,7 @@ int main(int argc, char * argv[]) {
 * Clojure
 * Cobol
 * CoffeeScript
-* Coldfusion
+* ColdFusion
 * Crystal
 * Go
 * Html
@@ -162,6 +162,7 @@ int main(int argc, char * argv[]) {
 * Python
 * Ruby
 * Rust
+* VisualBasic
 
 If a different programming language or unknown file for the program is passed, it will ask you for the inline comment character to create the header commentary.
 

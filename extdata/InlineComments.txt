@@ -5,3 +5,4 @@
 .cbl .cob .cpy : *> {}
 .html .htm .xhtml : <!-- -->
 .cfm .cfc : <!--- --->
+.vb : ' {}

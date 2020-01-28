@@ -18,3 +18,4 @@
 .kt : kotlin
 .cfm .cfml .cfc : coldfusion
 .rs : rust
+.vb : visualbasic
