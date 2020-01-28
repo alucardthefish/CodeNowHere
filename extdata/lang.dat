@@ -19,3 +19,4 @@
 .cfm .cfml .cfc : coldfusion
 .rs : rust
 .vb : visualbasic
+.lua : lua
