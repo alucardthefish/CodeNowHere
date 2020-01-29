@@ -249,7 +249,20 @@ void CodeNowHere::createCode() {
                     cin.ignore(10000, '\n');
                     cout << "try again: ";
                     getline(cin, comment);
-
+                }
+                cout << endl << "Has the inline comment character entered previously a closing character? (Y/n): ";
+                cin >> decision;
+                if (helper.questionReceptor(decision)) {
+                    cout << "Enter the closing comment character: ";
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    getline(cin, commentClosureOpt);
+                    while(comment.empty()) {
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+                        cout << "try again: ";
+                        getline(cin, commentClosureOpt);
+                    }
                 }
                 if(!comment.empty()){
                     addCommentHeader();
