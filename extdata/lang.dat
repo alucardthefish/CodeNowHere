@@ -24,3 +24,4 @@
 .pl .pm : perl
 .fs .fsi .fsx .fsscript : f#
 .b : b
+.cobra : cobra

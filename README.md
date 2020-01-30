@@ -151,6 +151,7 @@ int main(int argc, char * argv[]) {
 * C++
 * Clojure
 * Cobol
+* Cobra
 * CoffeeScript
 * ColdFusion
 * Crystal
