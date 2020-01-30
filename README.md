@@ -145,6 +145,7 @@ int main(int argc, char * argv[]) {
 * Ada
 * Agda
 * AppleScript
+* B
 * C
 * C#
 * C++

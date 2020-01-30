@@ -21,7 +21,6 @@ namespace LibConstants
 
 class CodeNowHere {
     private:
-    map<string, string> commentMap;
     string fileName;
     string author;
     string dateOfCreation;
