@@ -25,3 +25,4 @@
 .fs .fsi .fsx .fsscript : f#
 .b : b
 .cobra : cobra
+.f .for .f90 .f95 .f03 : fortran
