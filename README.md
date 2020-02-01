@@ -79,15 +79,16 @@ Type in shell:
 
 <pre>
 Usage:
-        cnh (&lt;filename&gt;) [-option &lt;argument&gt;]...
-        cnh (-h | --help)
-        cnh --version
-        
-Options:
-        -h --help       Show this screen.
-        --version       Show version.
-        -a --author     Specify the author of the code.
-        -d --desc       Specify a brief description of the file.
+      cnh &lt;filename&gt; [--author | -a &lt;author&gt;] [--desc | -d &lt;desc&gt;]
+      cnh (-h | --help)
+      cnh --version
+      
+
+    Options:
+      -h --help                       Show this screen.
+      --version                       Show version.
+      -a &lt;author&gt;, --author &lt;author&gt;  Set the file author.
+      -d &lt;desc&gt;, --desc &lt;desc&gt;        Set the file description.
 </pre>
 
 *Filename* is mandatory. Depending on the extension file it will create the header commentary.
@@ -172,7 +173,7 @@ int main(int argc, char * argv[]) {
 * Rust
 * VisualBasic
 
-If a different programming language or unknown file for the program is passed, it will ask you for the inline comment character to create the header commentary.
+Whether you enter a different programming language from the list above or an unknown file into the program, it will ask you for the inline comment character to create the header commentary. Otherwise, the comment header is omitted.
 
 ## Contribution
 
