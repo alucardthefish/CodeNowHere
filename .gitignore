@@ -60,5 +60,6 @@ build/
 m4/*
 autom4te.cache/
 src/Makefile
+src/cnh
 headers/Makefile
 extdata/Makefile
