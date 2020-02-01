@@ -4,7 +4,7 @@ ACLOCAL_AMFLAGS = $(ACLOCAL_FLAGS)
 bin_PROGRAMS = cnh
 
 #cnh_SOURCES = Main.cpp CodeNowHere.cpp ../headers/CodeNowHere.h
-cnh_SOURCES = ../Main.cpp CodeNowHere.cpp ../headers/CodeNowHere.h
+cnh_SOURCES = ../Main.cpp CodeNowHere.cpp docopt.cpp ../headers/CodeNowHere.h ../headers/docopt.h ../headers/docopt_private.h ../headers/docopt_util.h ../headers/docopt_value.h 
 
 cnh_infodir = $(datadir)/cnh
 skivvy_manualsdir = $(datadir)/skivvy
