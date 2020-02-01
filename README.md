@@ -7,11 +7,12 @@
 CLI application to create almost any programming language files from your terminal! It's thought to use in any bash or shell, also in IDEs, text editors with console or terminal integrated. The app is developed in C++ and currently is made for Linux Systems. But, with your help and contribution we together could extend this to other type of systems.
 
 ## What is the idea?
-The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorites code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description. Although, depends on the type of language it creates a trivial sample code like hello world in a main function or in a proper function. After that you can open it with your favorite editor.
+The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorites code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description. Although, depends on the type of language, it creates a trivial sample code like hello world in a main function or in a proper function. After that, you can open it with your favorite editor (i.e vi, vim, etc.). The CLI interface code relies on [docopt.cpp](https://github.com/docopt/docopt.cpp)  library for making easier the creation of command-line interfaces.
+For more information on `docopt.cpp`, please see [this page](http://docopt.org/).
 
-This is a very humble project. I am not using any framework to develop this project. However, it uses autotools for generating the configuration files and *Makefile* to build and install the project. I am learning while doing, so may there be lots of mistakes and errors in designing and coding. I'll be thankful for any recommendation for improving the code.
+This is a very humble project. I am not using any framework to develop this project. However, it uses autotools for generating the configuration files and the *Makefile* to build and install the project. I am learning while doing, so may there be lots of mistakes and errors in designing and coding. I'll be thankful for any recommendation for improving the code.
 
-## Requirements
+## Linux Minimum Requirements
 
 * C++11
 * autotools (autoconf, automake, libtool)
@@ -27,7 +28,7 @@ sudo apt install libtool
 
 To get the code, build, and install the CLI app; follow the commands below:
 
-## How to download and build on linux
+## How to download and build on Linux
 
 <pre>
 git clone https://github.com/alucardthefish/CodeNowHere.git
@@ -37,7 +38,7 @@ cd CodeNowHere
 make
 </pre>
 
-## How to install on linux
+## How to install on Linux
 
 After building you can install it in your machine this way:
 
