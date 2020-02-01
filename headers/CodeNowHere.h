@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <cctype>
 #include <bits/stdc++.h>
+#include "docopt.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ class CodeNowHere {
 
     public:
     CodeNowHere();
+    CodeNowHere(map<string, docopt::value> input);
     void blowCommentByExtensions(string ext);
     void captureConsoleInput(int argc, char * argv[]);
     string getExtension(string fileName);

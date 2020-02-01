@@ -17,6 +17,19 @@ CodeNowHere::CodeNowHere() {
     commentClosureOpt = "";
 }
 
+CodeNowHere::CodeNowHere(map<string, docopt::value> input) {
+    dataPath = LibConstants::LOCAL_DATA;
+    #ifdef DATA_LOCATION
+        dataPath = DATA_LOCATION;
+        dataPath += "/";
+    #endif
+    comment = "";
+    commentClosureOpt = "";
+    fileName = input["<filename>"].asString();
+    author = (!input["--author"].asStringList().empty()) ? input["--author"].asStringList().at(0) : "";
+    description = (!input["--desc"].asStringList().empty()) ? input["--desc"].asStringList().at(0) : "";
+}
+
 
 void CodeNowHere::blowCommentByExtensions(string ext) {
     

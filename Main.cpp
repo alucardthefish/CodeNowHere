@@ -1,35 +1,36 @@
 #include <iostream>
 #include <string>
 #include "headers/CodeNowHere.h"
+#include "headers/docopt.h"
 
 using namespace std;
 
+static const char USAGE[] =
+R"(Code Now Here (CNH).
+
+    Usage:
+      cnh <filename> [--author | -a <author>] [--desc | -d <desc>]
+      cnh (-h | --help)
+      cnh --version
+      
+
+    Options:
+      -h --help                       Show this screen.
+      --version                       Show version.
+      -a <author>, --author <author>  Set the file author.
+      -d <desc>, --desc <desc>        Set the file description.
+)";
+
 int main(int argc, char * argv[]) {
-    Helper helper;
-    if (argc < 2) {
-        // Print usage text in console
-        cout << helper.getUsage() << endl;
-    } else if ((argc % 2) != 0){
-        // Bad input. No filename or no option
-        cout << helper.getBadInput() << endl;
-        return -1;
-    } else {
-        // Capture input from console and process it
-        CodeNowHere cnh;
-        if (argc == 2) {
-            string informativeOption = string(argv[1]);
-            if (informativeOption == "-h" || informativeOption == "--help") {
-                cout << helper.getUsage() << endl;
-            } else if (informativeOption == "--version") {
-                cout << helper.getVersion() << endl;
-            } else {
-                cnh.captureConsoleInput(argc, argv);
-                cnh.createCode();
-            }
-        } else {
-            cnh.captureConsoleInput(argc, argv);
-            cnh.createCode();
-        }
-    }
+
+    std::map<std::string, docopt::value> args
+        = docopt::docopt(USAGE,
+                         { argv + 1, argv + argc },
+                         true,               // show help if requested
+                         "CodeNowHere 1.0"); // version string
+    
+    CodeNowHere cnh = CodeNowHere(args);
+    cnh.createCode();
+    
     return 0;
 }
