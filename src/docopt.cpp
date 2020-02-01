@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Jared Grubb. All rights reserved.
 //
 
-#include "docopt.h"
-#include "docopt_util.h"
-#include "docopt_private.h"
+#include "../headers/docopt.h"
+#include "../headers/docopt_util.h"
+#include "../headers/docopt_private.h"
 
-#include "docopt_value.h"
+#include "../headers/docopt_value.h"
 
 #include <vector>
 #include <unordered_set>
