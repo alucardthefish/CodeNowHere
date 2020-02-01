@@ -161,6 +161,7 @@ int main(int argc, char * argv[]) {
 * Fortran
 * Go
 * Html
+* Janet
 * Java
 * JavaScript
 * Kotlin
