@@ -4,7 +4,7 @@
     <img src="https://images2.imgbox.com/03/0a/D5blA5f4_o.jpg" />
 </p>
 
-CLI application to create almost any programming language files from your terminal! It's thought to use in any bash or shell, also in IDEs, text editors with console or terminal integrated. The app is developed in C++ and currently is made for Linux Systems. But, with your help and contribution we together could extend this to other type of systems.
+CLI application to create almost any programming language files from your terminal! It has been developed to be used in any bash or shell, also in IDEs, text editors with console or terminal integrated. The app is developed in C++ and currently is made for Linux Systems. But, with your help and contribution we together could extend this to other type of systems.
 
 ## What is the idea?
 The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorites code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description. Although, depends on the type of language, it creates a trivial sample code like hello world in a main function or in a proper function. After that, you can open it with your favorite editor (i.e vi, vim, etc.). The CLI interface code relies on [docopt.cpp](https://github.com/docopt/docopt.cpp)  library for making easier the creation of command-line interfaces.
@@ -167,6 +167,7 @@ int main(int argc, char * argv[]) {
 * Kotlin
 * Lua
 * ObjectiveC
+* Pawn
 * Perl
 * Php
 * Python

@@ -6,6 +6,6 @@
 .html .htm .xhtml : <!-- -->
 .cfm .cfc : <!--- --->
 .vb : ' {}
-.b : /* */
+.b .pwn .p : /* */
 .cobra : """ """
 .f .for .f90 .f95 .f03 : ! {}

@@ -27,3 +27,4 @@
 .cobra : cobra
 .f .for .f90 .f95 .f03 : fortran
 .janet : janet
+.pwn .p : pawn
