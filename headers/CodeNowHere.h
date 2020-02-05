@@ -1,3 +1,6 @@
+#ifndef CODENOWHERE_H
+#define CODENOWHERE_H
+
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -8,17 +11,9 @@
 #include <cctype>
 #include <bits/stdc++.h>
 #include "docopt.h"
+#include "../headers/ICommandBehavior.h"
 
 using namespace std;
-
-#ifndef MYLIB_CONSTANTS_H
-#define MYLIB_CONSTANTS_H
-
-namespace LibConstants
-{
-    const string LOCAL_DATA = "../extdata/";
-}
-#endif
 
 class CodeNowHere {
     private:
@@ -28,36 +23,15 @@ class CodeNowHere {
     string description;
     string comment;
     string commentClosureOpt;
-    string dataPath;
+    map<string, docopt::value> arguments;
+    ICommandBehavior *iCB; //Abstract class
+
 
     public:
     CodeNowHere();
     CodeNowHere(map<string, docopt::value> input);
-    void blowCommentByExtensions(string ext);
-    void captureConsoleInput(int argc, char * argv[]);
-    string getExtension(string fileName);
-    string getNameOfFile(string fileName);
-    void addCommentHeader();
-    string getLang(string fileName);
-    void replaceClassName(string& className, string filename);
-    void addMainTmplate(ofstream& codeFile, string fileName);
-    void createCode();
+    void initArgsValues(map<string, docopt::value> input);
+    void controller();
 
 };
-
-class Helper {
-    private:
-    string version;
-    map<string, string> messages;
-
-    public:
-    Helper();
-    void blowMessages();
-    string getBadInput();
-    string getUsage();
-    string getVersion();
-    bool validateFileName(string fileName);
-    bool fileExist(string fileName);
-    bool questionReceptor(string answer);
-};
-
+#endif
