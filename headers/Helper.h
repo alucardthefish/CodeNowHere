@@ -1,21 +1,16 @@
-#ifndef HELPER_H
-#define HELPER_H
 // **************************************************************************** 
 // File: Helper.h 
-// Author:  
+// Author: Sergio Ortiz Paz
 // Created: Tue Feb  4 00:59:06 2020 
-// Description:  
+// Description: Static class holding util methods
 // **************************************************************************** 
+#ifndef HELPER_H
+#define HELPER_H
 
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <map>
 #include <regex>
-#include <ctime>
-#include <algorithm>
-#include <cctype>
-#include <bits/stdc++.h>
 
 using namespace std;
 

@@ -1,8 +1,8 @@
 // **************************************************************************** 
 // File: Helper.cpp 
-// Author:  
+// Author: Sergio Ortiz Paz 
 // Created: Tue Feb  4 01:00:22 2020 
-// Description:  
+// Description: Implement util methods 
 // **************************************************************************** 
 
 #include "../headers/Helper.h"

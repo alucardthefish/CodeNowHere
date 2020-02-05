@@ -2,14 +2,10 @@
 // File: ICommandBehavior.cpp 
 // Author: Sergio Ortiz Paz 
 // Created: Mon Feb  3 18:25:35 2020 
-// Description:  
+// Description: Implement abstract class that represent a command behavior 
 // **************************************************************************** 
 
-
-#include <iostream>
-
 #include "../headers/ICommandBehavior.h"
-//#include "../headers/Helper.h"
 
 using namespace std;
 

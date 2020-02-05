@@ -6,32 +6,11 @@
 // **************************************************************************** 
 
 #include "../headers/OnlyFileBehavior.h"
-#include "../headers/Helper.h"
-
-
-#include <iostream>
 
 using namespace std;
 
 OnlyFileBehavior::OnlyFileBehavior() {
-    //dataPath = Helper::getDataPath();
 }
-
-
-/* void OnlyFileBehavior::CreateCode() {
-    cout << "Estoy en el metodo " << endl;
-    cout << "y veo que dataPath es: " << dataPath << endl;
-    string ext = Helper::getExtension("Sergio.java");
-    cout << "La extension del archivo es: " << ext << endl;
-    //string *data = blowCommentByExtensions(ext);
-    blowCommentByExtensions(ext);
-    //ICommandBehavior *kj;
-    //data = kj->blowCommentByExtensions(ext);
-    //cout << "initComment: " << *(data) << " endingComment: " << *(data + 1) << data->length() << endl;
-    cout << "comment from  base: " << comment << " and commentClosureOpt from base: " << commentClosureOpt << endl;
-} */
-
-
 
 void OnlyFileBehavior::CreateCode() {
     // file name validation

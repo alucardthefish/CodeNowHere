@@ -1,21 +1,16 @@
-#ifndef ICOMMANDBEHAVIOR_H
-#define ICOMMANDBEHAVIOR_H
 // **************************************************************************** 
 // File: ICommandBehavior.h 
 // Author: Sergio Ortiz Paz 
 // Created: Mon Feb  3 18:20:46 2020 
 // Description: Abstract class for command behavior 
 // **************************************************************************** 
+#ifndef ICOMMANDBEHAVIOR_H
+#define ICOMMANDBEHAVIOR_H
 
 #include <fstream>
 #include <string>
-
 #include <iostream>
 #include <map>
-#include <regex>
-#include <ctime>
-#include <algorithm>
-#include <cctype>
 #include <bits/stdc++.h>
 #include "docopt.h"
 

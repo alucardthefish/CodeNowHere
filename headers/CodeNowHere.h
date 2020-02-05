@@ -1,36 +1,28 @@
+// **************************************************************************** 
+// File: CodeNowHere.h 
+// Author: Sergio Ortiz Paz 
+// Created: Mon Dec 23 22:12:55 2019 
+// Description: Class in charge of control console flow
+// ****************************************************************************
 #ifndef CODENOWHERE_H
 #define CODENOWHERE_H
 
-#include <string>
-#include <iostream>
-#include <fstream>
 #include <map>
-#include <regex>
-#include <ctime>
-#include <algorithm>
-#include <cctype>
-#include <bits/stdc++.h>
 #include "docopt.h"
+
 #include "../headers/ICommandBehavior.h"
+#include "../headers/OnlyFileBehavior.h"
 
 using namespace std;
 
 class CodeNowHere {
     private:
-    string fileName;
-    string author;
-    string dateOfCreation;
-    string description;
-    string comment;
-    string commentClosureOpt;
     map<string, docopt::value> arguments;
     ICommandBehavior *iCB; //Abstract class
 
 
     public:
-    CodeNowHere();
     CodeNowHere(map<string, docopt::value> input);
-    void initArgsValues(map<string, docopt::value> input);
     void controller();
 
 };
