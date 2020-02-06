@@ -30,7 +30,7 @@ int main(int argc, char * argv[]) {
                          "CodeNowHere 1.0"); // version string
     
     CodeNowHere cnh = CodeNowHere(args);
-    cnh.controller();
+    cnh.Execute();
     
     return 0;
 }

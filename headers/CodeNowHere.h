@@ -10,8 +10,8 @@
 #include <map>
 #include "docopt.h"
 
-#include "../headers/ICommandBehavior.h"
-#include "../headers/OnlyFileBehavior.h"
+#include "ICommandBehavior.h"
+#include "OnlyFileBehavior.h"
 
 using namespace std;
 
@@ -23,7 +23,8 @@ class CodeNowHere {
 
     public:
     CodeNowHere(map<string, docopt::value> input);
-    void controller();
+    void Controller();
+    void Execute();
 
 };
 #endif

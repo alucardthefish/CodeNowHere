@@ -46,6 +46,7 @@ void OnlyFileBehavior::CreateCode() {
         } else {
             CreateCommentHeader();
         }
+        cout << fileName << " created!" << endl;
     } else {
         cout << fileName << " is not a valid file name. File name must be in this form 'filename.ext'" << endl;
     }

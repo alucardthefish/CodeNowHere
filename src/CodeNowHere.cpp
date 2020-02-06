@@ -9,13 +9,17 @@
 
 CodeNowHere::CodeNowHere(map<string, docopt::value> input) {
     arguments = input;
+    Controller();
 }
 
-void CodeNowHere::controller() {
+void CodeNowHere::Controller() {
     //ICommandBehavior *iCB;
     if (!arguments["<filename>"].asString().empty()) {
         iCB = new OnlyFileBehavior();
     }
+}
+
+void CodeNowHere::Execute() {
     iCB->feed(arguments);
     iCB->CreateCode();
 }
