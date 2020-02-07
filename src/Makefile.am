@@ -15,4 +15,4 @@ cnh_CXXFLAGS = -DDATA_LOCATION=\"$(datadir)/cnh\"
 cnh_info_DATA = $(top_srcdir)/extdata/InlineComments.txt $(top_srcdir)/extdata/lang.dat $(top_srcdir)/extdata/*.tpl
 
 # make sure it gets in the installation package
-extra_DIST = $(top_srcdir)/extdata/InlineComments.txt $(top_srcdir)/extdata/lang.dat $(top_srcdir)/extdata/*.tpl
+EXTRA_DIST = ../extdata/InlineComments.txt ../extdata/lang.dat ../extdata/*.tpl
