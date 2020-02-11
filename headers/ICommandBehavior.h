@@ -13,6 +13,7 @@
 #include <map>
 #include <bits/stdc++.h>
 #include "docopt.h"
+#include <cstdlib>
 
 #include "Helper.h"
 
@@ -26,6 +27,8 @@ class ICommandBehavior
     std::string dateOfCreation;
     std::string description;
     std::string dataPath;
+    int year;
+    bool hasCopyRight;
 
     void CreateCommentHeader();
     void CreateMainTemplate(std::ofstream& codeFile, std::string fileName);

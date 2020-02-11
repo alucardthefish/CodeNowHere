@@ -29,11 +29,6 @@ void OnlyFileBehavior::CreateCode() {
         std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
         
         blowCommentByExtensions(ext);
-        
-        time_t now = time(0);
-        char* dt = ctime(&now);
-        dt[strlen(dt) - 1] = '\0';
-        dateOfCreation = string(dt);
 
         if (comment.empty()) {  // Check if type file is not supported in the program
             if (!Helper::RequireHeaderAssistance(fileName, comment, commentClosureOpt)) {

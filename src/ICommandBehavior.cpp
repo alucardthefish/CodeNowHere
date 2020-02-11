@@ -18,6 +18,10 @@ void ICommandBehavior::CreateCommentHeader() {
     file << comment << " Author: " << author << " " << commentClosureOpt << endl;
     file << comment << " Created: " << dateOfCreation << " " << commentClosureOpt << endl;
     file << comment << " Description: " << description << " " << commentClosureOpt << endl;
+    if (hasCopyRight)
+    {
+        file << comment << " Copyright (c) " << year << " " << author << ". All rights reserved. " << commentClosureOpt << endl;
+    }
     file << comment << " **************************************************************************** " << commentClosureOpt << endl;
     CreateMainTemplate(file, fileName);
     file.close();
@@ -148,7 +152,16 @@ void ICommandBehavior::blowCommentByExtensions(string ext) {
 
 void ICommandBehavior::feed(std::map<std::string, docopt::value> args) {
     fileName = args["<filename>"].asString();
-    author = (!args["--author"].asStringList().empty()) ? args["--author"].asStringList().at(0) : "";
+    author = (!args["--author"].asStringList().empty()) ? args["--author"].asStringList().at(0) : string(getenv("USERNAME"));
     description = (!args["--desc"].asStringList().empty()) ? args["--desc"].asStringList().at(0) : "";
+    hasCopyRight = args["--cr"].asBool();
+    
+    time_t now = time(0);
+    char* dt = ctime(&now);
+    dt[strlen(dt) - 1] = '\0';
+    dateOfCreation = string(dt);
+
+    tm *ltm = localtime(&now);
+    year = 1900 + ltm->tm_year;
 }
 
