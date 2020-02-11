@@ -79,7 +79,7 @@ Type in shell:
 
 <pre>
 Usage:
-      cnh &lt;filename&gt; [--author | -a &lt;author&gt;] [--desc | -d &lt;desc&gt;]
+      cnh &lt;filename&gt; [--author | -a &lt;author&gt;] [--desc | -d &lt;desc&gt;] [--cr]
       cnh (-h | --help)
       cnh --version
       
@@ -89,6 +89,7 @@ Usage:
       --version                       Show version.
       -a &lt;author&gt;, --author &lt;author&gt;  Set the file author.
       -d &lt;desc&gt;, --desc &lt;desc&gt;        Set the file description.
+      --cr                            Set a copyright line to comment header.
 </pre>
 
 *Filename* is mandatory. Depending on the extension file it will create the header commentary.
