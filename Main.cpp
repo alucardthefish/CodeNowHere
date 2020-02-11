@@ -9,7 +9,7 @@ static const char USAGE[] =
 R"(Code Now Here (CNH).
 
     Usage:
-      cnh <filename> [--author | -a <author>] [--desc | -d <desc>]
+      cnh <filename> [--author | -a <author>] [--desc | -d <desc>] [--cr]
       cnh (-h | --help)
       cnh --version
       
@@ -19,6 +19,7 @@ R"(Code Now Here (CNH).
       --version                       Show version.
       -a <author>, --author <author>  Set the file author.
       -d <desc>, --desc <desc>        Set the file description.
+      --cr                             Set a copyright line to comment header.
 )";
 
 int main(int argc, char * argv[]) {
