@@ -29,3 +29,4 @@
 .janet : janet
 .pwn .p : pawn
 .dart : dart
+.xml : xml
