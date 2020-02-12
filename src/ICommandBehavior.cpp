@@ -2,7 +2,7 @@
 // File: ICommandBehavior.cpp 
 // Author: Sergio Ortiz Paz 
 // Created: Mon Feb  3 18:25:35 2020 
-// Description: Implement abstract class that represent a command behavior 
+// Description: Implement abstract class that represents a command behavior 
 // **************************************************************************** 
 
 #include "../headers/ICommandBehavior.h"
@@ -13,6 +13,7 @@ using namespace std;
 void ICommandBehavior::CreateCommentHeader() {
     ofstream file;
     file.open(fileName);
+    CreateProlog(file, fileName);
     file << comment << " **************************************************************************** " << commentClosureOpt << endl;
     file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
     file << comment << " Author: " << author << " " << commentClosureOpt << endl;
@@ -25,6 +26,16 @@ void ICommandBehavior::CreateCommentHeader() {
     file << comment << " **************************************************************************** " << commentClosureOpt << endl;
     CreateMainTemplate(file, fileName);
     file.close();
+}
+
+void ICommandBehavior::CreateProlog(std::ofstream& codeFile, std::string fileName){
+    ifstream file;
+	string lang = getLang(fileName);
+    if (lang == "html") {
+        codeFile << "<!DOCTYPE html>" << endl;
+    } else if (lang == "xml") {
+        codeFile << "<?xml version='1.0' encoding='UTF-8'?>" << endl;
+    }
 }
 
 void ICommandBehavior::CreateMainTemplate(ofstream& codeFile, string fileName) {

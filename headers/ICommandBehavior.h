@@ -32,6 +32,7 @@ class ICommandBehavior
 
     void CreateCommentHeader();
     void CreateMainTemplate(std::ofstream& codeFile, std::string fileName);
+    void CreateProlog(std::ofstream& codeFile, std::string fileName);
     std::string getLang(std::string fileName);
     void blowCommentByExtensions(std::string ext);
     void feed(std::map<std::string, docopt::value> args);
