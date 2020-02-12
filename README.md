@@ -176,6 +176,7 @@ int main(int argc, char * argv[]) {
 * Ruby
 * Rust
 * VisualBasic
+* Xml
 
 Whether you enter a different programming language from the list above or an unknown file into the program, it will ask you for the inline comment character to create the header commentary. Otherwise, the comment header is omitted.
 
