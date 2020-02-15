@@ -80,6 +80,7 @@ Type in shell:
 <pre>
 Usage:
       cnh &lt;filename&gt; [--author | -a &lt;author&gt;] [--desc | -d &lt;desc&gt;] [--cr]
+      cnh these &lt;filenames&gt;... [--author | -a &lt;desc&gt;] [--cr]
       cnh (-h | --help)
       cnh --version
       
