@@ -12,6 +12,7 @@
 
 #include "ICommandBehavior.h"
 #include "OnlyFileBehavior.h"
+#include "ManyFileBehavior.h"
 
 using namespace std;
 
