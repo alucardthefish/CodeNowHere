@@ -14,6 +14,7 @@
 #include <bits/stdc++.h>
 #include "docopt.h"
 #include <cstdlib>
+#include <vector>
 
 #include "Helper.h"
 
@@ -29,6 +30,8 @@ class ICommandBehavior
     std::string dataPath;
     int year;
     bool hasCopyRight;
+    std::vector<std::string> fileNames;
+    bool areManyFiles;
 
     void CreateCommentHeader();
     void CreateMainTemplate(std::ofstream& codeFile, std::string fileName);
