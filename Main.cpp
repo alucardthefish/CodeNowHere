@@ -10,6 +10,7 @@ R"(Code Now Here (CNH).
 
     Usage:
       cnh <filename> [--author | -a <author>] [--desc | -d <desc>] [--cr]
+      cnh these <filenames>... [--author | -a <desc>] [--cr]
       cnh (-h | --help)
       cnh --version
       
