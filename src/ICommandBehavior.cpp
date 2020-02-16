@@ -166,7 +166,6 @@ void ICommandBehavior::feed(std::map<std::string, docopt::value> args) {
     author = (args["--author"].isString()) ? args["--author"].asString() : string(getenv("USERNAME"));
     description = (args["--desc"].isString()) ? args["--desc"].asString() : "";
     hasCopyRight = args["--cr"].asBool();
-    //areManyFiles = args["these"].asBool();
     fileNames = args["<filenames>"].asStringList();
     
     time_t now = time(0);
