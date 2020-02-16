@@ -9,8 +9,8 @@ static const char USAGE[] =
 R"(Code Now Here (CNH).
 
     Usage:
-      cnh <filename> [--author | -a <author>] [--desc | -d <desc>] [--cr]
-      cnh these <filenames>... [--author | -a <desc>] [--cr]
+      cnh this <filename> [-a <author>] [-d <desc>] [--cr]
+      cnh these <filenames>... [-a <author>] [--cr]
       cnh (-h | --help)
       cnh --version
       
