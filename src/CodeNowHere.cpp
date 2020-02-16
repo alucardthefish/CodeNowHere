@@ -14,10 +14,8 @@ CodeNowHere::CodeNowHere(map<string, docopt::value> input) {
 
 void CodeNowHere::Controller() {
     //ICommandBehavior *iCB;
-    if (arguments["<filename>"].isString()) {
-         if(!arguments["<filename>"].asString().empty()) {
-             iCB = new OnlyFileBehavior();
-         }
+    if (arguments["this"].asBool()){
+        iCB = new OnlyFileBehavior();
     } else if (arguments["these"].asBool()) {
         iCB = new ManyFileBehavior();
     }
