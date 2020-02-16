@@ -63,3 +63,4 @@ src/Makefile
 src/cnh
 headers/Makefile
 extdata/Makefile
+.vscode/
