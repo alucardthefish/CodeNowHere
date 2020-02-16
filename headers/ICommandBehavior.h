@@ -31,7 +31,6 @@ class ICommandBehavior
     int year;
     bool hasCopyRight;
     std::vector<std::string> fileNames;
-    bool areManyFiles;
 
     void CreateCommentHeader();
     void CreateMainTemplate(std::ofstream& codeFile, std::string fileName);

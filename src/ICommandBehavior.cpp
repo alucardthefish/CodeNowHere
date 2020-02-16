@@ -18,11 +18,11 @@ void ICommandBehavior::CreateCommentHeader() {
     file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
     file << comment << " Author: " << author << " " << commentClosureOpt << endl;
     file << comment << " Created: " << dateOfCreation << " " << commentClosureOpt << endl;
-    file << comment << " Description: " << description << " " << commentClosureOpt << endl;
     if (hasCopyRight)
     {
         file << comment << " Copyright (c) " << year << " " << author << ". All rights reserved. " << commentClosureOpt << endl;
     }
+    file << comment << " Description: " << description << " " << commentClosureOpt << endl;
     file << comment << " **************************************************************************** " << commentClosureOpt << endl;
     CreateMainTemplate(file, fileName);
     file.close();
@@ -163,10 +163,10 @@ void ICommandBehavior::blowCommentByExtensions(string ext) {
 
 void ICommandBehavior::feed(std::map<std::string, docopt::value> args) {
     fileName = (args["<filename>"].isString()) ?  args["<filename>"].asString() : "";
-    author = (!args["--author"].asStringList().empty()) ? args["--author"].asStringList().at(0) : string(getenv("USERNAME"));
-    description = (!args["--desc"].asStringList().empty()) ? args["--desc"].asStringList().at(0) : "";
+    author = (args["--author"].isString()) ? args["--author"].asString() : string(getenv("USERNAME"));
+    description = (args["--desc"].isString()) ? args["--desc"].asString() : "";
     hasCopyRight = args["--cr"].asBool();
-    areManyFiles = args["these"].asBool();
+    //areManyFiles = args["these"].asBool();
     fileNames = args["<filenames>"].asStringList();
     
     time_t now = time(0);
