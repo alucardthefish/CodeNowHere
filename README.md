@@ -79,8 +79,8 @@ Type in shell:
 
 <pre>
 Usage:
-      cnh &lt;filename&gt; [--author | -a &lt;author&gt;] [--desc | -d &lt;desc&gt;] [--cr]
-      cnh these &lt;filenames&gt;... [--author | -a &lt;desc&gt;] [--cr]
+      cnh this &lt;filename&gt; [-a &lt;author&gt;] [-d &lt;desc&gt;] [--cr]
+      cnh these &lt;filenames&gt;... [-a &lt;desc&gt;] [--cr]
       cnh (-h | --help)
       cnh --version
       
@@ -98,7 +98,7 @@ Usage:
 ### Examples:
 
 * Creating a python code file
-<pre>cnh sample.py</pre>
+<pre>cnh this sample.py</pre>
 
 cnh generates a python file named `sample.py` with the following header comment:
 <pre>
@@ -121,7 +121,7 @@ if __name__ == "__main__":
 </pre>
 
 * Creating a code file in C++ with options arguments
-<pre>cnh sample.cpp -a "John Doe" -d "Sample of code file creation"</pre>
+<pre>cnh this sample.cpp -a "John Doe" -d "Sample of code file creation"</pre>
 
 cnh generates a c++ file named `sample.cpp` with the following header comment:
 
