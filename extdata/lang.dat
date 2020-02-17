@@ -30,3 +30,5 @@
 .pwn .p : pawn
 .dart : dart
 .xml : xml
+.elm : elm
+

@@ -160,6 +160,7 @@ int main(int argc, char * argv[]) {
 * ColdFusion
 * Crystal
 * Dart
+* Elm
 * F#
 * Fortran
 * Go
