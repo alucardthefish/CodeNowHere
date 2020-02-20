@@ -104,7 +104,7 @@ cnh generates a python file named `sample.py` with the following header comment:
 <pre>
 # **************************************************************************** 
 # File: sample.py
-# Author: 
+# Author: UserName
 # Created: Sun Jan  5 03:18:05 2020
 # Description: 
 # **************************************************************************** 
@@ -119,6 +119,8 @@ if __name__ == "__main__":
 
 
 </pre>
+
+If option -a or --author is not passed, it takes the username from the system by default.
 
 * Creating a code file in C++ with options arguments
 <pre>cnh this sample.cpp -a "John Doe" -d "Sample of code file creation"</pre>
@@ -170,6 +172,14 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 </pre>
+
+* To create various code files at once you can do it passing their names as follows:
+
+<pre>
+cnh these MyFileA.py MyFileB.py MyFileC.py -a "John Doe" --cr
+<pre>
+
+The created files come with blank space in description field in their comment headers.
 
 ## Markup and Programing Languages Supported by Now
 
