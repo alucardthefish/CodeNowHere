@@ -35,6 +35,8 @@ void ICommandBehavior::CreateProlog(std::ofstream& codeFile, std::string fileNam
         codeFile << "<!DOCTYPE html>" << endl;
     } else if (lang == "xml") {
         codeFile << "<?xml version='1.0' encoding='UTF-8'?>" << endl;
+    } else if (lang == "php") {
+        codeFile << "<?php" << endl;
     }
 }
 
