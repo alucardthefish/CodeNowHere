@@ -177,7 +177,7 @@ int main(int argc, char * argv[]) {
 
 <pre>
 cnh these MyFileA.py MyFileB.py MyFileC.py -a "John Doe" --cr
-<pre>
+</pre>
 
 The created files come with blank space in description field in their comment headers.
 
