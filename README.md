@@ -144,6 +144,33 @@ int main(int argc, char * argv[]) {
 
 </pre>
 
+* Adding copyright comment with --cr option:
+<pre>
+cnh this sample.cpp -a "John Doe" -d "Sample of code file creation" --cr
+</pre>
+
+The output would is shown below:
+
+<pre>
+// **************************************************************************** 
+// File: sample.cpp 
+// Author: John Doe 
+// Created: Thu Feb 20 17:23:41 2020 
+// Copyright (c) 2020 John Doe. All rights reserved. 
+// Description: Sample of code file creation 
+// **************************************************************************** 
+
+
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char * argv[]) {
+    cout << "Hello World" << endl;
+    return 0;
+}
+</pre>
+
 ## Markup and Programing Languages Supported by Now
 
 * Ada
