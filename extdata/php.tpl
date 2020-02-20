@@ -1,7 +1,6 @@
-<?php
-    function printHello() {
-        echo "Hello World";
-    }
+function printHello() {
+    echo "Hello World";
+}
 
-    printHello();
+printHello();
 ?>
