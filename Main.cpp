@@ -11,6 +11,7 @@ R"(Code Now Here (CNH).
     Usage:
       cnh this <filename> [-a <author>] [-d <desc>] [--cr]
       cnh these <filenames>... [-a <author>] [--cr]
+      cnh bunchof <numfiles> [--ext=<fileext>] [--author | -a <author>]
       cnh (-h | --help)
       cnh --version
       
@@ -21,6 +22,7 @@ R"(Code Now Here (CNH).
       -a <author>, --author <author>  Set the file author.
       -d <desc>, --desc <desc>        Set the file description.
       --cr                            Set a copyright line to comment header.
+      --ext=<fileext>                 File extension [default: .cpp]
 )";
 
 int main(int argc, char * argv[]) {
@@ -29,7 +31,7 @@ int main(int argc, char * argv[]) {
         = docopt::docopt(USAGE,
                          { argv + 1, argv + argc },
                          true,               // show help if requested
-                         "CodeNowHere 1.0"); // version string
+                         "CodeNowHere 2.0"); // version string
     
     CodeNowHere cnh = CodeNowHere(args);
     cnh.Execute();
