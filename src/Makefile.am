@@ -3,7 +3,7 @@ ACLOCAL_AMFLAGS = $(ACLOCAL_FLAGS)
 
 bin_PROGRAMS = cnh
 
-cnh_SOURCES = ../Main.cpp CodeNowHere.cpp docopt.cpp ../headers/CodeNowHere.h ../headers/docopt.h ../headers/docopt_private.h ../headers/docopt_util.h ../headers/docopt_value.h ../headers/Helper.h ../headers/ICommandBehavior.h ../headers/OnlyFileBehavior.h ../headers/ManyFileBehavior.h Helper.cpp ICommandBehavior.cpp OnlyFileBehavior.cpp ManyFileBehavior.cpp
+cnh_SOURCES = ../Main.cpp CodeNowHere.cpp docopt.cpp ../headers/CodeNowHere.h ../headers/docopt.h ../headers/docopt_private.h ../headers/docopt_util.h ../headers/docopt_value.h ../headers/Helper.h ../headers/ICommandBehavior.h ../headers/OnlyFileBehavior.h ../headers/ManyFileBehavior.h ../headers/BunchFileBehavior.h Helper.cpp ICommandBehavior.cpp OnlyFileBehavior.cpp ManyFileBehavior.cpp BunchFileBehavior.cpp
 
 cnh_infodir = $(datadir)/cnh
 skivvy_manualsdir = $(datadir)/skivvy
