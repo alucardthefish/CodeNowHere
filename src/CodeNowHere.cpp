@@ -18,6 +18,8 @@ void CodeNowHere::Controller() {
         iCB = new OnlyFileBehavior();
     } else if (arguments["these"].asBool()) {
         iCB = new ManyFileBehavior();
+    } else if (arguments["bunchof"].asBool()) {
+        iCB = new BunchFileBehavior();
     }
 }
 

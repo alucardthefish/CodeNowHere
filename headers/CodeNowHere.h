@@ -13,6 +13,7 @@
 #include "ICommandBehavior.h"
 #include "OnlyFileBehavior.h"
 #include "ManyFileBehavior.h"
+#include "BunchFileBehavior.h"
 
 using namespace std;
 
