@@ -169,6 +169,8 @@ void ICommandBehavior::feed(std::map<std::string, docopt::value> args) {
     description = (args["--desc"].isString()) ? args["--desc"].asString() : "";
     hasCopyRight = args["--cr"].asBool();
     fileNames = args["<filenames>"].asStringList();
+    bunchExt = args["--ext"].asString();
+    numOfFiles = (args["<numfiles>"].isString()) ? stoi(args["<numfiles>"].asString()) : 0;
     
     time_t now = time(0);
     char* dt = ctime(&now);
