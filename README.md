@@ -81,6 +81,7 @@ Type in shell:
 Usage:
       cnh this &lt;filename&gt; [-a &lt;author&gt;] [-d &lt;desc&gt;] [--cr]
       cnh these &lt;filenames&gt;... [-a &lt;desc&gt;] [--cr]
+      cnh bunchof &lt;numfiles&gt; [--ext=&lt;fileext&gt;] [--author | -a &lt;author&gt;]
       cnh (-h | --help)
       cnh --version
       
@@ -91,6 +92,7 @@ Usage:
       -a &lt;author&gt;, --author &lt;author&gt;  Set the file author.
       -d &lt;desc&gt;, --desc &lt;desc&gt;        Set the file description.
       --cr                            Set a copyright line to comment header.
+      --ext=&lt;fileext&gt;                 File extension [default: .cpp]
 </pre>
 
 *Filename* is mandatory. Depending on the extension file it will create the header commentary.
@@ -173,13 +175,19 @@ int main(int argc, char * argv[]) {
 }
 </pre>
 
-* To create various code files at once you can do it passing their names as follows:
+* For creating various code files at once you can do it passing their names as follows:
 
 <pre>
 cnh these MyFileA.py MyFileB.py MyFileC.py -a "John Doe" --cr
 </pre>
 
-The created files come with blank space in description field in their comment headers.
+* For creating a number of code files at once without specifying names only the extension file:
+
+<pre>
+cnh bunchof 5 --ext .py
+</pre>
+
+The created files come with blank description in their comment headers.
 
 ## Markup and Programing Languages Supported by Now
 
