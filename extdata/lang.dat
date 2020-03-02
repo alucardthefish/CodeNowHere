@@ -34,4 +34,5 @@
 .q .qm .qtest : qore
 .gs .gsp .gst .gsx : gosu
 .imba : imba
+.d : d
 
