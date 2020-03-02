@@ -32,4 +32,5 @@
 .xml : xml
 .elm : elm
 .q .qm .qtest : qore
+.gs .gsp .gst .gsx : gosu
 
