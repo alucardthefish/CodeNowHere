@@ -220,6 +220,7 @@ The created files come with blank description in their comment headers.
 * Perl
 * Php
 * Python
+* Qore
 * Ruby
 * Rust
 * VisualBasic

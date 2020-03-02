@@ -31,4 +31,5 @@
 .dart : dart
 .xml : xml
 .elm : elm
+.q .qm .qtest : qore
 
