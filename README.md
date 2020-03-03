@@ -19,37 +19,37 @@ This is a very humble project. I am not using any framework to develop this proj
 
 ### Installing autotools
 
-<pre>
-sudo apt update
-sudo apt install autotools-dev
-sudo apt install autoconf
-sudo apt install libtool
-</pre>
+```sh
+$ sudo apt update
+$ sudo apt install autotools-dev
+$ sudo apt install autoconf
+$ sudo apt install libtool
+```
 
 To get the code, build, and install the CLI app; follow the commands below:
 
 ## How to download and build on Linux
 
-<pre>
-git clone https://github.com/alucardthefish/CodeNowHere.git
-cd CodeNowHere
-./autogen.sh
-./configure
-make
-</pre>
+```sh
+$ git clone https://github.com/alucardthefish/CodeNowHere.git
+$ cd CodeNowHere
+$ ./autogen.sh
+$ ./configure
+$ make
+```
 
 ## How to install on Linux
 
 After building you can install it in your machine this way:
 
-<pre>
-sudo make install
-</pre>
+```sh
+$ sudo make install
+```
 
 *make install* can be reverted through the uninstall command: 
-<pre>
-sudo make uninstall
-</pre>
+```sh
+$ sudo make uninstall
+```
 
 In the case you are building the project with an old C++ compiler and get an error message like this:
 
@@ -58,30 +58,32 @@ with the -std=c++11 or -std=gnu++11 compiler options.`
 
 Then, you can run the config file this way:
 
-<pre>
-./configure CXXFLAGS = "-std=gnu++11"
-</pre>
+```sh
+$ ./configure CXXFLAGS = "-std=gnu++11"
+```
 
 A bash script `build_local.sh` is provided to compile it locally in the build directory. You can edit it with your compiler.
 
-<pre>
-./build_local.sh
-cd build
+```sh
+$ ./build_local.sh
+$ cd build
 # Example
-./cnhtest File.ext -a "Author One" -d "Description one"
-</pre>
+$ ./cnhtest File.ext -a "Author One" -d "Description one"
+```
 
 ## Usage
 
 Type in shell: 
 
-<code>$> cnh --help</code>
+```sh
+$ cnh --help
+```
 
-<pre>
+```sh
 Usage:
-      cnh this &lt;filename&gt; [-a &lt;author&gt;] [-d &lt;desc&gt;] [--cr]
-      cnh these &lt;filenames&gt;... [-a &lt;desc&gt;] [--cr]
-      cnh bunchof &lt;numfiles&gt; [--ext=&lt;fileext&gt;] [--author | -a &lt;author&gt;]
+      cnh this <filename> [-a <author>] [-d <desc>] [--cr]
+      cnh these <filenames>... [-a <desc>] [--cr]
+      cnh bunchof <numfiles> [--ext=<fileext>] [--author | -a <author>]
       cnh (-h | --help)
       cnh --version
       
@@ -89,21 +91,23 @@ Usage:
     Options:
       -h --help                       Show this screen.
       --version                       Show version.
-      -a &lt;author&gt;, --author &lt;author&gt;  Set the file author.
-      -d &lt;desc&gt;, --desc &lt;desc&gt;        Set the file description.
+      -a <author>, --author <author>  Set the file author.
+      -d <desc>, --desc <desc>        Set the file description.
       --cr                            Set a copyright line to comment header.
-      --ext=&lt;fileext&gt;                 File extension [default: .cpp]
-</pre>
+      --ext=<fileext>                 File extension [default: .cpp]
+```
 
 *Filename* is mandatory. Depending on the extension file it will create the header commentary.
 
 ### Examples:
 
 * Creating a python code file
-<pre>cnh this sample.py</pre>
+```sh
+$ cnh this sample.py
+```
 
 cnh generates a python file named `sample.py` with the following header comment:
-<pre>
+```python
 # **************************************************************************** 
 # File: sample.py
 # Author: UserName
@@ -120,16 +124,19 @@ if __name__ == "__main__":
     main()
 
 
-</pre>
+
+```
 
 If option -a or --author is not passed, it takes the username from the system by default.
 
 * Creating a code file in C++ with options arguments
-<pre>cnh this sample.cpp -a "John Doe" -d "Sample of code file creation"</pre>
+```sh
+$ cnh this sample.cpp -a "John Doe" -d "Sample of code file creation"
+```
 
 cnh generates a c++ file named `sample.cpp` with the following header comment:
 
-<pre>
+```c++
 // **************************************************************************** 
 // File: sample.cpp
 // Author: John Doe
@@ -146,16 +153,17 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-</pre>
+```
 
 * Adding copyright comment with --cr option:
-<pre>
-cnh this sample.cpp -a "John Doe" -d "Sample of code file creation" --cr
-</pre>
+
+```sh
+$ cnh this sample.cpp -a "John Doe" -d "Sample of code file creation" --cr
+```
 
 The output would is shown below:
 
-<pre>
+```c++
 // **************************************************************************** 
 // File: sample.cpp 
 // Author: John Doe 
@@ -173,19 +181,19 @@ int main(int argc, char * argv[]) {
     cout << "Hello World" << endl;
     return 0;
 }
-</pre>
+```
 
 * For creating various code files at once you can do it passing their names as follows:
 
-<pre>
-cnh these MyFileA.py MyFileB.py MyFileC.py -a "John Doe" --cr
-</pre>
+```sh
+$ cnh these MyFileA.py MyFileB.py MyFileC.py -a "John Doe" --cr
+```
 
 * For creating a number of code files at once without specifying names only the extension file:
 
-<pre>
-cnh bunchof 5 --ext .py
-</pre>
+```sh
+$ cnh bunchof 5 --ext .py
+```
 
 The created files come with blank description in their comment headers.
 
