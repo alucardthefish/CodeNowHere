@@ -35,4 +35,4 @@
 .gs .gsp .gst .gsx : gosu
 .imba : imba
 .d : d
-
+.yml .yaml : yaml
