@@ -49,7 +49,7 @@ void  BunchFileBehavior::CreateCode() {
                 file.open(fileName);
                 file.close();
             } else {
-                CreateCommentHeader();
+                WriteCodeNow();
             }
             cout << fileName << " created!" << endl;
         } // ends fileExists

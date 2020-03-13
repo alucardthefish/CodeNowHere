@@ -36,10 +36,10 @@ void OnlyFileBehavior::CreateCode() {
                 file.open(fileName);
                 file.close();
             } else {
-                CreateCommentHeader();
+                WriteCodeNow();
             }
         } else {
-            CreateCommentHeader();
+            WriteCodeNow();
         }
         cout << fileName << " created!" << endl;
     } else {
