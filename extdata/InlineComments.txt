@@ -6,7 +6,7 @@
 .html .htm .xhtml .xml : <!-- -->
 .cfm .cfc : <!--- --->
 .vb : ' {}
-.b .pwn .p : /* */
+.b .pwn .p .css : /* */
 .cobra : """ """
 .f .for .f90 .f95 .f03 : ! {}
 .json : {} {}

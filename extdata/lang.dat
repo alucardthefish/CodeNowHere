@@ -37,3 +37,4 @@
 .d : d
 .yml .yaml : yaml
 .json : json
+.css : css

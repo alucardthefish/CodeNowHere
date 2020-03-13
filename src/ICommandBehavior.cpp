@@ -101,7 +101,6 @@ void ICommandBehavior::WriteCodeNow() {
         CreateCommentHeader();
     }
     CreateMainTemplate();
-    cout << "WriteCodeNow... success!" << endl;
 }
 
 

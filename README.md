@@ -212,6 +212,7 @@ The created files come with blank description in their comment headers.
 * CoffeeScript
 * ColdFusion
 * Crystal
+* Css
 * D
 * Dart
 * Elm
