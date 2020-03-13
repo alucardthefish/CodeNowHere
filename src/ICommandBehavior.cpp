@@ -10,70 +10,100 @@
 using namespace std;
 
 
-void ICommandBehavior::CreateCommentHeader() {
-    ofstream file;
-    file.open(fileName);
-    CreateProlog(file, fileName);
-    file << comment << " **************************************************************************** " << commentClosureOpt << endl;
-    file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
-    file << comment << " Author: " << author << " " << commentClosureOpt << endl;
-    file << comment << " Created: " << dateOfCreation << " " << commentClosureOpt << endl;
-    if (hasCopyRight)
-    {
-        file << comment << " Copyright (c) " << year << " " << author << ". All rights reserved. " << commentClosureOpt << endl;
-    }
-    file << comment << " Description: " << description << " " << commentClosureOpt << endl;
-    file << comment << " **************************************************************************** " << commentClosureOpt << endl;
-    CreateMainTemplate(file, fileName);
-    file.close();
+fstream ICommandBehavior::startUsingFile() {
+    fstream file(fileName, ios::in | ios::out | ios::app);
+    return file;
 }
 
-void ICommandBehavior::CreateProlog(std::ofstream& codeFile, std::string fileName){
-    ifstream file;
-	string lang = getLang(fileName);
-    if (lang == "html") {
-        codeFile << "<!DOCTYPE html>" << endl;
-    } else if (lang == "xml") {
-        codeFile << "<?xml version='1.0' encoding='UTF-8'?>" << endl;
-    } else if (lang == "php") {
-        codeFile << "<?php" << endl;
-    }
-}
-
-void ICommandBehavior::CreateMainTemplate(ofstream& codeFile, string fileName) {
-    ifstream file;
-	string lang = getLang(fileName);
-    string fileOfFunction = Helper::getDataPath();
-	fileOfFunction += lang;
-	fileOfFunction += ".tpl";
-
-    try {
-        file.open(fileOfFunction);
-
-        codeFile << endl << endl;
-		
-        while(file) {
-
-			string line = "";
-			getline(file, line);
-			Helper::replaceClassName(line, fileName);
-
-			if (line == "") {
-				codeFile << endl;
-			} else {
-				codeFile << line << endl;
-			}
-
-            if(!file) {
-                break;
-            }
+void ICommandBehavior::CreateProlog() {
+    fstream file = startUsingFile();
+    if (!file.is_open()) {
+        cout << "Error while opening file" << endl;
+    } else {
+        string lang = getLang(fileName);
+        if (lang == "html") {
+            file << "<!DOCTYPE html>" << endl;
+        } else if (lang == "xml") {
+            file << "<?xml version='1.0' encoding='UTF-8'?>" << endl;
+        } else if (lang == "php") {
+            file << "<?php" << endl;
         }
-    } catch(const ifstream::failure& e) {
-        cout << "There was a problem with the extension provider" << endl;
     }
-
     file.close();
 }
+
+void ICommandBehavior::CreateCommentHeader() {
+    fstream file = startUsingFile();
+    if (!file.is_open())
+    {
+        cout << "Error while opening file" << endl;
+    } else
+    {
+        file << comment << " **************************************************************************** " << commentClosureOpt << endl;
+        file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
+        file << comment << " Author: " << author << " " << commentClosureOpt << endl;
+        file << comment << " Created: " << dateOfCreation << " " << commentClosureOpt << endl;
+        if (hasCopyRight)
+        {
+            file << comment << " Copyright (c) " << year << " " << author << ". All rights reserved. " << commentClosureOpt << endl;
+        }
+        file << comment << " Description: " << description << " " << commentClosureOpt << endl;
+        file << comment << " **************************************************************************** " << commentClosureOpt << endl;
+    }
+    file.close();    
+}
+
+void ICommandBehavior::CreateMainTemplate() {
+    fstream file = startUsingFile();
+    if (!file.is_open()) {
+        cout << "Error while opening file" << endl;
+    } else {
+        ifstream templateFile;
+        string lang = getLang(fileName);
+        string fileOfFunction = Helper::getDataPath();
+        fileOfFunction += lang;
+        fileOfFunction += ".tpl";
+
+        try {
+            templateFile.open(fileOfFunction);
+
+            file << endl << endl;
+            
+            while(templateFile) {
+
+                string line = "";
+                getline(templateFile, line);
+                Helper::replaceClassName(line, fileName);
+
+                if (line == "") {
+                    file << endl;
+                } else {
+                    file << line << endl;
+                }
+
+                if(!templateFile) {
+                    break;
+                }
+            }
+        } catch(const ifstream::failure& e) {
+            cout << "There was a problem with the extension provider" << endl;
+        }
+
+        templateFile.close();
+    }
+    file.close();
+}
+
+void ICommandBehavior::WriteCodeNow() {
+    CreateProlog();
+    bool fileAllowsComments = comment != "{}";
+    if (fileAllowsComments) {
+        CreateCommentHeader();
+    }
+    CreateMainTemplate();
+    cout << "WriteCodeNow... success!" << endl;
+}
+
 
 string ICommandBehavior::getLang(string fileName) {
     // Getting the extension of the file
