@@ -36,3 +36,4 @@
 .imba : imba
 .d : d
 .yml .yaml : yaml
+.json : json

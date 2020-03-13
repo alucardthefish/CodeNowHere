@@ -224,6 +224,7 @@ The created files come with blank description in their comment headers.
 * Janet
 * Java
 * JavaScript
+* Json
 * Kotlin
 * Lua
 * ObjectiveC
