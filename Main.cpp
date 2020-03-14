@@ -31,7 +31,7 @@ int main(int argc, char * argv[]) {
         = docopt::docopt(USAGE,
                          { argv + 1, argv + argc },
                          true,               // show help if requested
-                         "CodeNowHere 2.0"); // version string
+                         "CodeNowHere 2.1.1"); // version string
     
     CodeNowHere cnh = CodeNowHere(args);
     cnh.Execute();
