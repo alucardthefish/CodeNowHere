@@ -194,7 +194,10 @@ void ICommandBehavior::blowCommentByExtensions(string ext) {
 
 void ICommandBehavior::feed(std::map<std::string, docopt::value> args) {
     fileName = (args["<filename>"].isString()) ?  args["<filename>"].asString() : "";
-    author = (args["--author"].isString()) ? args["--author"].asString() : string(getenv("USERNAME"));
+    char const* user = getenv("USER");
+    char const* username = getenv("USERNAME");
+    string myUser = user != NULL ? string(user) : username != NULL ? string(username) : string();
+    author = (args["--author"].isString()) ? args["--author"].asString() : myUser;
     description = (args["--desc"].isString()) ? args["--desc"].asString() : "";
     hasCopyRight = args["--cr"].asBool();
     fileNames = args["<filenames>"].asStringList();
