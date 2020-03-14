@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([cnh], [1.0], [jaerma743@gmail.com])
+AC_INIT([cnh], [2.1.1], [sergiop18@gmail.com])
 AM_INIT_AUTOMAKE
 #AC_CONFIG_SRCDIR([src/Main.cpp])
 AC_CONFIG_SRCDIR([Main.cpp])
