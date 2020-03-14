@@ -59,7 +59,7 @@ with the -std=c++11 or -std=gnu++11 compiler options.`
 Then, you can run the config file this way:
 
 ```sh
-$ ./configure CXXFLAGS = "-std=gnu++11"
+$ ./configure CXXFLAGS="-std=gnu++11"
 ```
 
 A bash script `build_local.sh` is provided to compile it locally in the build directory. You can edit it with your compiler.
@@ -69,6 +69,23 @@ $ ./build_local.sh
 $ cd build
 # Example
 $ ./cnhtest File.ext -a "Author One" -d "Description one"
+```
+
+## Install on Linux from release tar
+
+You can download a version package from [release page](https://github.com/alucardthefish/CodeNowHere/releases). The package will have this format: cnh-x.y.z.tar.gz (x, y, adn z are numbers).
+
+1. From the terminal, change to the directory where cnh-x.y.z.tar.gz has been downloaded.
+2. Type the following to extract the file to the current directory: 
+
+```sh 
+$ tar -zxvf cnh-x.y.z.tar.gz 
+```
+3. then install:
+
+```sh 
+$ ./configure CXXFLAGS="-std=gnu++11"
+$ sudo make install
 ```
 
 ## Usage
