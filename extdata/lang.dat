@@ -38,3 +38,4 @@
 .yml .yaml : yaml
 .json : json
 .css : css
+.sql : sql

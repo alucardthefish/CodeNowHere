@@ -253,6 +253,7 @@ The created files come with blank description in their comment headers.
 * Qore
 * Ruby
 * Rust
+* Sql
 * VisualBasic
 * Xml
 * Yaml
