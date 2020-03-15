@@ -39,3 +39,4 @@
 .json : json
 .css : css
 .sql : sql
+.pi : picat
