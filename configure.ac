@@ -8,6 +8,7 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([Main.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])
+AM_PROG_AR
 
 # Checks for programs.
 AC_PROG_CXX
@@ -27,5 +28,5 @@ AC_C_INLINE
 AC_TYPE_SIZE_T
 
 # Checks for library functions.
-AC_CONFIG_FILES([Makefile src/Makefile headers/Makefile extdata/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile headers/Makefile extdata/Makefile tests/Makefile]])
 AC_OUTPUT
