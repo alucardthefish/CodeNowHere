@@ -33,6 +33,8 @@ To get the code, build, and install the CLI app; follow the commands below:
 ```sh
 $ git clone https://github.com/alucardthefish/CodeNowHere.git
 $ cd CodeNowHere
+$ git submodule init
+$ git submodule update
 $ ./autogen.sh
 $ ./configure
 $ make
@@ -261,6 +263,16 @@ The created files come with blank description in their comment headers.
 
 Whether you enter a different programming language from the list above or an unknown file into the program, it will ask you for the inline comment character to create the header commentary. Otherwise, the comment header is omitted.
 
-## Contribution
+# Tests
+
+Project uses the Google Test library for Unit Testing locally as part of the code in the submodule googletest. For testing, go to tests/ directory and write some tests.
+
+To run the tests; type the following from base folder /
+
+```bash
+$ make check
+```
+
+# Contribution
 
 Feel free to create issues and Pull Requests for improving this project. For instance, you can support it extending this utility adding more programming languages options and features.
