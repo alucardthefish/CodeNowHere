@@ -10,6 +10,9 @@
 
 #include "gtest/gtest.h"
 
+// Tests
+#include "ICommandBehaviorTest.h"
+
 
 int main(int argc, char * argv[]) {
     std::cout << "Test Runner (Start)" << std::endl;
