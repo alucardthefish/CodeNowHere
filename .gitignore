@@ -34,7 +34,7 @@
 # Install and config
 *.swp
 *.DS_Store
-*.in
+*.in*
 
 aclocal.m4
 autoscan.log
@@ -64,3 +64,11 @@ src/cnh
 headers/Makefile
 extdata/Makefile
 .vscode/
+
+# Tests
+ar-lib
+test-driver
+tests/*.log
+tests/*.trs
+# exec file
+tests/AllTests
