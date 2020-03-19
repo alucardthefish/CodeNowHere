@@ -10,9 +10,8 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <map>
 #include <bits/stdc++.h>
-#include "docopt.h"
+#include "cnh_structs.h"
 #include <cstdlib>
 #include <vector>
 
@@ -39,10 +38,11 @@ class ICommandBehavior
     void CreateCommentHeader();
     void CreateMainTemplate();
     void WriteCodeNow();
+    void RegisterDateOfCreation();
 
     std::string getLang(std::string fileName);
     void blowCommentByExtensions(std::string ext);
-    void feed(std::map<std::string, docopt::value> args);
+    void feed(cnh::arguments args);
     virtual void CreateCode() = 0;
 };
 

@@ -7,24 +7,22 @@
 #ifndef CODENOWHERE_H
 #define CODENOWHERE_H
 
-#include <map>
-#include "docopt.h"
-
 #include "ICommandBehavior.h"
 #include "OnlyFileBehavior.h"
 #include "ManyFileBehavior.h"
 #include "BunchFileBehavior.h"
 
+#include "../headers/cnh_structs.h"
+
 using namespace std;
 
 class CodeNowHere {
     private:
-    map<string, docopt::value> arguments;
+    cnh::arguments data;
     ICommandBehavior *iCB; //Abstract class
 
-
     public:
-    CodeNowHere(map<string, docopt::value> input);
+    CodeNowHere(cnh::arguments argStruct);
     void Controller();
     void Execute();
 

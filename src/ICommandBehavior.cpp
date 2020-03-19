@@ -39,6 +39,7 @@ void ICommandBehavior::CreateCommentHeader() {
         cout << "Error while opening file" << endl;
     } else
     {
+        RegisterDateOfCreation();
         file << comment << " **************************************************************************** " << commentClosureOpt << endl;
         file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
         file << comment << " Author: " << author << " " << commentClosureOpt << endl;
@@ -101,6 +102,17 @@ void ICommandBehavior::WriteCodeNow() {
         CreateCommentHeader();
     }
     CreateMainTemplate();
+}
+
+
+void ICommandBehavior::RegisterDateOfCreation() {
+    time_t now = time(0);
+    char* dt = ctime(&now);
+    dt[strlen(dt) - 1] = '\0';
+    dateOfCreation = string(dt);
+
+    tm *ltm = localtime(&now);
+    year = 1900 + ltm->tm_year;
 }
 
 
@@ -192,24 +204,17 @@ void ICommandBehavior::blowCommentByExtensions(string ext) {
     file.close();
 }
 
-void ICommandBehavior::feed(std::map<std::string, docopt::value> args) {
-    fileName = (args["<filename>"].isString()) ?  args["<filename>"].asString() : "";
+
+void ICommandBehavior::feed(cnh::arguments args) {
+    fileName = args.fileName;
     char const* user = getenv("USER");
     char const* username = getenv("USERNAME");
     string myUser = user != NULL ? string(user) : username != NULL ? string(username) : string();
-    author = (args["--author"].isString()) ? args["--author"].asString() : myUser;
-    description = (args["--desc"].isString()) ? args["--desc"].asString() : "";
-    hasCopyRight = args["--cr"].asBool();
-    fileNames = args["<filenames>"].asStringList();
-    bunchExt = args["--ext"].asString();
-    numOfFiles = (args["<numfiles>"].isString()) ? stoi(args["<numfiles>"].asString()) : 0;
-    
-    time_t now = time(0);
-    char* dt = ctime(&now);
-    dt[strlen(dt) - 1] = '\0';
-    dateOfCreation = string(dt);
-
-    tm *ltm = localtime(&now);
-    year = 1900 + ltm->tm_year;
+    author = args.author != "" ? args.author : myUser;
+    description = args.description;
+    hasCopyRight = args.copyRight;
+    fileNames = args.fileNames;
+    bunchExt = args.bunchExt;
+    numOfFiles = args.numFiles;
 }
 

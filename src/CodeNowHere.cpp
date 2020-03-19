@@ -7,23 +7,23 @@
 
 #include "../headers/CodeNowHere.h"
 
-CodeNowHere::CodeNowHere(map<string, docopt::value> input) {
-    arguments = input;
+CodeNowHere::CodeNowHere(cnh::arguments argStruct) {
+    data = argStruct;
     Controller();
 }
 
 void CodeNowHere::Controller() {
     //ICommandBehavior *iCB;
-    if (arguments["this"].asBool()){
+    if (data.optThis) {
         iCB = new OnlyFileBehavior();
-    } else if (arguments["these"].asBool()) {
+    } else if (data.optThese) {
         iCB = new ManyFileBehavior();
-    } else if (arguments["bunchof"].asBool()) {
+    } else if (data.optBunch) {
         iCB = new BunchFileBehavior();
     }
 }
 
 void CodeNowHere::Execute() {
-    iCB->feed(arguments);
+    iCB->feed(data);
     iCB->CreateCode();
 }
