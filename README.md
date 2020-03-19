@@ -35,6 +35,7 @@ $ git clone https://github.com/alucardthefish/CodeNowHere.git
 $ cd CodeNowHere
 $ git submodule init
 $ git submodule update
+$ git config submodule.googletest.ignore untracked
 $ ./autogen.sh
 $ ./configure
 $ make
