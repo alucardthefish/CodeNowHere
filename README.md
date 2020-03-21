@@ -225,6 +225,7 @@ The created files come with blank description in their comment headers.
 * AppleScript
 * Awk
 * B
+* Boo
 * C
 * C#
 * C++
