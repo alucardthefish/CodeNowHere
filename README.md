@@ -223,6 +223,7 @@ The created files come with blank description in their comment headers.
 * Agda
 * Alef
 * AppleScript
+* Awk
 * B
 * C
 * C#

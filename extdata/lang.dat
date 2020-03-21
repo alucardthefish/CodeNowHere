@@ -41,3 +41,4 @@
 .sql : sql
 .pi : picat
 .a : alef
+.awk : awk
