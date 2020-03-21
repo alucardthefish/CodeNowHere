@@ -221,6 +221,7 @@ The created files come with blank description in their comment headers.
 
 * Ada
 * Agda
+* Alef
 * AppleScript
 * B
 * C
