@@ -240,6 +240,7 @@ The created files come with blank description in their comment headers.
 * D
 * Dart
 * E
+* ECMAScript
 * Elm
 * F#
 * Fortran
