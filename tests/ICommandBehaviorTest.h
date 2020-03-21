@@ -95,6 +95,27 @@ TEST_P(ICommandBehaviorTest, OptionBunchTestFeeding) {
     EXPECT_EQ(false, behavior_->hasCopyRight);
 }
 
+TEST_P(ICommandBehaviorTest, ReturnTrueIfFoundComment) {
+    behavior_->blowCommentByExtensions(".cpp");
+    EXPECT_TRUE(!behavior_->comment.empty());
+    EXPECT_EQ("//", behavior_->comment);
+    behavior_->blowCommentByExtensions(".go");
+    EXPECT_TRUE(!behavior_->comment.empty());
+    EXPECT_EQ("//", behavior_->comment);
+    behavior_->blowCommentByExtensions(".py");
+    EXPECT_TRUE(!behavior_->comment.empty());
+    EXPECT_EQ("#", behavior_->comment);
+    behavior_->blowCommentByExtensions(".css");
+    EXPECT_TRUE(!behavior_->comment.empty());
+    EXPECT_EQ("/*", behavior_->comment);
+    behavior_->blowCommentByExtensions(".java");
+    EXPECT_TRUE(!behavior_->comment.empty());
+    EXPECT_EQ("//", behavior_->comment);
+    behavior_->blowCommentByExtensions(".cs");
+    EXPECT_TRUE(!behavior_->comment.empty());
+    EXPECT_EQ("//", behavior_->comment);
+}
+
 INSTANTIATE_TEST_SUITE_P(CommandBehavior, ICommandBehaviorTest, Values(&CreateOnlyFile, &CreateTestBehavior));
 
 
