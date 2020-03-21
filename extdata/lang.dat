@@ -44,3 +44,4 @@
 .awk : awk
 .boo : boo
 .ceylon : ceylon
+.e : e
