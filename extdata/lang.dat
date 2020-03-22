@@ -50,3 +50,4 @@
 .erl .ebin .escript : erlang
 .ex .exw : euphoria
 .factor : factor
+.ftd .fal .fam : falcon

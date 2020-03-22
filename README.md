@@ -247,6 +247,7 @@ The created files come with blank description in their comment headers.
 * Euphoria
 * F#
 * Factor
+* Falcon
 * Fortran
 * Go
 * Gosu
