@@ -243,6 +243,7 @@ The created files come with blank description in their comment headers.
 * ECMAScript
 * Egison
 * Elm
+* Erlang
 * F#
 * Fortran
 * Go

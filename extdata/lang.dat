@@ -47,3 +47,4 @@
 .e : e
 .es : ecmascript
 .egi : egison
+.erl .ebin .escript : erlang
