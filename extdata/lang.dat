@@ -49,3 +49,4 @@
 .egi : egison
 .erl .ebin .escript : erlang
 .ex .exw : euphoria
+.factor : factor

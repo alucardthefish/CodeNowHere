@@ -8,7 +8,7 @@
 .vb : ' {}
 .b .pwn .p .css .a : /* */
 .cobra : """ """
-.f .for .f90 .f95 .f03 : ! {}
+.f .for .f90 .f95 .f03 .factor : ! {}
 .json : {} {}
 .sql : -- {}
 .pi .erl .ebin .escript : % {}
