@@ -48,3 +48,4 @@
 .es : ecmascript
 .egi : egison
 .erl .ebin .escript : erlang
+.ex .exw : euphoria

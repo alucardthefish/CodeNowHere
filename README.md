@@ -244,6 +244,7 @@ The created files come with blank description in their comment headers.
 * Egison
 * Elm
 * Erlang
+* Euphoria
 * F#
 * Fortran
 * Go
