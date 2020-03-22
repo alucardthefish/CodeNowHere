@@ -250,6 +250,7 @@ The created files come with blank description in their comment headers.
 * Falcon
 * Fortran
 * Fp
+* Gap
 * Go
 * Gosu
 * Html
