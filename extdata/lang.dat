@@ -53,3 +53,4 @@
 .ftd .fal .fam : falcon
 .fp : fp
 .gap : gap
+.gp : gnuplot

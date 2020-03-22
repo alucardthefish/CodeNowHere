@@ -251,6 +251,7 @@ The created files come with blank description in their comment headers.
 * Fortran
 * Fp
 * Gap
+* Gnuplot
 * Go
 * Gosu
 * Html
