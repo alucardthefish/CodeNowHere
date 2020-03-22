@@ -11,4 +11,4 @@
 .f .for .f90 .f95 .f03 .factor : ! {}
 .json : {} {}
 .sql : -- {}
-.pi .erl .ebin .escript : % {}
+.pi .erl .ebin .escript .fp : % {}

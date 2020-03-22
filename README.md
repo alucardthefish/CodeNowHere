@@ -249,6 +249,7 @@ The created files come with blank description in their comment headers.
 * Factor
 * Falcon
 * Fortran
+* Fp
 * Go
 * Gosu
 * Html
