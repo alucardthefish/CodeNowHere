@@ -255,6 +255,7 @@ The created files come with blank description in their comment headers.
 * Go
 * Gosu
 * Groovy
+* Haskell
 * Html
 * Imba
 * Janet
