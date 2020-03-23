@@ -56,3 +56,4 @@
 .gp : gnuplot
 .groovy .gvy .gy .gsh : groovy
 .hs .lhs : haskell
+.icn : icon
