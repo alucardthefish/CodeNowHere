@@ -254,6 +254,7 @@ The created files come with blank description in their comment headers.
 * Gnuplot
 * Go
 * Gosu
+* Groovy
 * Html
 * Imba
 * Janet

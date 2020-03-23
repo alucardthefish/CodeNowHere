@@ -54,3 +54,4 @@
 .fp : fp
 .gap : gap
 .gp : gnuplot
+.groovy .gvy .gy .gsh : groovy
