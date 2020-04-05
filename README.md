@@ -268,6 +268,7 @@ The created files come with blank description in their comment headers.
 * Kotlin
 * Logo
 * Lua
+* Nemerle
 * ObjectiveC
 * Pawn
 * Perl
