@@ -12,3 +12,4 @@
 .json : {} {}
 .sql : -- {}
 .pi .erl .ebin .escript .fp : % {}
+.ijx .ijs : AB. {}

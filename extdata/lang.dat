@@ -58,3 +58,4 @@
 .hs .lhs : haskell
 .icn : icon
 .io : io
+.ijx .ijs : j
