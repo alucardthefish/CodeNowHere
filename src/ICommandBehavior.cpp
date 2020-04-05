@@ -32,7 +32,7 @@ void ICommandBehavior::CreateProlog() {
     file.close();
 }
 
-void ICommandBehavior::CreateCommentHeader() {
+void ICommandBehavior::CreateCommentHeader(int headerLength = 110) {
     fstream file = startUsingFile();
     if (!file.is_open())
     {
@@ -40,16 +40,18 @@ void ICommandBehavior::CreateCommentHeader() {
     } else
     {
         RegisterDateOfCreation();
-        file << comment << " **************************************************************************** " << commentClosureOpt << endl;
-        file << comment << " File: " << fileName << " " << commentClosureOpt << endl;
-        file << comment << " Author: " << author << " " << commentClosureOpt << endl;
-        file << comment << " Created: " << dateOfCreation << " " << commentClosureOpt << endl;
+        file << comment << " " << nTimesThisString("*", headerLength) << " " << commentClosureOpt << endl;
+        file << comment << includeHeaderAttribute("File:", fileName, headerLength) << " " << commentClosureOpt << endl;
+        file << comment << includeHeaderAttribute("Author:", author, headerLength) << " " << commentClosureOpt << endl;
+        file << comment << includeHeaderAttribute("Created:", dateOfCreation, headerLength) << " " << commentClosureOpt << endl;
         if (hasCopyRight)
         {
-            file << comment << " Copyright (c) " << year << " " << author << ". All rights reserved. " << commentClosureOpt << endl;
+            string text = to_string(year);
+            text += " " + author + ". All rights reserved. "; 
+            file << comment << includeHeaderAttribute("Copyright (c)", text, headerLength) << " " << commentClosureOpt << endl;
         }
-        file << comment << " Description: " << description << " " << commentClosureOpt << endl;
-        file << comment << " **************************************************************************** " << commentClosureOpt << endl;
+        file << comment << includeHeaderAttribute("Description:", description, headerLength)  << " " << commentClosureOpt << endl;
+        file << comment << " " << nTimesThisString("*", headerLength) << " " << commentClosureOpt << endl;
     }
     file.close();    
 }
@@ -216,5 +218,48 @@ void ICommandBehavior::feed(cnh::arguments args) {
     fileNames = args.fileNames;
     bunchExt = args.bunchExt;
     numOfFiles = args.numFiles;
+}
+
+std::string ICommandBehavior::nTimesThisString (std::string text, int times) {
+    std::string tmp;
+    for (int i = 0; i < times; i++) {
+        tmp += text;
+    }
+    return tmp;
+}
+
+std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::string text, int size) 
+{ 
+    // word variable to store word 
+    std::string word;
+  
+    // making a string stream 
+    std::stringstream iss(text);
+    
+    std::string chain = " " + title + " ";
+    std::string space = " ";
+    int tmpSize = title.size() + 2;
+    //int tmpSize = chain.size();
+    int newLineTmpSize = size + (comment.size());
+  
+    // Read and process each word. 
+    while (iss >> word) {
+        tmpSize += (word.size() + 1);
+        if (tmpSize <= size) {
+            chain += word + space;
+        } else {
+            int lineLength = tmpSize - word.size() - 1;
+            int numSpaces = size - lineLength;
+            
+            chain += nTimesThisString(space, numSpaces);
+            chain += "  " + commentClosureOpt + "\n";
+            std::string newLine = comment + nTimesThisString(space, title.size()+1) + word + " ";
+            tmpSize = newLine.size();
+            chain += newLine;
+            size = newLineTmpSize;
+        }
+    }
+    chain += nTimesThisString(space, size - tmpSize + 1);
+    return chain;
 }
 

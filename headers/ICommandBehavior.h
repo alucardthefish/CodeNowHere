@@ -35,7 +35,7 @@ class ICommandBehavior
 
     fstream startUsingFile();
     void CreateProlog();
-    void CreateCommentHeader();
+    void CreateCommentHeader(int);
     void CreateMainTemplate();
     void WriteCodeNow();
     void RegisterDateOfCreation();
@@ -43,6 +43,8 @@ class ICommandBehavior
     std::string getLang(std::string fileName);
     void blowCommentByExtensions(std::string ext);
     void feed(cnh::arguments args);
+    std::string nTimesThisString (std::string text, int times);
+    std::string includeHeaderAttribute(std::string title, std::string text, int size);
     virtual void CreateCode() = 0;
 };
 
