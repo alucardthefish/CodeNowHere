@@ -244,11 +244,11 @@ std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::str
   
     // Read and process each word. 
     while (iss >> word) {
-        tmpSize += (word.size() + 1);
+        tmpSize += (getStringLength(word) + 1);
         if (tmpSize <= size) {
             chain += word + space;
         } else {
-            int lineLength = tmpSize - word.size() - 1;
+            int lineLength = tmpSize - getStringLength(word) - 1;
             int numSpaces = size - lineLength;
             
             chain += nTimesThisString(space, numSpaces);
@@ -263,3 +263,18 @@ std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::str
     return chain;
 }
 
+bool ICommandBehavior::isSpecialChar(char letter) {
+    bool flag = (letter >= 27 && letter <= 127);
+    return !flag;
+}
+
+int ICommandBehavior::getStringLength(std::string word) {
+    int specialChars = 0;
+    int wordLength = word.length();
+    for (int i = 0; i < wordLength; i++) {
+        if (isSpecialChar(word[i])) {
+            specialChars++;
+        }
+    }
+    return wordLength - (specialChars / 2);
+}

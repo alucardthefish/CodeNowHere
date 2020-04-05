@@ -45,6 +45,8 @@ class ICommandBehavior
     void feed(cnh::arguments args);
     std::string nTimesThisString (std::string text, int times);
     std::string includeHeaderAttribute(std::string title, std::string text, int size);
+    bool isSpecialChar(char);
+    int getStringLength(std::string);
     virtual void CreateCode() = 0;
 };
 
