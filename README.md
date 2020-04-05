@@ -266,6 +266,7 @@ The created files come with blank description in their comment headers.
 * JavaScript
 * Json
 * Kotlin
+* Logo
 * Lua
 * ObjectiveC
 * Pawn
