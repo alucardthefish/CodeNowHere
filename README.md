@@ -276,6 +276,7 @@ The created files come with blank description in their comment headers.
 * Picat
 * Python
 * Qore
+* R
 * Ruby
 * Rust
 * Scheme
