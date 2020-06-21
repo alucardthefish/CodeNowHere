@@ -299,4 +299,6 @@ $ make check
 
 # Contribution
 
-Feel free to create issues and Pull Requests for improving this project. For instance, you can support it extending this utility adding more programming languages options and features.
+Please read our [Contributing guidelines](./.github/CONTRIBUTING.md), and [Code of Conduct](CODE_OF_CONDUCT.md).
+
+Feel free to create issues and Pull Requests for improving this project. For instance, you can support it extending this utility adding more programming languages options, requesting new features, and reporting bugs.
