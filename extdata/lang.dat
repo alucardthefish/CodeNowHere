@@ -63,3 +63,4 @@
 .n : nemerle
 .scm : scheme
 .r : R
+.toml: toml
