@@ -64,3 +64,4 @@
 .scm : scheme
 .r : R
 .toml: toml
+.swf: swift
