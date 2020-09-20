@@ -281,6 +281,7 @@ The created files come with blank description in their comment headers.
 * Rust
 * Scheme
 * Sql
+* Swift
 * Toml
 * VisualBasic
 * Xml
