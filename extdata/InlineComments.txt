@@ -1,6 +1,6 @@
 .py .pyc .pyo .pyd .php .rb .rbw .cr .coffee .litcoffee .pl .pm .janet .q .qm .qtest .imba .yml .yaml .awk .e .gap .gp .icn .r .toml : # {}
 .cpp .c++ .cxx .c .cc .jav .j .java .js .h .hh .hpp .hxx .h++ .go .cs .kt .rs .m .mm .fs .fsi .fsx .fsscript .dart .gs .gsp .gst .gsx .d .boo .ceylon .es .ftd .fal .fam .groovy .gvy .gy .gsh .io .n : // {}
-.ada .adb .ads .scpt .scptd .applescript .agda .lagda .lua .elm .egi .ex .exw .hs .lhs : -- {}
+.ada .adb .ads .scpt .scptd .applescript .agda .lagda .lua .elm .egi .ex .exw .hs .lhs .sql : -- {}
 .clj .cljs .cljc .edn .lg .scm : ;; {}
 .cbl .cob .cpy : *> {}
 .html .htm .xhtml .xml : <!-- -->
@@ -10,6 +10,5 @@
 .cobra : """ """
 .f .for .f90 .f95 .f03 .factor : ! {}
 .json : {} {}
-.sql : -- {}
 .pi .erl .ebin .escript .fp : % {}
 .ijx .ijs : AB. {}
