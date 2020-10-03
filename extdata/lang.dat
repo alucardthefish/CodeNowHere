@@ -66,3 +66,4 @@
 .r : R
 .toml: toml
 .swf: swift
+.sh : bash
