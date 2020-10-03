@@ -39,7 +39,7 @@
 .json : json
 .css : css
 .sql : sql
-.pls : plsq
+.pls : plsql
 .pi : picat
 .a : alef
 .awk : awk
