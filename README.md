@@ -276,6 +276,7 @@ The created files come with blank description in their comment headers.
 * Php
 * Picat
 * PL/SQL
+* Prolog
 * Python
 * Qore
 * R

@@ -67,3 +67,4 @@
 .toml: toml
 .swf: swift
 .sh : bash
+.pro : prolog
