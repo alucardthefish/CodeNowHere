@@ -228,6 +228,7 @@ The created files come with blank description in their comment headers.
 * Bash
 * Boo
 * C
+* C-INTERCAL
 * C#
 * C++
 * Ceylon
