@@ -12,3 +12,4 @@
 .json : {} {}
 .erl .ebin .escript .fp .pi .pro : % {}
 .ijx .ijs : AB. {}
+.i : IGNORE {}

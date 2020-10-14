@@ -1,70 +1,72 @@
-.py : python
-.php : php
-.rb .rbw : ruby
-.cpp .c++ .cxx : c++
-.c .cc : c
-.jav .j .java : java
-.js : javascript
-.go : go
-.html .htm .xhtml : html
+.a : alef
 .ada .adb .ads : ada
 .agda .lagda : agda
-.scpt .scptd .applescript : applescript
-.cs : c#
-.clj .cljs .cljc .edn : clojure
-.cbl .cob .cpy : cobol
-.coffee .litcoffee : coffeescript
-.cr : crystal
-.kt : kotlin
-.cfm .cfml .cfc : coldfusion
-.rs : rust
-.vb : visualbasic
-.lua : lua
-.m .mm : objective-c
-.pl .pm : perl
-.fs .fsi .fsx .fsscript : f#
-.b : b
-.cobra : cobra
-.f .for .f90 .f95 .f03 : fortran
-.janet : janet
-.pwn .p : pawn
-.dart : dart
-.xml : xml
-.elm : elm
-.q .qm .qtest : qore
-.gs .gsp .gst .gsx : gosu
-.imba : imba
-.d : d
-.yml .yaml : yaml
-.json : json
-.css : css
-.sql : sql
-.pls : plsql
-.pi : picat
-.a : alef
 .awk : awk
+.b : b
 .boo : boo
+.c .cc : c
+.cbl .cob .cpy : cobol
 .ceylon : ceylon
+.cfm .cfml .cfc : coldfusion
+.clj .cljs .cljc .edn : clojure
+.cobra : cobra
+.coffee .litcoffee : coffeescript
+.cpp .c++ .cxx : c++
+.cr : crystal
+.cs : c#
+.css : css
+.d : d
+.dart : dart
 .e : e
-.es : ecmascript
 .egi : egison
+.elm : elm
 .erl .ebin .escript : erlang
+.es : ecmascript
 .ex .exw : euphoria
+.f .for .f90 .f95 .f03 : fortran
 .factor : factor
-.ftd .fal .fam : falcon
 .fp : fp
+.fs .fsi .fsx .fsscript : f#
+.ftd .fal .fam : falcon
 .gap : gap
+.go : go
 .gp : gnuplot
 .groovy .gvy .gy .gsh : groovy
+.gs .gsp .gst .gsx : gosu
 .hs .lhs : haskell
+.html .htm .xhtml : html
+.i : intercal
 .icn : icon
-.io : io
 .ijx .ijs : j
+.imba : imba
+.io : io
+.janet : janet
+.jav .j .java : java
+.js : javascript
+.json : json
+.kt : kotlin
 .lg : logo
+.lua : lua
+.m .mm : objective-c
 .n : nemerle
-.scm : scheme
+.php : php
+.pi : picat
+.pl .pm : perl
+.pls : plsql
+.pwn .p : pawn
+.py : python
+.q .qm .qtest : qore
 .r : R
-.toml: toml
+.rb .rbw : ruby
+.rs : rust
+.scm : scheme
+.scpt .scptd .applescript : applescript
+.sh : bash
+.sql : sql
 .swf: swift
 .sh : bash
 .pro : prolog
+.toml: toml
+.vb : visualbasic
+.xml : xml
+.yml .yaml : yaml
