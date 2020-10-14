@@ -10,6 +10,6 @@
 .cobra : """ """
 .f .for .f90 .f95 .f03 .factor : ! {}
 .json : {} {}
-.erl .ebin .escript .fp .pi .pro : % {}
+.erl .ebin .escript .fp .pi .pl .pro : % {}
 .ijx .ijs : AB. {}
 .i : IGNORE {}
