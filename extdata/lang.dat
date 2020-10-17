@@ -3,6 +3,8 @@
 .agda .lagda : agda
 .awk : awk
 .b : b
+.bas : basic
+.bf : brainfuck
 .boo : boo
 .c .cc : c
 .cbl .cob .cpy : cobol
@@ -42,9 +44,10 @@
 .io : io
 .janet : janet
 .jav .j .java : java
+.jl : julia
 .js : javascript
 .json : json
-.kt : kotlin
+.kt .kts .ktm : kotlin
 .lg : logo
 .lua : lua
 .m .mm : objective-c
@@ -58,7 +61,8 @@
 .q .qm .qtest : qore
 .r : R
 .rb .rbw : ruby
-.rs : rust
+.rs .rslib : rust
+.scala .sc : scala
 .scm : scheme
 .scpt .scptd .applescript : applescript
 .sh : bash
@@ -67,6 +71,8 @@
 .sh : bash
 .pl .pro : prolog
 .toml: toml
+.v .vh : verilog
 .vb : visualbasic
+.vhd : vhdl
 .xml : xml
 .yml .yaml : yaml
