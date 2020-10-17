@@ -64,6 +64,8 @@
 .sh : bash
 .sql : sql
 .swf: swift
+.sh : bash
+.pl .pro : prolog
 .toml: toml
 .vb : visualbasic
 .xml : xml
