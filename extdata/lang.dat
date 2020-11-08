@@ -52,6 +52,7 @@
 .lua : lua
 .m .mm : objective-c
 .n : nemerle
+.pp .pas .inc : pascal
 .php : php
 .pi : picat
 .pl .pm : perl

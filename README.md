@@ -273,6 +273,7 @@ The created files come with blank description in their comment headers.
 * Nemerle
 * ObjectiveC
 * Pawn
+* Pascal
 * Perl
 * Php
 * Picat
