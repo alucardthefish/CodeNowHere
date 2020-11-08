@@ -25,6 +25,7 @@
 .erl .ebin .escript : erlang
 .es : ecmascript
 .ex .exw : euphoria
+.exs : elixir
 .f .for .f90 .f95 .f03 : fortran
 .factor : factor
 .fp : fp
