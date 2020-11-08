@@ -13,3 +13,4 @@
 .erl .ebin .escript .fp .pi .pl .pro : % {}
 .ijx .ijs : AB. {}
 .i : IGNORE {}
+.pp .pas .inc : (* *)
