@@ -244,6 +244,7 @@ The created files come with blank description in their comment headers.
 * E
 * ECMAScript
 * Egison
+* Elixir
 * Elm
 * Erlang
 * Euphoria
