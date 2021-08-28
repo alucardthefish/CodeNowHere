@@ -71,7 +71,7 @@ A bash script `build_local.sh` is provided to compile it locally in the build di
 $ ./build_local.sh
 $ cd build
 # Example
-$ ./cnhtest File.ext -a "Author One" -d "Description one"
+$ ./cnh this File.ext -a "Author One" -d "Description one"
 ```
 
 ## Install on Linux from release tar
