@@ -12,7 +12,7 @@ R"(Code Now Here (CNH).
     Usage:
       cnh this <filename> [-a <author>] [-d <desc>] [--cr]
       cnh these <filenames>... [-a <author>] [--cr]
-      cnh bunchof <numfiles> [--ext=<fileext>] [--author | -a <author>]
+      cnh bunchof <numfiles> [--ext=<fileext>] [-a <author>]
       cnh (-h | --help)
       cnh --version
       
@@ -52,6 +52,12 @@ int main(int argc, char * argv[]) {
                          "CodeNowHere 2.1.1"); // version string
     
     CodeNowHere codeNowHere(getDocoptAsArgStructure(args));
+    // Testing purposes
+    // for (auto const& arg : args)
+    // {
+    //   std::cout << arg.first << " - " << arg.second << std::endl;
+    // }
+    // return 0;
     codeNowHere.Execute();
     
     return 0;
