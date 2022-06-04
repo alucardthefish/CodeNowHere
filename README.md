@@ -281,6 +281,7 @@ The created files come with blank description in their comment headers.
 * Picat
 * PL/SQL
 * Prolog
+* Pony
 * Python
 * Qore
 * R
