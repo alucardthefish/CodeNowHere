@@ -58,6 +58,7 @@
 .pi : picat
 .pl .pm : perl
 .pls : plsql
+.pony : pony
 .pwn .p : pawn
 .py : python
 .q .qm .qtest : qore
