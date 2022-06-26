@@ -29,15 +29,15 @@ class Helper {
     Helper();   //Disallow creating an instance
 
     public:
-    static bool validateFileName(string fileName);
-    static bool fileExist(string fileName);
+    static bool validateFileName(const string& fileName);
+    static bool fileExist(const string& fileName);
     static bool questionReceptor(string answer);
     static string getDataPath();
 
-    static string getExtension(string fileName);
-    static string getNameOfFile(string fileName);
-    static void replaceClassName(string& className, string fileName);
-    static bool RequireHeaderAssistance(string fileName, string &initCommentChar, string &finalCommentChar);
+    static string getExtension(const string& fileName);
+    static string getNameOfFile(const string& fileName);
+    static void replaceClassName(string& className, const string& fileName);
+    static bool RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar);
 };
 
 #endif

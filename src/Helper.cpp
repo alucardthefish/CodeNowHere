@@ -9,7 +9,7 @@
 
 using namespace std;
 
-bool Helper::validateFileName(string fileName)
+bool Helper::validateFileName(const string& fileName)
 // validateFileName: receives the file name string and evaluates if its a correct format
 // returns: true if is correct false otherwise.
 {
@@ -24,7 +24,7 @@ bool Helper::validateFileName(string fileName)
     return result;
 }
 
-bool Helper::fileExist(string fileName) {
+bool Helper::fileExist(const string& fileName) {
     ifstream file;
     bool state = false;
     try {
@@ -49,23 +49,23 @@ bool Helper::questionReceptor(string answer) {
 }
 
 
-string Helper::getExtension(string fileName) {
+string Helper::getExtension(const string& fileName) {
     string ext;
-    size_t dotPosition = fileName.find(".");
+    size_t dotPosition = fileName.rfind('.');
     ext = fileName.substr(dotPosition);
     return ext;
 }
 
-string Helper::getNameOfFile(string fileName) {
+string Helper::getNameOfFile(const string& fileName) {
     string name;
-	size_t dotPosition = fileName.find(".");
+	size_t dotPosition = fileName.rfind('.');
 	name = fileName.substr(0, dotPosition);
     return name;
 }
 
 
 
-void Helper::replaceClassName(string& className, string fileName) {
+void Helper::replaceClassName(string& className, const string& fileName) {
 	const string CLASSNAMETMPL = "HelloWorld";
 	int si_ze = CLASSNAMETMPL.length();
 	string nameFile = getNameOfFile(fileName);
@@ -84,12 +84,12 @@ string Helper::getDataPath() {
     return dataPath;
 }
 
-bool Helper::RequireHeaderAssistance(string fileName, string &initCommentChar, string &finalCommentChar){
+bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar){
     bool decisionFlag;
-    
+
     cout << "The program does not recognize the extension associated to the file: '" << fileName;
     cout << "'. Do you want to add a header comment to this unknown file (y/n): ";
-    string decision = "";
+    string decision;
     cin >> decision;
     decisionFlag = questionReceptor(decision);
     if (decisionFlag) {
