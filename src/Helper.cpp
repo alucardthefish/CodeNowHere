@@ -15,7 +15,7 @@ bool Helper::validateFileName(const string& fileName)
 {
     bool result = false;
     try {
-        regex re("^[A-Za-z0-9_-]*(\\.)([A-Za-z0-9]*)$");
+        regex re("^[A-Za-z0-9_-]*(\\.)?[A-Za-z0-9]*(\\.)[A-Za-z0-9]+$");
         smatch match;
         result = regex_search(fileName, match, re) && (match.size() > 1);
     } catch (regex_error& e) {
