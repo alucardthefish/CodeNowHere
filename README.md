@@ -15,12 +15,15 @@ This is a very humble project. I am not using any framework to develop this proj
 ## Linux Minimum Requirements
 
 * C++11
+* make
 * autotools (autoconf, automake, libtool)
 
-### Installing autotools
+### Installing dependencies
 
 ```sh
 $ sudo apt update
+$ sudo apt install g++
+$ sudo apt install make
 $ sudo apt install autotools-dev
 $ sudo apt install autoconf
 $ sudo apt install libtool
@@ -72,6 +75,30 @@ $ ./build_local.sh
 $ cd build
 # Example
 $ ./cnh this File.ext -a "Author One" -d "Description one"
+```
+
+## Docker environment
+
+You can run the docker image for this project which will install the dependencies, build the app and install it.
+
+First step is to build the docker image: (Make sure you're standing on project base folder called CodeNowHere)
+
+```sh
+$ docker build . -t cnh:1.0.0
+```
+
+Second step is to run a container from the built image
+
+```sh
+$ docker run -it --rm cnh:1.0.0 bash
+```
+
+From here you can have access to a bash console and create your files using the app.
+
+Optional: if you want to mirror the code with docker container working directory. Try this as below
+
+```sh
+$ docker run -it -v $(pwd):/usr/src/cnh --rm cnh:1.0.0 bash
 ```
 
 ## Install on Linux from release tar
