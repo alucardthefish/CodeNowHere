@@ -76,6 +76,19 @@ void Helper::replaceClassName(string& className, const string& fileName) {
 }
 
 string Helper::getDataPath() {
+    char *envPath = getenv("CNH_EXTDATA");
+    if (envPath != NULL) {
+        size_t len = strlen(envPath);
+        if (len > 0) {
+            if (envPath[len - 1] != '/' && envPath[len - 1] != '\\') {
+                return string(envPath) + "/";
+            }
+            else {
+                return envPath;
+            }
+        }
+    }
+
     string dataPath = LibConstants::LOCAL_DATA;
     #ifdef DATA_LOCATION
         dataPath = DATA_LOCATION;

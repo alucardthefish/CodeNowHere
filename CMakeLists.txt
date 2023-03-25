@@ -9,4 +9,4 @@ include_directories(headers ${CMAKE_BINARY_DIR} )
 # Since we have created a config.h add a global define for it
 add_definitions( "-DHAVE_CONFIG_H" )
 add_subdirectory( src )
-#add_subdirectory( tests )
+add_subdirectory( tests )
