@@ -10,7 +10,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <sstream>
+#include <bits/stdc++.h>
 #include "cnh_structs.h"
 #include <cstdlib>
 #include <vector>
