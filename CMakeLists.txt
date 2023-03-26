@@ -17,7 +17,7 @@ add_definitions("-DHAVE_CONFIG_H")
 add_definitions("-D_CRT_SECURE_NO_WARNINGS")
 add_definitions("-DDATA_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh\"")
 add_subdirectory(src)
-add_subdirectory(tests EXCLUDE_FROM_ALL) 
+add_subdirectory(tests)
 install(DIRECTORY "extdata/" 
   DESTINATION cnh
   FILES_MATCHING PATTERN *.tpl)
@@ -25,3 +25,4 @@ install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
   DESTINATION cnh)
 install(TARGETS cnh
   DESTINATION ${CNH_BINARY_DEST})
+include(CPack)

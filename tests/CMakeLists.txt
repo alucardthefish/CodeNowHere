@@ -1,5 +1,8 @@
 #see https://google.github.io/googletest/quickstart-cmake.html
 set(CMAKE_CXX_STANDARD 14)
+# we dont want to install gtest see https://github.com/google/googletest/blob/main/CMakeLists.txt
+set(INSTALL_GTEST OFF)
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -8,6 +11,7 @@ FetchContent_Declare(
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
 enable_testing()
 
 add_executable(
