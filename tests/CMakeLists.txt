@@ -17,7 +17,7 @@ add_executable(
 )
 target_link_libraries(
     AllTests
-  GTest::gtest_main
+    GTest::gtest_main
 )
 
 include(GoogleTest)

@@ -1,4 +1,5 @@
 set(project "cnh")
+
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 list(APPEND ${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../Main.cpp
@@ -12,3 +13,4 @@ list(APPEND ${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/docopt.cpp
 )
 add_executable(cnh ${${project}_SOURCES} )
+install(TARGETS cnh)

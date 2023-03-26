@@ -48,6 +48,7 @@ class ICommandBehavior
     bool isSpecialChar(char);
     int getStringLength(std::string);
     virtual void CreateCode() = 0;
+    virtual ~ICommandBehavior() {};
 };
 
 
