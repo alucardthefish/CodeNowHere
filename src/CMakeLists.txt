@@ -13,4 +13,4 @@ list(APPEND ${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/docopt.cpp
 )
 add_executable(cnh ${${project}_SOURCES} )
-install(TARGETS cnh)
+

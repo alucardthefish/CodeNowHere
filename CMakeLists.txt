@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(cnh)
+if (WIN32)
+    set(CMAKE_INSTALL_PREFIX "c:/program files/")
+endif (WIN32)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CONFIG_H ${CMAKE_BINARY_DIR}/config.h)
@@ -10,5 +13,13 @@ include_directories(headers ${CMAKE_BINARY_DIR} )
 add_definitions("-DHAVE_CONFIG_H")
 # stop MSVC complaining
 add_definitions("-D_CRT_SECURE_NO_WARNINGS")
+add_definitions("-DDATA_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh\"")
 add_subdirectory(src)
 add_subdirectory(tests EXCLUDE_FROM_ALL) 
+install(DIRECTORY "extdata/" 
+  DESTINATION cnh
+  FILES_MATCHING PATTERN *.tpl)
+install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
+  DESTINATION cnh)
+install(TARGETS cnh
+  DESTINATION cnh)
