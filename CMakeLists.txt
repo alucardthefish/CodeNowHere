@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 project(cnh)
+set(CNH_BINARY_DEST "bin")
 if (WIN32)
     set(CMAKE_INSTALL_PREFIX "c:/program files/")
+    set(CNH_BINARY_DEST "cnh")
 endif (WIN32)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -22,4 +24,4 @@ install(DIRECTORY "extdata/"
 install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
   DESTINATION cnh)
 install(TARGETS cnh
-  DESTINATION cnh)
+  DESTINATION ${CNH_BINARY_DEST})
