@@ -34,7 +34,6 @@
 # Install and config
 *.swp
 *.DS_Store
-*.in*
 
 aclocal.m4
 autoscan.log
