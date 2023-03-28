@@ -71,3 +71,4 @@ tests/*.log
 tests/*.trs
 # exec file
 tests/AllTests
+
