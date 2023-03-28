@@ -66,7 +66,7 @@ bool BunchFileBehavior::ValidateExt(string ext) {
 		smatch match;
 		result = regex_search(ext, match, re) && (match.size() > 1);
 	} catch (regex_error& e) {
-		cout << "Error" << endl;
+		cout << "Error:" << e.what() << endl;
 	}
 	return result;
 }
