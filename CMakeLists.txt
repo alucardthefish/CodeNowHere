@@ -34,6 +34,7 @@ if(NOT TARGET uninstall)
     IMMEDIATE @ONLY)
   add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
-    COMMAND ${CMAKE_COMMAND} "-E echo \"-- Uninstalling ${CMAKE_INSTALL_PREFIX}${CNH_BINARY_DEST}\""
-    COMMAND ${CMAKE_COMMAND} "-E rm -r \"${CMAKE_INSTALL_PREFIX}${CNH_BINARY_DEST}\"")
+    #I cannot make this work consistently across windows, linux and mac
+    #COMMAND ${CMAKE_COMMAND} "-E echo \"-- Uninstalling ${CMAKE_INSTALL_PREFIX}${CNH_BINARY_DEST}\""
+    #COMMAND ${CMAKE_COMMAND} "-E rm -r \"${CMAKE_INSTALL_PREFIX}${CNH_BINARY_DEST}\"")
 endif()
