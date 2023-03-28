@@ -1,4 +1,5 @@
 #see https://google.github.io/googletest/quickstart-cmake.html
+cmake_policy(SET CMP0135 NEW)
 set(CMAKE_CXX_STANDARD 14)
 # we dont want to install gtest see https://github.com/google/googletest/blob/main/CMakeLists.txt
 set(INSTALL_GTEST OFF)
