@@ -15,33 +15,25 @@ This is a very humble project. I am not using any framework to develop this proj
 ## Linux Minimum Requirements
 
 * C++11
-* make
-* autotools (autoconf, automake, libtool)
+* cmake
 
 ### Installing dependencies
 
 ```sh
 $ sudo apt update
 $ sudo apt install g++
-$ sudo apt install make
-$ sudo apt install autotools-dev
-$ sudo apt install autoconf
-$ sudo apt install libtool
+$ sudo apt install cmake
 ```
 
 To get the code, build, and install the CLI app; follow the commands below:
+
 
 ## How to download and build on Linux
 
 ```sh
 $ git clone https://github.com/alucardthefish/CodeNowHere.git
 $ cd CodeNowHere
-$ git submodule init
-$ git submodule update
-$ git config submodule.googletest.ignore untracked
-$ ./autogen.sh
-$ ./configure
-$ make
+$ . ./linux_release.sh
 ```
 
 ## How to install on Linux
@@ -49,23 +41,12 @@ $ make
 After building you can install it in your machine this way:
 
 ```sh
-$ sudo make install
+$ sudo cmake --install release
 ```
 
 *make install* can be reverted through the uninstall command: 
 ```sh
-$ sudo make uninstall
-```
-
-In the case you are building the project with an old C++ compiler and get an error message like this:
-
-`Error this file requires compiler and library support for the ISO C++ 2011 standard. This support may be enabled
-with the -std=c++11 or -std=gnu++11 compiler options.`
-
-Then, you can run the config file this way:
-
-```sh
-$ ./configure CXXFLAGS="-std=gnu++11"
+$ sudo cmake --build release --target uninstall
 ```
 
 A bash script `build_local.sh` is provided to compile it locally in the build directory. You can edit it with your compiler.
@@ -77,6 +58,26 @@ $ cd build
 $ ./cnh this File.ext -a "Author One" -d "Description one"
 ```
 
+## How to download and build on Windows
+
+```sh
+$ git clone https://github.com/alucardthefish/CodeNowHere.git
+$ cd CodeNowHere
+$ ./win_release.cmd
+```
+
+## How to install on Windows
+
+After building you can install it in your machine this way:
+
+```sh
+$ sudo cmake --install build
+```
+
+*make install* can be reverted through the uninstall command: 
+```sh
+$ sudo cmake --build build --target uninstall
+```
 ## Docker environment
 
 You can run the docker image for this project which will install the dependencies, build the app and install it.

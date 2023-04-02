@@ -89,7 +89,7 @@ void ICommandBehavior::CreateMainTemplate() {
                 }
             }
         } catch(const ifstream::failure& e) {
-            cout << "There was a problem with the extension provider" << endl;
+            cout << "There was a problem with the extension provider:" << e.what() << endl;
         }
 
         templateFile.close();
@@ -153,7 +153,7 @@ string ICommandBehavior::getLang(string fileName) {
             }
         }
     } catch(const ifstream::failure& e) {
-        cout << "There was a problem with the extension provider" << endl;
+        cout << "There was a problem with the extension provider:" << e.what() << endl;
     }
 
     file.close();
@@ -200,7 +200,7 @@ void ICommandBehavior::blowCommentByExtensions(string ext) {
             }
         }
     } catch(const ifstream::failure& e) {
-        cout << "There was a problem with the extension provider" << endl;
+        cout << "There was a problem with the extension provider:" << e.what() << endl;
     }
 
     file.close();
@@ -238,9 +238,9 @@ std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::str
     
     std::string chain = " " + title + " ";
     std::string space = " ";
-    int tmpSize = title.size() + 2;
+    size_t tmpSize = title.size() + 2;
     //int tmpSize = chain.size();
-    int newLineTmpSize = size + (comment.size());
+    size_t newLineTmpSize = size + (comment.size());
   
     // Read and process each word. 
     while (iss >> word) {
@@ -248,18 +248,18 @@ std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::str
         if (tmpSize <= size) {
             chain += word + space;
         } else {
-            int lineLength = tmpSize - getStringLength(word) - 1;
-            int numSpaces = size - lineLength;
+            size_t lineLength = tmpSize - getStringLength(word) - 1;
+            size_t numSpaces = size - lineLength;
             
-            chain += nTimesThisString(space, numSpaces);
+            chain += nTimesThisString(space, (int)numSpaces);
             chain += "  " + commentClosureOpt + "\n";
-            std::string newLine = comment + nTimesThisString(space, title.size()+1) + word + " ";
+            std::string newLine = comment + nTimesThisString(space, (int)title.size()+1) + word + " ";
             tmpSize = newLine.size();
             chain += newLine;
-            size = newLineTmpSize;
+            size = (int)newLineTmpSize;
         }
     }
-    chain += nTimesThisString(space, size - tmpSize + 1);
+    chain += nTimesThisString(space, size - (int)tmpSize + 1);
     return chain;
 }
 
@@ -270,11 +270,11 @@ bool ICommandBehavior::isSpecialChar(char letter) {
 
 int ICommandBehavior::getStringLength(std::string word) {
     int specialChars = 0;
-    int wordLength = word.length();
+    size_t wordLength = word.length();
     for (int i = 0; i < wordLength; i++) {
         if (isSpecialChar(word[i])) {
             specialChars++;
         }
     }
-    return wordLength - (specialChars / 2);
+    return (int)wordLength - (specialChars / 2);
 }

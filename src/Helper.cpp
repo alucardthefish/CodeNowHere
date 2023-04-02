@@ -19,7 +19,7 @@ bool Helper::validateFileName(const string& fileName)
         smatch match;
         result = regex_search(fileName, match, re) && (match.size() > 1);
     } catch (regex_error& e) {
-        cout << "ERROR: syntax error in the regular expresion" << endl;
+        cout << "ERROR: syntax error in the regular expresion:" << e.what() << endl;
     }
     return result;
 }
@@ -34,7 +34,7 @@ bool Helper::fileExist(const string& fileName) {
             file.close();
         }
     } catch(const ifstream::failure& e) {
-        cout << "PROBLEM" << endl;
+        cout << "PROBLEM" << e.what() << endl;
     }
     return state;
 }
@@ -67,7 +67,7 @@ string Helper::getNameOfFile(const string& fileName) {
 
 void Helper::replaceClassName(string& className, const string& fileName) {
 	const string CLASSNAMETMPL = "HelloWorld";
-	int si_ze = CLASSNAMETMPL.length();
+	size_t si_ze = CLASSNAMETMPL.length();
 	string nameFile = getNameOfFile(fileName);
 	size_t poss = className.find(CLASSNAMETMPL);
 	if (poss != string::npos) {
@@ -76,6 +76,19 @@ void Helper::replaceClassName(string& className, const string& fileName) {
 }
 
 string Helper::getDataPath() {
+    char *envPath = getenv("CNH_EXTDATA");
+    if (envPath != NULL) {
+        size_t len = strlen(envPath);
+        if (len > 0) {
+            if (envPath[len - 1] != '/' && envPath[len - 1] != '\\') {
+                return string(envPath) + "/";
+            }
+            else {
+                return envPath;
+            }
+        }
+    }
+
     string dataPath = LibConstants::LOCAL_DATA;
     #ifdef DATA_LOCATION
         dataPath = DATA_LOCATION;

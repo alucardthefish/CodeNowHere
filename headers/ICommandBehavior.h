@@ -10,7 +10,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <bits/stdc++.h>
+#include <sstream>
 #include "cnh_structs.h"
 #include <cstdlib>
 #include <vector>
@@ -48,6 +48,7 @@ class ICommandBehavior
     bool isSpecialChar(char);
     int getStringLength(std::string);
     virtual void CreateCode() = 0;
+    virtual ~ICommandBehavior() {};
 };
 
 

@@ -16,7 +16,7 @@ ManyFileBehavior::ManyFileBehavior() {
 void ManyFileBehavior::CreateCode() {
     
     cout << "Creating files..." << endl;
-    int numFiles = fileNames.size();
+    size_t numFiles = fileNames.size();
     int numFilesCreated = 0;
     for(auto const& mFileName : fileNames) {
         
