@@ -5,7 +5,7 @@
 // Description: Implement the abstract class for second command option 
 // **************************************************************************** 
 
-
+#include <cstdio>
 #include "../headers/ManyFileBehavior.h"
 
 using namespace std;
@@ -32,6 +32,7 @@ void ManyFileBehavior::CreateCode() {
                 if (!Helper::questionReceptor(chose)) {
                     continue;
                 }
+                remove(fileName.c_str());
             }
             string ext = Helper::getExtension(fileName);
             std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);

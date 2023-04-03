@@ -5,6 +5,7 @@
 // Description: Implement the abstract class for first commd option 
 // **************************************************************************** 
 
+#include <cstdio>
 #include "../headers/OnlyFileBehavior.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ void OnlyFileBehavior::CreateCode() {
             if (!Helper::questionReceptor(chose)) {
                 return;
             }
+            remove(fileName.c_str());
         }
         string ext = Helper::getExtension(fileName);
         std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
