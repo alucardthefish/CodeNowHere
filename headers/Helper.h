@@ -31,7 +31,7 @@ class Helper {
     public:
     static bool validateFileName(const string& fileName);
     static bool fileExist(const string& fileName);
-    static bool questionReceptor(string answer);
+    static bool questionReceptor(string answer, string dflt = "");
     static string getDataPath();
 
     static string getExtension(const string& fileName);

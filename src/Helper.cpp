@@ -39,8 +39,11 @@ bool Helper::fileExist(const string& fileName) {
     return state;
 }
 
-bool Helper::questionReceptor(string answer) {
+bool Helper::questionReceptor(string answer, string dflt) {
     bool state = false;
+    
+    if (answer.empty())
+        answer = dflt;
     std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
     if (answer == "y" || answer == "yes") {
         state = true;
@@ -118,7 +121,7 @@ bool Helper::RequireHeaderAssistance(const string& fileName, string &initComment
         }
         cout << endl << "Has the inline comment character entered previously a closing character? (Y/n): ";
         cin >> decision;
-        if (questionReceptor(decision)) {
+        if (questionReceptor(decision, "Y")) {
             cout << "Enter the closing comment character: ";
             cin.clear();
             cin.ignore(10000, '\n');
