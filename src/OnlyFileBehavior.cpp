@@ -5,6 +5,7 @@
 // Description: Implement the abstract class for first commd option 
 // **************************************************************************** 
 
+#include <cstdio>
 #include "../headers/OnlyFileBehavior.h"
 
 using namespace std;
@@ -20,10 +21,11 @@ void OnlyFileBehavior::CreateCode() {
             cout << "File " << fileName << " already exists in this directory. If you continue its content will be replaced" << endl;
             string chose;
             cout << "Do you want to continue (Y/n): ";
-            cin >> chose;
-            if (!Helper::questionReceptor(chose)) {
+            getline(cin, chose);
+            if (!Helper::questionReceptor(chose, "y")) {
                 return;
             }
+            remove(fileName.c_str());
         }
         string ext = Helper::getExtension(fileName);
         std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);

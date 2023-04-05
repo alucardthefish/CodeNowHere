@@ -5,7 +5,7 @@
 // Description: Implement the abstract class for second command option 
 // **************************************************************************** 
 
-
+#include <cstdio>
 #include "../headers/ManyFileBehavior.h"
 
 using namespace std;
@@ -28,10 +28,11 @@ void ManyFileBehavior::CreateCode() {
                 cout << "File " << fileName << " already exists in this directory. If you continue its content will be replaced" << endl;
                 string chose;
                 cout << "Do you want to continue (Y/n): ";
-                cin >> chose;
-                if (!Helper::questionReceptor(chose)) {
+                getline(cin, chose);
+                if (!Helper::questionReceptor(chose, "y")) {
                     continue;
                 }
+                remove(fileName.c_str());
             }
             string ext = Helper::getExtension(fileName);
             std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
