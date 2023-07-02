@@ -331,6 +331,7 @@ The created files come with blank description in their comment headers.
 * R
 * Ruby
 * Rust
+* Scala
 * Scheme
 * Sql
 * Swift
