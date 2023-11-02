@@ -4,6 +4,8 @@
 #include "headers/docopt.h"
 #include "headers/cnh_structs.h"
 
+#include "headers/cnhengine.h"
+
 using namespace std;
 
 static const char USAGE[] =
@@ -58,7 +60,36 @@ int main(int argc, char * argv[]) {
     //   std::cout << arg.first << " - " << arg.second << std::endl;
     // }
     // return 0;
+    std::cout << "argc: " << argc << std::endl;
+    // for (auto const& arg : argv) {
+    //   std::cout << "element: " << arg << std::endl;
+    // }
+    std::cout << "argv + 1: " << argv << std::endl;
     codeNowHere.Execute();
-    
+    cnh::arguments my_arguments = getDocoptAsArgStructure(args);
+    std::cout << "file name: " << my_arguments.fileName << std::endl;
+    if (argc > 2) {
+      time_t now = time(0);
+      char* dt = ctime(&now);
+      dt[strlen(dt) - 1] = '\0';
+      std::string dateCreation = std::string(dt);
+
+      tm *ltm = localtime(&now);
+      int year = 1900 + ltm->tm_year;
+      std::cout << "--------Checking new approach--------" << std::endl;
+      CnhEngine engine;
+      auto templates = engine.FindTemplates(my_arguments.fileName);
+      engine.LoadDataFile("data.json");
+      engine.LoadDataValue("cnh_date", dateCreation);
+      engine.LoadDataValue("cnh_file", my_arguments.fileName);
+      engine.LoadDataValue("cnh_name", my_arguments.author);
+      auto result = engine.RenderFile(std::get<0>(templates[0]).string());
+      for (auto& line: result) {
+        std::cout << line << "\n";
+      }
+    } else {
+      std::cout << "" << std::endl;
+      std::cout << "argc is not 2" << std::endl;
+    }
     return 0;
 }
