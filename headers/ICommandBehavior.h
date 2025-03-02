@@ -1,9 +1,9 @@
-// **************************************************************************** 
-// File: ICommandBehavior.h 
-// Author: Sergio Ortiz Paz 
-// Created: Mon Feb  3 18:20:46 2020 
-// Description: Abstract class for command behavior 
-// **************************************************************************** 
+// ****************************************************************************
+// File: ICommandBehavior.h
+// Author: Sergio Ortiz Paz
+// Created: Mon Feb  3 18:20:46 2020
+// Description: Abstract class for command behavior
+// ****************************************************************************
 #ifndef ICOMMANDBEHAVIOR_H
 #define ICOMMANDBEHAVIOR_H
 
@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "Helper.h"
+#include "cnhengine.h"
 
 class ICommandBehavior
 {
@@ -32,12 +33,15 @@ class ICommandBehavior
     std::vector<std::string> fileNames;
     std::string bunchExt;
     int numOfFiles;
+    CnhEngine engine;
 
     fstream startUsingFile();
     void CreateProlog();
     void CreateCommentHeader(int);
     void CreateMainTemplate();
     void WriteCodeNow();
+    void WriteFile(); // new method for new approach
+    void loadArgsToCNHEngine(); // new method for new approach
     void RegisterDateOfCreation();
 
     std::string getLang(std::string fileName);

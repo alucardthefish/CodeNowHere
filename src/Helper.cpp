@@ -1,11 +1,12 @@
-// **************************************************************************** 
-// File: Helper.cpp 
-// Author: Sergio Ortiz Paz 
-// Created: Tue Feb  4 01:00:22 2020 
-// Description: Implement util methods 
-// **************************************************************************** 
+// ****************************************************************************
+// File: Helper.cpp
+// Author: Sergio Ortiz Paz
+// Created: Tue Feb  4 01:00:22 2020
+// Description: Implement util methods
+// ****************************************************************************
 
 #include "../headers/Helper.h"
+#include <cstring>
 
 using namespace std;
 
@@ -41,7 +42,7 @@ bool Helper::fileExist(const string& fileName) {
 
 bool Helper::questionReceptor(string answer, string dflt) {
     bool state = false;
-    
+
     if (answer.empty())
         answer = dflt;
     std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
@@ -98,6 +99,28 @@ string Helper::getDataPath() {
         dataPath += "/";
     #endif
     return dataPath;
+}
+
+string Helper::getTemplatePath() {
+    char *envPath = getenv("CNH_TEMPLATES");
+    if (envPath != NULL) {
+        size_t len = strlen(envPath);
+        if (len > 0) {
+            if (envPath[len - 1] != '/' && envPath[len - 1] != '\\') {
+                return string(envPath) + "/";
+            }
+            else {
+                return envPath;
+            }
+        }
+    }
+
+    string templatePath = LibConstants::LOCAL_TEMPLATES;
+    #ifdef TEMPLATE_LOCATION
+        templatePath = TEMPLATE_LOCATION;
+        templatePath += "/";
+    #endif
+    return templatePath;
 }
 
 bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar){

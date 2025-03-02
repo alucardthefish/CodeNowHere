@@ -1,11 +1,12 @@
-// **************************************************************************** 
-// File: ICommandBehavior.cpp 
-// Author: Sergio Ortiz Paz 
-// Created: Mon Feb  3 18:25:35 2020 
-// Description: Implement abstract class that represents a command behavior 
-// **************************************************************************** 
+// ****************************************************************************
+// File: ICommandBehavior.cpp
+// Author: Sergio Ortiz Paz
+// Created: Mon Feb  3 18:25:35 2020
+// Description: Implement abstract class that represents a command behavior
+// ****************************************************************************
 
 #include "../headers/ICommandBehavior.h"
+#include <cstring>
 
 using namespace std;
 
@@ -106,6 +107,33 @@ void ICommandBehavior::WriteCodeNow() {
     CreateMainTemplate();
 }
 
+void ICommandBehavior::WriteFile()
+{
+    RegisterDateOfCreation();
+    loadArgsToCNHEngine();
+    auto templates = engine.FindTemplates(fileName);
+    auto result = engine.RenderFile(std::get<0>(templates[0]).string());
+    fstream file = startUsingFile();
+    for (auto& line: result) {
+        file << line << endl;
+    }
+    file.close();
+}
+
+void ICommandBehavior::loadArgsToCNHEngine()
+{
+    RegisterDateOfCreation();
+    //engine.LoadDataFile("data.json");  // TODO check if we can add config in json to play with the engine
+    engine.LoadDataValue("cnh_date", dateOfCreation);
+    engine.LoadDataValue("cnh_file", fileName);
+    engine.LoadDataValue("cnh_name", author);
+    engine.LoadDataValue("cnh_description", description);
+    if (hasCopyRight) {
+        string current_year = to_string(year);
+        string copyright = "Copyright (C) " + current_year + " " + author + ". All rights reserved.";
+        engine.LoadDataValue("cnh_has_copyright", copyright);
+    }
+}
 
 void ICommandBehavior::RegisterDateOfCreation() {
     time_t now = time(0);
@@ -132,14 +160,14 @@ string ICommandBehavior::getLang(string fileName) {
             string extRead;
 			string commentRead;
 			bool found = false;
-			
+
 			string extensions;
 			getline(file, extensions, ':');
 			stringstream extStreams(extensions);
 
 			file >> commentRead;
 			file.get();
-            
+
 			while(getline(extStreams, extRead, ' ')) {
 				if (extRead == ext) {
 					found = true;
@@ -174,16 +202,16 @@ void ICommandBehavior::blowCommentByExtensions(string ext) {
             string extRead;
 			string commentRead;
             string commentOptRead;
-			
+
 			string extensions;
 			getline(file, extensions, ':');
 			stringstream extStreams(extensions);
 
 			file >> commentRead >> commentOptRead;
 			file.get();
-            
+
 			while(getline(extStreams, extRead, ' ')) {
-				
+
                 if (ext == extRead) {
                     comment = commentRead;
                     commentClosureOpt = commentOptRead;
@@ -212,6 +240,7 @@ void ICommandBehavior::feed(cnh::arguments args) {
     char const* user = getenv("USER");
     char const* username = getenv("USERNAME");
     string myUser = user != NULL ? string(user) : username != NULL ? string(username) : string();
+    myUser = myUser != "" ? myUser : "Unknown User";
     author = args.author != "" ? args.author : myUser;
     description = args.description;
     hasCopyRight = args.copyRight;
@@ -228,21 +257,21 @@ std::string ICommandBehavior::nTimesThisString (std::string text, int times) {
     return tmp;
 }
 
-std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::string text, int size) 
-{ 
-    // word variable to store word 
+std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::string text, int size)
+{
+    // word variable to store word
     std::string word;
-  
-    // making a string stream 
+
+    // making a string stream
     std::stringstream iss(text);
-    
+
     std::string chain = " " + title + " ";
     std::string space = " ";
     size_t tmpSize = title.size() + 2;
     //int tmpSize = chain.size();
     size_t newLineTmpSize = size + (comment.size());
-  
-    // Read and process each word. 
+
+    // Read and process each word.
     while (iss >> word) {
         tmpSize += (getStringLength(word) + 1);
         if (tmpSize <= size) {
@@ -250,7 +279,7 @@ std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::str
         } else {
             size_t lineLength = tmpSize - getStringLength(word) - 1;
             size_t numSpaces = size - lineLength;
-            
+
             chain += nTimesThisString(space, (int)numSpaces);
             chain += "  " + commentClosureOpt + "\n";
             std::string newLine = comment + nTimesThisString(space, (int)title.size()+1) + word + " ";

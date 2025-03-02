@@ -1,15 +1,16 @@
-// **************************************************************************** 
-// File: ICommandBehaviorTest.h 
-// Author: alucardthefish 
-// Created: Mon Mar 16 23:35:50 2020 
-// Description:  
-// **************************************************************************** 
+// ****************************************************************************
+// File: ICommandBehaviorTest.h
+// Author: alucardthefish
+// Created: Mon Mar 16 23:35:50 2020
+// Description:
+// ****************************************************************************
 
 #include <string>
 
 #include "../headers/ICommandBehavior.h"
 #include "../headers/OnlyFileBehavior.h"
 #include "../headers/cnh_structs.h"
+#include "../headers/cnhengine.h"
 
 #include "gtest/gtest.h"
 
@@ -46,7 +47,7 @@ class ICommandBehaviorTest : public TestWithParam<CreateICommandBehaviorFunc*> {
             delete behavior_;
             behavior_ = nullptr;
         }
-    
+
     protected:
         ICommandBehavior* behavior_;
 };

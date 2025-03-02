@@ -1,9 +1,9 @@
-// **************************************************************************** 
-// File: Helper.h 
+// ****************************************************************************
+// File: Helper.h
 // Author: Sergio Ortiz Paz
-// Created: Tue Feb  4 00:59:06 2020 
+// Created: Tue Feb  4 00:59:06 2020
 // Description: Static class holding util methods
-// **************************************************************************** 
+// ****************************************************************************
 #ifndef HELPER_H
 #define HELPER_H
 
@@ -20,12 +20,14 @@ using namespace std;
 namespace LibConstants
 {
     const string LOCAL_DATA = "../extdata/";
+    const string LOCAL_TEMPLATES = "../templates/";
 }
 #endif
 
 class Helper {
     private:
     string dataPath;
+    string templatePath;
     Helper();   //Disallow creating an instance
 
     public:
@@ -33,6 +35,7 @@ class Helper {
     static bool fileExist(const string& fileName);
     static bool questionReceptor(string answer, string dflt = "");
     static string getDataPath();
+    static string getTemplatePath();
 
     static string getExtension(const string& fileName);
     static string getNameOfFile(const string& fileName);

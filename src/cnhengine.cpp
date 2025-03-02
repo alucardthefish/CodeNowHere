@@ -39,7 +39,7 @@ vector<string> CnhEngine::RenderFile(const string& name) {
 }
 
 vector<tuple<fs::path, string>> CnhEngine::FindTemplates(string_view fileName) {
-    auto templateDir = fs::path(Helper::getDataPath());
+    auto templateDir = fs::path(Helper::getTemplatePath());
     auto templates = vector<tuple<fs::path, string>>{};
 
     // extract file type suffix
