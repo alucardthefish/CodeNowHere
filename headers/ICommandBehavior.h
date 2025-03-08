@@ -40,7 +40,7 @@ class ICommandBehavior
     void CreateCommentHeader(int);
     void CreateMainTemplate();
     void WriteCodeNow();
-    void WriteFile(); // new method for new approach
+    void WriteFile(bool unknownFile = false); // new method for new approach
     void loadArgsToCNHEngine(); // new method for new approach
     void RegisterDateOfCreation();
 

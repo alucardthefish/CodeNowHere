@@ -48,13 +48,13 @@ void ICommandBehavior::CreateCommentHeader(int headerLength = 110) {
         if (hasCopyRight)
         {
             string text = to_string(year);
-            text += " " + author + ". All rights reserved. "; 
+            text += " " + author + ". All rights reserved. ";
             file << comment << includeHeaderAttribute("Copyright (c)", text, headerLength) << " " << commentClosureOpt << endl;
         }
         file << comment << includeHeaderAttribute("Description:", description, headerLength)  << " " << commentClosureOpt << endl;
         file << comment << " " << nTimesThisString("*", headerLength) << " " << commentClosureOpt << endl;
     }
-    file.close();    
+    file.close();
 }
 
 void ICommandBehavior::CreateMainTemplate() {
@@ -72,7 +72,7 @@ void ICommandBehavior::CreateMainTemplate() {
             templateFile.open(fileOfFunction);
 
             file << endl << endl;
-            
+
             while(templateFile) {
 
                 string line = "";
@@ -107,11 +107,14 @@ void ICommandBehavior::WriteCodeNow() {
     CreateMainTemplate();
 }
 
-void ICommandBehavior::WriteFile()
+void ICommandBehavior::WriteFile(bool unknownFile)
 {
     RegisterDateOfCreation();
     loadArgsToCNHEngine();
     auto templates = engine.FindTemplates(fileName);
+    if (unknownFile){
+        templates = engine.FindTemplates("filename.unknown_ext_type");
+    }
     auto result = engine.RenderFile(std::get<0>(templates[0]).string());
     fstream file = startUsingFile();
     for (auto& line: result) {
@@ -132,6 +135,12 @@ void ICommandBehavior::loadArgsToCNHEngine()
         string current_year = to_string(year);
         string copyright = "Copyright (C) " + current_year + " " + author + ". All rights reserved.";
         engine.LoadDataValue("cnh_has_copyright", copyright);
+    }
+    if (!comment.empty()) {
+        engine.LoadDataValue("cnh_comment", comment);
+        if (!commentClosureOpt.empty()) {
+            engine.LoadDataValue("cnh_comment_closure", commentClosureOpt);
+        }
     }
 }
 

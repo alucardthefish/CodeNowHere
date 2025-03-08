@@ -54,9 +54,12 @@ bool Helper::questionReceptor(string answer, string dflt) {
 
 
 string Helper::getExtension(const string& fileName) {
-    string ext;
     size_t dotPosition = fileName.rfind('.');
-    ext = fileName.substr(dotPosition);
+    if (dotPosition == string::npos) {
+        return "";
+    }
+    string ext = fileName.substr(dotPosition + 1);
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
     return ext;
 }
 

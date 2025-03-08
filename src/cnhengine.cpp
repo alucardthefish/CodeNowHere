@@ -2,6 +2,7 @@
 
 #include "../headers/cnhengine.h"
 #include "../headers/Helper.h"
+#include "cnhengine.h"
 
 void CnhEngine::LoadDataValue(string_view name, string value) {
     _inja.SetValue(name, value);
@@ -92,4 +93,57 @@ vector<tuple<fs::path, string>> CnhEngine::FindTemplates(string_view fileName) {
     }
 
     return templates;
+}
+
+bool CnhEngine::IsFileExtensionTypeSupported(string ext)
+{
+    auto templateDir = fs::path(Helper::getTemplatePath());
+
+    auto off = ext.rfind('.');
+
+    if (off != string::npos) {
+        ext = ext.substr(off + 1);
+        for (int i = 0; i < ext.length(); i++) {
+            ext[i] = std::tolower(ext[i]);
+        }
+    }
+
+    if (ext.empty()) {
+        return false;
+    }
+
+    for (auto const& dir_entry : fs::directory_iterator{ templateDir })
+    {
+        if (!dir_entry.path().string().ends_with(".tpl"))
+            continue;
+
+        auto tf = std::ifstream(dir_entry.path());
+
+        if (tf) {
+            string header;
+            std::getline(tf, header);
+            // quick check
+            if (header.find(ext) == string::npos || !header.starts_with("!!cnh"))
+                continue;
+
+                auto parsed = json::parse(header.substr(6));
+                if (parsed.contains("suffix")) {
+                    auto head_suff = parsed["suffix"];
+                    if (head_suff.is_array()) {
+                        for (auto& sf : head_suff) {
+                            if (sf == ext) {
+                                return true;
+                            }
+                        }
+                    }
+                    else {
+                        if (head_suff == ext) {
+                            return true;
+                        }
+                    }
+                }
+        }
+    }
+
+    return false;
 }

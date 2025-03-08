@@ -1,17 +1,25 @@
-// **************************************************************************** 
-// File: BunchFileBehavior.cpp 
-// Author: Sergio Ortiz Paz 
-// Created: Sun Feb 23 18:49:37 2020 
-// Description:  
-// **************************************************************************** 
+// ****************************************************************************
+// File: BunchFileBehavior.cpp
+// Author: Sergio Ortiz Paz
+// Created: Sun Feb 23 18:49:37 2020
+// Description: Implement the abstract class for third command option
+// ****************************************************************************
 
 #include "../headers/BunchFileBehavior.h"
+#include <csignal>
 #include <iostream>
 
 using namespace std;
 
-BunchFileBehavior::BunchFileBehavior() {
+// Signal handler function
+void signalHandlerBunch(int signum) {
+    cout << "The program was not able to find a template for this file type" << endl;
+    exit(signum);
+}
 
+BunchFileBehavior::BunchFileBehavior() {
+    // Set up signal handler for segmentation faults
+    signal(SIGSEGV, signalHandlerBunch);
 }
 
 void  BunchFileBehavior::CreateCode() {
@@ -25,14 +33,12 @@ void  BunchFileBehavior::CreateCode() {
         return;
     }
 
-    blowCommentByExtensions(ext);
     bool uknownFileWantsCommentHeader = false;
-    bool isUnknownFile = comment.empty();
-
-    if (isUnknownFile) {
-        uknownFileWantsCommentHeader= Helper::RequireHeaderAssistance(fileName, comment, commentClosureOpt);
+    bool isUnknownFile = false;
+    if (!engine.IsFileExtensionTypeSupported(ext)) {
+        isUnknownFile = true;
+        uknownFileWantsCommentHeader = Helper::RequireHeaderAssistance(fileName, comment, commentClosureOpt);
     }
-    
 
     for (int i = 0; i < numOfFiles; i++)
     {
@@ -44,17 +50,17 @@ void  BunchFileBehavior::CreateCode() {
 
         if (!Helper::fileExist(fileName)) { // File is created only if it doesn't already exist
 
-            if (isUnknownFile && !uknownFileWantsCommentHeader) {
-                ofstream file;
-                file.open(fileName);
-                file.close();
-            } else {
-                WriteCodeNow();
+            try
+            {
+                WriteFile(isUnknownFile);
+                cout << fileName << " created!" << endl;
             }
-            cout << fileName << " created!" << endl;
+            catch(const std::exception& e)
+            {
+                cout << "An error occurred: " << e.what() << endl;
+            }
         } // ends fileExists
     } // ends for
-    
 
 }
 
