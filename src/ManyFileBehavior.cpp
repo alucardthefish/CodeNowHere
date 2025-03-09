@@ -1,25 +1,34 @@
-// **************************************************************************** 
-// File: ManyFileBehavior.cpp 
-// Author: Sergio Ortiz Paz 
-// Created: Thu Feb 13 18:10:45 2020 
-// Description: Implement the abstract class for second command option 
-// **************************************************************************** 
+// ****************************************************************************
+// File: ManyFileBehavior.cpp
+// Author: Sergio Ortiz Paz
+// Created: Thu Feb 13 18:10:45 2020
+// Description: Implement the abstract class for second command option
+// ****************************************************************************
 
 #include <cstdio>
+#include <csignal>
 #include "../headers/ManyFileBehavior.h"
 
 using namespace std;
 
+// Signal handler function
+void signalHandlerMany(int signum) {
+    cout << "The program was not able to find a template for this file type" << endl;
+    exit(signum);
+}
+
 ManyFileBehavior::ManyFileBehavior() {
+    // Set up signal handler for segmentation faults
+    signal(SIGSEGV, signalHandlerMany);
 }
 
 void ManyFileBehavior::CreateCode() {
-    
+
     cout << "Creating files..." << endl;
     size_t numFiles = fileNames.size();
     int numFilesCreated = 0;
     for(auto const& mFileName : fileNames) {
-        
+
         fileName = mFileName;
 
         if (Helper::validateFileName(fileName)) {
@@ -34,23 +43,26 @@ void ManyFileBehavior::CreateCode() {
                 }
                 remove(fileName.c_str());
             }
-            string ext = Helper::getExtension(fileName);
-            std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
-            
-            blowCommentByExtensions(ext);
 
-            if (comment.empty()) {  // Check if type file is not supported in the program
-                if (!Helper::RequireHeaderAssistance(fileName, comment, commentClosureOpt)) {
-                    ofstream file;
-                    file.open(fileName);
-                    file.close();
-                } else {
-                    WriteCodeNow();
-                }
-            } else {
-                WriteCodeNow();
+            bool uknownFileWantsCommentHeader = false;
+            bool isUnknownFile = false;
+            if (!engine.IsFileExtensionTypeSupported(fileName)) {
+                isUnknownFile = true;
+                comment = "";
+                commentClosureOpt = "";
+                Helper::RequireHeaderAssistance(fileName, comment, commentClosureOpt);
             }
-            cout << fileName << " created!" << endl;
+
+            try
+            {
+                WriteFile(isUnknownFile);
+                cout << fileName << " created!" << endl;
+            }
+            catch(const std::exception& e)
+            {
+                cout << "An error occurred: " << e.what() << endl;
+            }
+
             numFilesCreated++;
         } else {
             cout << fileName << " is not a valid file name. File name must be in this form 'filename.ext'" << endl;
