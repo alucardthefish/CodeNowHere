@@ -126,37 +126,38 @@ string Helper::getTemplatePath() {
     return templatePath;
 }
 
-bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar){
+bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar) {
     bool decisionFlag;
 
     cout << "The program does not recognize the extension associated to the file: '" << fileName;
-    cout << "'. Do you want to add a header comment to this unknown file (y/n): ";
+    cout << "'. Do you want to add a header comment to this unknown file (Y/n): ";
     string decision;
-    cin >> decision;
-    decisionFlag = questionReceptor(decision);
+    getline(cin, decision);
+    decisionFlag = questionReceptor(decision, "y");
     if (decisionFlag) {
         cout << "Enter the in-line comment syntax for this type of programming language: ";
-        cin.clear();
-        cin.ignore(10000, '\n');
-        getline(cin, initCommentChar);
-        while(initCommentChar.empty()) {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "try again: ";
-            getline(cin, initCommentChar);
+        while (true) {
+            string value;
+            getline(cin, value);
+            if (!value.empty()) {
+                initCommentChar = value;
+                break;
+            }
+            cout << "Input cannot be empty. Try again: ";
         }
+
         cout << endl << "Has the inline comment character entered previously a closing character? (Y/n): ";
-        cin >> decision;
+        getline(cin, decision);
         if (questionReceptor(decision, "Y")) {
             cout << "Enter the closing comment character: ";
-            cin.clear();
-            cin.ignore(10000, '\n');
-            getline(cin, finalCommentChar);
-            while(finalCommentChar.empty()) {
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cout << "try again: ";
-                getline(cin, finalCommentChar);
+            while (true) {
+                string value_2;
+                getline(cin, value_2);
+                if (!value_2.empty()) {
+                    finalCommentChar = value_2;
+                    break;
+                }
+                cout << "Input cannot be empty. Try again: ";
             }
         }
     }
