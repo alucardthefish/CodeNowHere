@@ -37,9 +37,16 @@ void OnlyFileBehavior::CreateCode() {
             remove(fileName.c_str());
         }
 
+        bool uknownFileWantsCommentHeader = false;
+        bool isUnknownFile = false;
+        if (!engine.IsFileExtensionTypeSupported(fileName)) {
+            isUnknownFile = true;
+            Helper::RequireHeaderAssistance(fileName, comment, commentClosureOpt);
+        }
+
         try
         {
-            WriteFile();
+            WriteFile(isUnknownFile);
             cout << fileName << " created!" << endl;
         }
         catch(const std::exception& e)
