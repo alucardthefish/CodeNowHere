@@ -1,11 +1,12 @@
-// **************************************************************************** 
-// File: Helper.cpp 
-// Author: Sergio Ortiz Paz 
-// Created: Tue Feb  4 01:00:22 2020 
-// Description: Implement util methods 
-// **************************************************************************** 
+// ****************************************************************************
+// File: Helper.cpp
+// Author: Sergio Ortiz Paz
+// Created: Tue Feb  4 01:00:22 2020
+// Description: Implement util methods
+// ****************************************************************************
 
 #include "../headers/Helper.h"
+#include <cstring>
 
 using namespace std;
 
@@ -41,7 +42,7 @@ bool Helper::fileExist(const string& fileName) {
 
 bool Helper::questionReceptor(string answer, string dflt) {
     bool state = false;
-    
+
     if (answer.empty())
         answer = dflt;
     std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
@@ -53,9 +54,12 @@ bool Helper::questionReceptor(string answer, string dflt) {
 
 
 string Helper::getExtension(const string& fileName) {
-    string ext;
     size_t dotPosition = fileName.rfind('.');
-    ext = fileName.substr(dotPosition);
+    if (dotPosition == string::npos) {
+        return "";
+    }
+    string ext = fileName.substr(dotPosition + 1);
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
     return ext;
 }
 
@@ -100,37 +104,60 @@ string Helper::getDataPath() {
     return dataPath;
 }
 
-bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar){
+string Helper::getTemplatePath() {
+    char *envPath = getenv("CNH_TEMPLATES");
+    if (envPath != NULL) {
+        size_t len = strlen(envPath);
+        if (len > 0) {
+            if (envPath[len - 1] != '/' && envPath[len - 1] != '\\') {
+                return string(envPath) + "/";
+            }
+            else {
+                return envPath;
+            }
+        }
+    }
+
+    string templatePath = LibConstants::LOCAL_TEMPLATES;
+    #ifdef TEMPLATE_LOCATION
+        templatePath = TEMPLATE_LOCATION;
+        templatePath += "/";
+    #endif
+    return templatePath;
+}
+
+bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar) {
     bool decisionFlag;
 
     cout << "The program does not recognize the extension associated to the file: '" << fileName;
-    cout << "'. Do you want to add a header comment to this unknown file (y/n): ";
+    cout << "'. Do you want to add a header comment to this unknown file (Y/n): ";
     string decision;
-    cin >> decision;
-    decisionFlag = questionReceptor(decision);
+    getline(cin, decision);
+    decisionFlag = questionReceptor(decision, "y");
     if (decisionFlag) {
         cout << "Enter the in-line comment syntax for this type of programming language: ";
-        cin.clear();
-        cin.ignore(10000, '\n');
-        getline(cin, initCommentChar);
-        while(initCommentChar.empty()) {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "try again: ";
-            getline(cin, initCommentChar);
+        while (true) {
+            string value;
+            getline(cin, value);
+            if (!value.empty()) {
+                initCommentChar = value;
+                break;
+            }
+            cout << "Input cannot be empty. Try again: ";
         }
+
         cout << endl << "Has the inline comment character entered previously a closing character? (Y/n): ";
-        cin >> decision;
+        getline(cin, decision);
         if (questionReceptor(decision, "Y")) {
             cout << "Enter the closing comment character: ";
-            cin.clear();
-            cin.ignore(10000, '\n');
-            getline(cin, finalCommentChar);
-            while(finalCommentChar.empty()) {
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cout << "try again: ";
-                getline(cin, finalCommentChar);
+            while (true) {
+                string value_2;
+                getline(cin, value_2);
+                if (!value_2.empty()) {
+                    finalCommentChar = value_2;
+                    break;
+                }
+                cout << "Input cannot be empty. Try again: ";
             }
         }
     }

@@ -5,7 +5,8 @@ if (WIN32)
     set(CMAKE_INSTALL_PREFIX "c:/program files/")
     set(CNH_BINARY_DEST "cnh")
 endif (WIN32)
-set(CMAKE_CXX_STANDARD 11)
+# set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CONFIG_H ${CMAKE_BINARY_DIR}/config.h)
 string(TIMESTAMP CURRENT_TIMESTAMP)
@@ -16,13 +17,17 @@ add_definitions("-DHAVE_CONFIG_H")
 # stop MSVC complaining
 add_definitions("-D_CRT_SECURE_NO_WARNINGS")
 add_definitions("-DDATA_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh\"")
+add_definitions("-DTEMPLATE_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh_templates\"")
 add_subdirectory(src)
 add_subdirectory(tests)
-install(DIRECTORY "extdata/" 
+install(DIRECTORY "extdata/"
   DESTINATION cnh
   FILES_MATCHING PATTERN *.tpl)
 install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
   DESTINATION cnh)
+install(DIRECTORY "templates/"
+  DESTINATION cnh_templates
+  FILES_MATCHING PATTERN *.tpl)
 install(TARGETS cnh
   DESTINATION ${CNH_BINARY_DEST})
 include(CPack)

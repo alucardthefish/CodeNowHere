@@ -4,6 +4,8 @@
 #include "headers/docopt.h"
 #include "headers/cnh_structs.h"
 
+#include "headers/cnhengine.h"
+
 using namespace std;
 
 static const char USAGE[] =
@@ -15,7 +17,7 @@ R"(Code Now Here (CNH).
       cnh bunchof <numfiles> [--ext=<fileext>] [-a <author>]
       cnh (-h | --help)
       cnh --version
-      
+
 
     Options:
       -h --help                       Show this screen.
@@ -37,9 +39,20 @@ cnh::arguments getDocoptAsArgStructure(map<string, docopt::value> args) {
   bool optThis = args["this"].asBool();
   bool optThese = args["these"].asBool();
   bool optBunch = args["bunchof"].asBool();
-  
-  cnh::arguments structData = cnh::init(fileName, author, description, hasCopyRight, fileNames, bunchExt, numOfFiles, optThis, optThese, optBunch);
-  
+
+  cnh::arguments structData = cnh::init(
+    fileName,
+    author,
+    description,
+    hasCopyRight,
+    fileNames,
+    bunchExt,
+    numOfFiles,
+    optThis,
+    optThese,
+    optBunch
+  );
+
   return structData;
 }
 
@@ -49,8 +62,8 @@ int main(int argc, char * argv[]) {
         = docopt::docopt(USAGE,
                          { argv + 1, argv + argc },
                          true,               // show help if requested
-                         "CodeNowHere 2.1.1"); // version string
-    
+                         "CodeNowHere 3.0.0"); // version string
+
     CodeNowHere codeNowHere(getDocoptAsArgStructure(args));
     // Testing purposes
     // for (auto const& arg : args)
@@ -59,6 +72,6 @@ int main(int argc, char * argv[]) {
     // }
     // return 0;
     codeNowHere.Execute();
-    
+
     return 0;
 }

@@ -11,6 +11,8 @@ list(APPEND ${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/OnlyFileBehavior.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/cnh_structs.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/docopt.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/injawrap.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/cnhengine.cpp
 )
 add_executable(cnh ${${project}_SOURCES} )
 
