@@ -19,6 +19,7 @@ class CnhEngine {
 public:
     void LoadDataValue(string_view name, string value);
     void LoadDataFile(string_view file);
+    string GetValue(string_view name);
 
     vector<string> RenderFile(const string& name);
     vector<tuple<fs::path, string>> FindTemplates(string_view fileName);

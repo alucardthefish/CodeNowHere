@@ -1,6 +1,7 @@
 #include <string>
 #include "../headers/injawrap.h"
 #include "../headers/inja.hpp"
+#include "injawrap.h"
 
 InjaWrap::InjaWrap() {
     _env.set_trim_blocks(true);
@@ -40,6 +41,10 @@ void InjaWrap::SetValue(string_view name, string value) {
     _data[name] = value;
 }
 
+string InjaWrap::GetValue(string_view name)
+{
+    return _data[name];
+}
 string InjaWrap::RenderFile(const string& file) {
     auto result = _env.render_file(file, _data);
     return result;

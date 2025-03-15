@@ -4,17 +4,18 @@
     <img src="https://images2.imgbox.com/03/0a/D5blA5f4_o.jpg" />
 </p>
 
-CLI application to create almost any programming language files from your terminal! It has been developed to be used in any bash or shell, also in IDEs, text editors with console or terminal integrated. The app is developed in C++ and currently is made for Linux Systems (Debian/Ubuntu with gcc), Windows (10 and 11 with vs2022), and, Mac (with clang). But, with your help and contribution we together could extend this to other type of systems.
+CLI application to create almost any programming language files from your terminal! It has been developed to be used in any bash or shell, also in IDEs, text editors with console or terminal integrated. The app is developed in C++ and currently is made for Linux Systems (Debian/Ubuntu with gcc), Windows (10 and 11 with vs2022), and, Mac (with clang). But, with your help and contribution we together could maintain the program on this systems.
 
 ## What is the idea?
-The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorite code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description that should be provided by the user. Although, depends on the type of language, it creates a trivial sample code like hello world in a main function or in a proper function. After that, you can open it with your favorite editor (i.e vi, vim, etc.). The CLI interface code relies on [docopt.cpp](https://github.com/docopt/docopt.cpp)  library for making easier the creation of command-line interfaces.
+The idea is to develop a Command Line Interface program for allowing CLI lovers to create their favorite code files wherever directory they are. The file will be generated with a comment header which will contain information about the file and the client. For example, File Name, Date of Creation, Author, and a brief description that should be optional and provided by the user. Although, depending on the type of language, it creates a trivial sample code like hello world in a main function or in a proper function. After that, you can open it with your favorite editor (i.e vi, vim, etc.). The CLI interface code relies on [docopt.cpp](https://github.com/docopt/docopt.cpp)  library for making easier the creation of command-line interfaces.
 For more information on `docopt.cpp`, please see [this page](http://docopt.org/).
 
 This is a very humble project. I am not using any framework to develop this project. However, originally it uses `autotools` for generating the configuration files and the *Makefile* to build and install the project on linux systems but now we changed it to use `cmake` in order to be able to build and install in multiple system platforms. I am learning while doing, so may there be lots of mistakes and errors in designing and coding. I'll be thankful for any recommendation for improving the code.
 
 ## Linux Minimum Requirements
 
-* C++11
+* C++11 (FOR VERSION 2.1.1 and below)
+* C++20 (FOR VERSION 3.0.0 and below)
 * cmake
 
 ### Installing linux dependencies (Debian)
@@ -36,7 +37,7 @@ $ cd CodeNowHere
 $ . ./linux_release.sh
 ```
 
-## How to install CNH on Linux
+## How to install CNH on Linux/MacOS
 
 After building you can install it in your machine this way:
 
@@ -49,6 +50,7 @@ $ sudo cmake --install release
 $ sudo cmake --build release --target uninstall
 ```
 
+### (FOR VERSION 2.1.1 and below)
 A bash script `build_local.sh` is provided to compile it locally in the build directory. You can edit it with your compiler.
 
 ```sh
@@ -118,7 +120,7 @@ Optional: if you want to mirror the code with docker container working directory
 $ docker run -it -v $(pwd):/usr/src/cnh --rm cnh:1.0.0 bash
 ```
 
-## Install on Linux from release tar (With autotools)
+## Install on Linux from release tar (With autotools) FOR VERSION 2.1.1 and below
 
 You can download a version package from [release page](https://github.com/alucardthefish/CodeNowHere/releases). The package will have this format: cnh-x.y.z.tar.gz (x, y, and z are numbers).
 
@@ -348,9 +350,32 @@ Project uses the Google Test library for Unit Testing locally as part of the cod
 
 To run the tests; type the following from base folder /
 
+### Run tests (FOR VERSION 2.1.1 and below)
+
 ```bash
 $ make check
 ```
+
+### Run tests (FOR VERSION 3.0.0)
+
+1. **Build the project**:
+    * Navigate to the project directory and run the following commands to build the project and the test executable:
+        ```bash
+        $ mkdir build
+        $ cd build
+        $ cmake ..
+        $ make
+        ```
+2. **Run the Tests**:
+    * After building the project, you can run the test executable to execute the tests:
+        ```bash
+        $ ./tests/AllTests
+        ```
+3. **Using CTests**:
+    * Alternatively, you can use CTest to run the tests:
+        ```bash
+        $ ctest
+        ```
 
 # Contribution
 

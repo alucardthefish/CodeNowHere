@@ -15,5 +15,6 @@ public:
     InjaWrap();
     void LoadJson(string_view fileName);
     void SetValue(string_view name, string value);
+    string GetValue(string_view name);
     string RenderFile(const string& file);
 };

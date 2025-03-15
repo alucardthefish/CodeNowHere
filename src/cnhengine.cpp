@@ -12,6 +12,11 @@ void CnhEngine::LoadDataFile(string_view file) {
     _inja.LoadJson(file);
 }
 
+string CnhEngine::GetValue(string_view name)
+{
+    return _inja.GetValue(name);
+}
+
 vector<string> CnhEngine::RenderFile(const string& name) {
     string rendered;
 

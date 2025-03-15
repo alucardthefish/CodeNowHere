@@ -157,10 +157,10 @@ void ICommandBehavior::RegisterDateOfCreation() {
 
 string ICommandBehavior::getLang(string fileName) {
     // Getting the extension of the file
-	string ext = Helper::getExtension(fileName);
+	string ext = "." + Helper::getExtension(fileName);
     ifstream file;
     string fileOfLanguages = Helper::getDataPath() + "lang.dat";
-	string language = "";
+    string language = "";
 
     try {
         file.open(fileOfLanguages);
@@ -178,7 +178,7 @@ string ICommandBehavior::getLang(string fileName) {
 			file.get();
 
 			while(getline(extStreams, extRead, ' ')) {
-				if (extRead == ext) {
+                if (extRead == ext) {
 					found = true;
 					language = commentRead;
 					break;
