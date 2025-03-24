@@ -72,3 +72,5 @@ tests/*.trs
 # exec file
 tests/AllTests
 
+.qodo
+.vs
