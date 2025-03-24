@@ -37,10 +37,15 @@ jobs:
         run: |
           VERSION=${{ github.ref_name }}  # Extracts the tag name (e.g., v1.0.0)
           cd build
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            7z a cnh-${VERSION}.zip *
-          else
-            tar -czvf cnh-${VERSION}.tar.gz *
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            OS_NAME="windows"
+            7z a cnh-${OS_NAME}-${VERSION}.zip *
+          elif [ "$RUNNER_OS" == "Linux" ]; then
+            OS_NAME="linux"
+            tar -czvf cnh-${OS_NAME}-${VERSION}.tar.gz *
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            OS_NAME="macos"
+            tar -czvf cnh-${OS_NAME}-${VERSION}.tar.gz *
           fi
           cd ..
 
@@ -50,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/cnh-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
-          asset_name: cnh-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
+          asset_path: build/cnh-${{ runner.os == 'Windows' && 'windows' || runner.os == 'Linux' && 'linux' || 'macos' }}-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
+          asset_name: cnh-${{ runner.os == 'Windows' && 'windows' || runner.os == 'Linux' && 'linux' || 'macos' }}-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
           asset_content_type: application/octet-stream
