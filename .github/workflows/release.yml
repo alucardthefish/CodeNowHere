@@ -33,20 +33,27 @@ jobs:
       - name: Build project
         run: cmake --build build --config Release
 
-      - name: Package release
+      - name: Package release (Linux and macOS)
+        if: runner.os != 'Windows'
         run: |
           VERSION=${{ github.ref_name }}  # Extracts the tag name (e.g., v1.0.0)
           cd build
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            OS_NAME="windows"
-            7z a cnh-${OS_NAME}-${VERSION}.zip *
-          elif [ "$RUNNER_OS" == "Linux" ]; then
+          if [ "$RUNNER_OS" == "Linux" ]; then
             OS_NAME="linux"
             tar -czvf cnh-${OS_NAME}-${VERSION}.tar.gz *
           elif [ "$RUNNER_OS" == "macOS" ]; then
             OS_NAME="macos"
             tar -czvf cnh-${OS_NAME}-${VERSION}.tar.gz *
           fi
+          cd ..
+
+      - name: Package release (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          $VERSION=${{ github.ref_name }}  # Extracts the tag name (e.g., v1.0.0)
+          cd build
+          $OS_NAME="windows"
+          7z a cnh-$OS_NAME-$VERSION.zip *
           cd ..
 
       - name: Upload release artifact
