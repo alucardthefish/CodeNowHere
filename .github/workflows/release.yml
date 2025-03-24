@@ -1,0 +1,53 @@
+name: Build Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y build-essential cmake
+
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install cmake
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: choco install cmake
+
+      - name: Configure CMake
+        run: cmake -S . -B build
+
+      - name: Build project
+        run: cmake --build build --config Release
+
+      - name: Package release
+        run: |
+          VERSION=${{ github.ref_name }}  # Extracts the tag name (e.g., v1.0.0)
+          cd build
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            7z a cnh-${VERSION}.zip *
+          else
+            tar -czvf cnh-${VERSION}.tar.gz *
+          fi
+          cd ..
+
+      - name: Upload release artifact
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/cnh-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
+          asset_name: cnh-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
+          asset_content_type: application/octet-stream
