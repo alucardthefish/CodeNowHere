@@ -53,7 +53,7 @@ jobs:
           $env:VERSION="${github.ref_name}"  # Extracts the tag name (e.g., v1.0.0)
           cd build
           $env:OS_NAME="windows"
-          7z a cnh-$env:OS_NAME-$env:VERSION.zip *
+          7z a cnh-$($env:OS_NAME)-$($env:VERSION).zip *
           cd ..
 
       - name: Upload release artifact
