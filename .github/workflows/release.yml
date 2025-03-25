@@ -50,7 +50,7 @@ jobs:
       - name: Package release (Windows)
         if: runner.os == 'Windows'
         run: |
-          $env:VERSION="${{ github.ref_name }}"  # Extracts the tag name (e.g., v1.0.0)
+          $env:VERSION="${github.ref_name}"  # Extracts the tag name (e.g., v1.0.0)
           cd build
           $env:OS_NAME="windows"
           7z a cnh-$env:OS_NAME-$env:VERSION.zip *
