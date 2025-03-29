@@ -25,7 +25,7 @@ jobs:
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
-        run: choco install cmake
+        run: choco install cmake nsis
 
       - name: Configure CMake
         run: cmake -S . -B build
@@ -33,28 +33,10 @@ jobs:
       - name: Build project
         run: cmake --build build --config Release
 
-      - name: Package release (Linux and macOS)
-        if: runner.os != 'Windows'
+      - name: Package release with CPack
         run: |
-          VERSION=${{ github.ref_name }}  # Extracts the tag name (e.g., v1.0.0)
           cd build
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            OS_NAME="linux"
-            tar -czvf cnh-${OS_NAME}-${VERSION}.tar.gz *
-          elif [ "$RUNNER_OS" == "macOS" ]; then
-            OS_NAME="macos"
-            tar -czvf cnh-${OS_NAME}-${VERSION}.tar.gz *
-          fi
-          cd ..
-
-      - name: Package release (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          $VERSION="${{ github.ref_name }}"
-          cd build
-          $OS_NAME="windows"
-          7z a cnh-$($OS_NAME)-$($VERSION).zip *
-          cd ..
+          cpack
 
       - name: Upload release artifact
         uses: actions/upload-release-asset@v1
@@ -62,6 +44,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/cnh-${{ runner.os == 'Windows' && 'windows' || runner.os == 'Linux' && 'linux' || 'macos' }}-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
-          asset_name: cnh-${{ runner.os == 'Windows' && 'windows' || runner.os == 'Linux' && 'linux' || 'macos' }}-${{ github.ref_name }}.${{ runner.os == 'Windows' && 'zip' || 'tar.gz' }}
+          asset_path: |
+            build/cnh-windows-*.exe
+            build/cnh-macos-*.dmg
+            build/cnh-linux-*.deb
+          asset_name: |
+            cnh-windows-${{ github.ref_name }}.exe
+            cnh-macos-${{ github.ref_name }}.dmg
+            cnh-linux-${{ github.ref_name }}.deb
           asset_content_type: application/octet-stream

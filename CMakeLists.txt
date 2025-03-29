@@ -21,16 +21,37 @@ add_definitions("-DTEMPLATE_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh_templates\"")
 add_subdirectory(src)
 add_subdirectory(tests)
 install(DIRECTORY "extdata/"
-  DESTINATION cnh
+  DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh"
   FILES_MATCHING PATTERN *.tpl)
 install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
-  DESTINATION cnh)
+  DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh")
 install(DIRECTORY "templates/"
-  DESTINATION cnh_templates
+  DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh_templates"
   FILES_MATCHING PATTERN *.tpl)
 install(TARGETS cnh
   DESTINATION ${CNH_BINARY_DEST})
+
+# Set package metadata
+set(CPACK_PACKAGE_NAME "CodeNowHere")
+set(CPACK_PACKAGE_VERSION "3.0.0")  # Replace with your versioning logic
+set(CPACK_PACKAGE_CONTACT "sergiop18@gmail.com")
+
+# Set platform-specific settings
+if(WIN32)
+    set(CPACK_GENERATOR "NSIS")  # Use NSIS for Windows
+    set(CPACK_PACKAGE_FILE_NAME "cnh-windows-${CPACK_PACKAGE_VERSION}")
+elseif(APPLE)
+    set(CPACK_GENERATOR "DragNDrop")  # Use DragNDrop for macOS
+    set(CPACK_PACKAGE_FILE_NAME "cnh-macos-${CPACK_PACKAGE_VERSION}")
+else()
+    set(CPACK_GENERATOR "DEB")  # Use DEB for Linux
+    set(CPACK_PACKAGE_FILE_NAME "cnh-linux-${CPACK_PACKAGE_VERSION}")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Sergio Ortiz Paz")  # Required for DEB
+endif()
+
+# Enable CPack
 include(CPack)
+
 # uninstall target
 if(NOT TARGET uninstall)
   configure_file(
@@ -39,8 +60,6 @@ if(NOT TARGET uninstall)
     IMMEDIATE @ONLY)
   add_custom_target(uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
-    #I cannot make this work consistently across windows, linux and mac
-    #COMMAND ${CMAKE_COMMAND} "-E echo \"-- Uninstalling ${CMAKE_INSTALL_PREFIX}${CNH_BINARY_DEST}\""
-    #COMMAND ${CMAKE_COMMAND} "-E rm -r \"${CMAKE_INSTALL_PREFIX}${CNH_BINARY_DEST}\""
-    )
+    COMMENT "Uninstalling files installed by 'make install'"
+  )
 endif()

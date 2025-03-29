@@ -1,22 +1,21 @@
-# see https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake
-if(NOT EXISTS "@CMAKE_BINARY_DIR@/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: @CMAKE_BINARY_DIR@/install_manifest.txt")
-endif()
+# cmake_uninstall.cmake.in
 
-file(READ "@CMAKE_BINARY_DIR@/install_manifest.txt" files)
-string(REGEX REPLACE "\n" ";" files "${files}")
-foreach(file ${files})
-  message(STATUS "Uninstalling $ENV{DESTDIR}${file}")
-  if(IS_SYMLINK "$ENV{DESTDIR}${file}" OR EXISTS "$ENV{DESTDIR}${file}")
-    exec_program(
-      "@CMAKE_COMMAND@" ARGS "-E remove \"$ENV{DESTDIR}${file}\""
-      OUTPUT_VARIABLE rm_out
-      RETURN_VALUE rm_retval
-      )
-    if(NOT "${rm_retval}" STREQUAL 0)
-      message(FATAL_ERROR "Problem when removing $ENV{DESTDIR}${file}")
+# Check if the installation prefix exists
+if(EXISTS "@CMAKE_INSTALL_PREFIX@")
+    message(STATUS "Uninstalling files from @CMAKE_INSTALL_PREFIX@")
+
+    # Remove installed files and directories
+    file(REMOVE_RECURSE "@CMAKE_INSTALL_PREFIX@/cnh")
+    file(REMOVE_RECURSE "@CMAKE_INSTALL_PREFIX@/cnh_templates")
+    file(REMOVE_RECURSE "@CMAKE_INSTALL_PREFIX@/@CNH_BINARY_DEST@")
+
+    # Optionally, remove the installation prefix if it is empty
+    if(EXISTS "@CMAKE_INSTALL_PREFIX@")
+        file(GLOB PREFIX_CONTENT "@CMAKE_INSTALL_PREFIX@/*")
+        if(PREFIX_CONTENT STREQUAL "")
+            file(REMOVE_RECURSE "@CMAKE_INSTALL_PREFIX@")
+        endif()
     endif()
-  else(IS_SYMLINK "$ENV{DESTDIR}${file}" OR EXISTS "$ENV{DESTDIR}${file}")
-    message(STATUS "File $ENV{DESTDIR}${file} does not exist.")
-  endif()
-endforeach()
+else()
+    message(WARNING "Installation prefix '@CMAKE_INSTALL_PREFIX@' does not exist. Nothing to uninstall.")
+endif()
