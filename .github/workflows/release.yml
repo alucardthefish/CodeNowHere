@@ -37,6 +37,7 @@ jobs:
         run: |
           cd build
           cpack
+          cd ..
 
       - name: Upload release artifact
         uses: actions/upload-release-asset@v1
