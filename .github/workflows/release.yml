@@ -28,7 +28,7 @@ jobs:
         run: choco install cmake nsis
 
       - name: Configure CMake
-        run: cmake -S . -B build
+        run: cmake -S . -B build -DCMAKE_INSTALL_PREFIX=build/install
 
       - name: Build project
         run: cmake --build build --config Release
