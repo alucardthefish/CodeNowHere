@@ -38,35 +38,12 @@ jobs:
           cd build
           cpack
 
-      - name: Debug List build directory contents
-        run: ls -R build
-
-      - name: Debug List build/_CPack_Packages directory contents
-        run: ls -R build/_CPack_Packages
-
-      - name: Find and upload release artifacts
-        run: |
-          # Dynamically find the generated files
-          if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
-            echo "Linux detected"
-            FILE=$(find build -name "cnh-linux-*.deb")
-          elif [ "${{ matrix.os }}" == "macos-latest" ]; then
-            echo "macOS detected"
-            FILE=$(find build -name "cnh-macos-*.dmg")
-          elif [ "${{ matrix.os }}" == "windows-latest" ]; then
-            echo "Windows detected"
-            FILE=$(find build -name "cnh-windows-*.exe")
-          fi
-
-          # Verify file exists before uploading
-          if [ -f "$FILE" ]; then
-            echo "File found: $FILE"
-          else
-            echo "File not found: $FILE"
-            exit 1
-
-      - name: Upload release artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload release artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: release-artifact
-          path: $FILE
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/cnh-${{ runner.os == 'Windows' && 'windows' || runner.os == 'Linux' && 'linux' || 'macos' }}-${{ '3.0.0' }}.${{ runner.os == 'Windows' && 'exe' || runner.os == 'Linux' && 'deb' || 'dmg' }}
+          asset_name: cnh-${{ runner.os == 'Windows' && 'windows' || runner.os == 'Linux' && 'linux' || 'macos' }}-${{ '3.0.0' }}.${{ runner.os == 'Windows' && 'exe' || runner.os == 'Linux' && 'deb' || 'dmg' }}
+          asset_content_type: application/octet-stream
