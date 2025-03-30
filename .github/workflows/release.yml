@@ -39,18 +39,17 @@ jobs:
           cpack
           cd ..
 
-      - name: Upload release artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: |
-            build/cnh-windows-*.exe
-            build/cnh-macos-*.dmg
-            build/cnh-linux-*.deb
-          asset_name: |
-            cnh-windows-${{ github.ref_name }}.exe
-            cnh-macos-${{ github.ref_name }}.dmg
-            cnh-linux-${{ github.ref_name }}.deb
-          asset_content_type: application/octet-stream
+      - name: Find and upload release artifacts
+        run: |
+          # Dynamically find the generated files
+          if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+            FILE=$(find build -name "cnh-linux-*.deb")
+          elif [ "${{ matrix.os }}" == "macos-latest" ]; then
+            FILE=$(find build -name "cnh-macos-*.dmg")
+          elif [ "${{ matrix.os }}" == "windows-latest" ]; then
+            FILE=$(find build -name "cnh-windows-*.exe")
+          fi
+
+          # Upload the artifact
+          echo "Uploading $FILE"
+          gh release upload ${{ github.event.release.tag_name }} "$FILE" --clobber
