@@ -39,24 +39,34 @@ jobs:
           cpack
 
       - name: Debug List build directory contents
-        run: ls -R .
+        run: ls -R build
+
+      - name: Debug List build/_CPack_Packages directory contents
+        run: ls -R build/_CPack_Packages
 
       - name: Find and upload release artifacts
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Dynamically find the generated files
           if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
             echo "Linux detected"
-            FILE=$(find . -name "cnh-linux-*.deb")
+            FILE=$(find build -name "cnh-linux-*.deb")
           elif [ "${{ matrix.os }}" == "macos-latest" ]; then
             echo "macOS detected"
-            FILE=$(find . -name "cnh-macos-*.dmg")
+            FILE=$(find build -name "cnh-macos-*.dmg")
           elif [ "${{ matrix.os }}" == "windows-latest" ]; then
             echo "Windows detected"
-            FILE=$(find . -name "cnh-windows-*.exe")
+            FILE=$(find build -name "cnh-windows-*.exe")
           fi
 
-          # Upload the artifact
-          echo "UploadingZ $FILE"
-          gh release upload ${{ github.event.release.tag_name }} "$FILE" --clobber
+          # Verify file exists before uploading
+          if [ -f "$FILE" ]; then
+            echo "File found: $FILE"
+          else
+            echo "File not found: $FILE"
+            exit 1
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-artifact
+          path: $FILE
