@@ -40,6 +40,8 @@ jobs:
           cd ..
 
       - name: Find and upload release artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Dynamically find the generated files
           if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
