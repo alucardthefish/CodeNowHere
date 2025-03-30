@@ -39,6 +39,9 @@ jobs:
           cpack
           cd ..
 
+      - name: Debug List build directory contents
+        run: ls -R build
+
       - name: Find and upload release artifacts
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
