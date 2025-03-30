@@ -20,16 +20,28 @@ add_definitions("-DDATA_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh\"")
 add_definitions("-DTEMPLATE_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh_templates\"")
 add_subdirectory(src)
 add_subdirectory(tests)
+# install(DIRECTORY "extdata/"
+#   DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh"
+#   FILES_MATCHING PATTERN *.tpl)
+# install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
+#   DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh")
+# install(DIRECTORY "templates/"
+#   DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh_templates"
+#   FILES_MATCHING PATTERN *.tpl)
+# install(TARGETS cnh
+#   DESTINATION ${CNH_BINARY_DEST})
 install(DIRECTORY "extdata/"
-  DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh"
+  DESTINATION "cnh"
   FILES_MATCHING PATTERN *.tpl)
 install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
-  DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh")
+  DESTINATION "cnh")
 install(DIRECTORY "templates/"
-  DESTINATION "${CMAKE_INSTALL_PREFIX}/cnh_templates"
+  DESTINATION "cnh_templates"
   FILES_MATCHING PATTERN *.tpl)
 install(TARGETS cnh
-  DESTINATION ${CNH_BINARY_DEST})
+  RUNTIME DESTINATION "bin"
+  LIBRARY DESTINATION "lib"
+  ARCHIVE DESTINATION "lib")
 
 # Set package metadata
 set(CPACK_PACKAGE_NAME "CodeNowHere")
