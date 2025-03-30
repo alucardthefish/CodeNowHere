@@ -37,10 +37,9 @@ jobs:
         run: |
           cd build
           cpack
-          cd ..
 
       - name: Debug List build directory contents
-        run: ls -R build
+        run: ls -R .
 
       - name: Find and upload release artifacts
         env:
@@ -49,13 +48,13 @@ jobs:
           # Dynamically find the generated files
           if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
             echo "Linux detected"
-            FILE=$(find build -name "cnh-linux-*.deb")
+            FILE=$(find . -name "cnh-linux-*.deb")
           elif [ "${{ matrix.os }}" == "macos-latest" ]; then
             echo "macOS detected"
-            FILE=$(find build -name "cnh-macos-*.dmg")
+            FILE=$(find . -name "cnh-macos-*.dmg")
           elif [ "${{ matrix.os }}" == "windows-latest" ]; then
             echo "Windows detected"
-            FILE=$(find build -name "cnh-windows-*.exe")
+            FILE=$(find . -name "cnh-windows-*.exe")
           fi
 
           # Upload the artifact
