@@ -120,7 +120,7 @@ Optional: if you want to mirror the code with docker container working directory
 $ docker run -it -v $(pwd):/usr/src/cnh --rm cnh:1.0.0 bash
 ```
 
-## Install on Linux from release tar (With autotools) FOR VERSION 2.1.1 and below
+## Install/Uninstall on Linux from release tar (With autotools) FOR VERSION 2.1.1 and below
 
 You can download a version package from [release page](https://github.com/alucardthefish/CodeNowHere/releases). The package will have this format: cnh-x.y.z.tar.gz (x, y, and z are numbers).
 
@@ -135,6 +135,12 @@ $ tar -zxvf cnh-x.y.z.tar.gz
 ```sh
 $ ./configure CXXFLAGS="-std=gnu++11"
 $ sudo make install
+```
+
+4. To uninstall try running from the source directory where you ran make install:
+
+```sh
+$ sudo make uninstall
 ```
 
 ## Usage
