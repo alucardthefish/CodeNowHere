@@ -143,6 +143,44 @@ $ sudo make install
 $ sudo make uninstall
 ```
 
+# Install/Uninstall from installers FOR VERSION 3.0.0
+
+You can download the installer of your preference from [release v3.0.0 page](https://github.com/alucardthefish/CodeNowHere/releases/tag/v3.0.0).
+
+## Linux Debian AMD64
+
+1. From the terminal, navigate to the directory where installer with extension .deb has been downloaded.
+
+2. Type the following to install CNH in your system:
+
+```sh
+$ sudo dpkg -i cnh-linux-3.0.0-amd64.deb
+```
+3. then after installed you need to run the following command to complete the installation:
+
+```sh
+$ source /etc/profile.d/cnh.sh
+```
+
+4. To uninstall type in a terminal the following:
+
+```sh
+$ sudo dpkg -r CodeNowHere
+```
+
+## Windows
+
+1. Go to the downloads folder or the location where the `cnh-windows-3.0.0.exe` file was downloaded and execute it by double clicking it.
+
+2. After finish the installation process, add the executable path to the ENV VAR path (something like example below):
+
+```sh
+C:\Program Files\CodeNowHere 3.0.0\bin
+```
+
+3. To uninstall you can use the uninstaller executable you can find in the app folder or use the Windows Control Panel > Programs:
+
+
 ## Usage
 
 Type in shell:
