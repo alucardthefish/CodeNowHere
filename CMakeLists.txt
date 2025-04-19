@@ -1,10 +1,11 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.16)
 project(cnh)
 set(CNH_BINARY_DEST "bin")
 if (WIN32)
-    set(CMAKE_INSTALL_PREFIX "c:/program files/")
+    # set(CMAKE_INSTALL_PREFIX "c:/program files/")
     set(CNH_BINARY_DEST "cnh")
 endif (WIN32)
+message(STATUS "CNH_BINARY_DEST is set to: ${CNH_BINARY_DEST}")
 # set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -31,32 +32,55 @@ add_subdirectory(tests)
 # install(TARGETS cnh
 #   DESTINATION ${CNH_BINARY_DEST})
 install(DIRECTORY "extdata/"
-  DESTINATION "cnh"
+  DESTINATION "share/cnh/cnh"
   FILES_MATCHING PATTERN *.tpl)
 install(FILES "extdata/InlineComments.txt" "extdata/lang.dat"
-  DESTINATION "cnh")
+  DESTINATION "share/cnh/cnh")
 install(DIRECTORY "templates/"
-  DESTINATION "cnh_templates"
+  DESTINATION "share/cnh/cnh_templates"
   FILES_MATCHING PATTERN *.tpl)
 install(TARGETS cnh
   RUNTIME DESTINATION "bin"
-  LIBRARY DESTINATION "lib"
-  ARCHIVE DESTINATION "lib")
+)
+  message(STATUS "CMAKE_INSTALL_PREFIX is set to: ${CMAKE_INSTALL_PREFIX}")
 
 # Set package metadata
 set(CPACK_PACKAGE_NAME "CodeNowHere")
 set(CPACK_PACKAGE_VERSION "3.0.0")  # Replace with your versioning logic
 set(CPACK_PACKAGE_CONTACT "sergiop18@gmail.com")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 
 # Set platform-specific settings
 if(WIN32)
     set(CPACK_GENERATOR "NSIS")  # Use NSIS for Windows
+    set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
+        WriteRegStr HKCU \\\"Environment\\\" \\\"CNH_TEMPLATES\\\" \\\"$INSTDIR\\\\share\\\\cnh\\\\cnh_templates\\\"
+    ")
+    set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "
+        DeleteRegValue HKCU \\\"Environment\\\" \\\"CNH_TEMPLATES\\\"
+    ")
     set(CPACK_PACKAGE_FILE_NAME "cnh-windows-${CPACK_PACKAGE_VERSION}")
 elseif(APPLE)
     set(CPACK_GENERATOR "DragNDrop")  # Use DragNDrop for macOS
+    set(CPACK_POSTFLIGHT_SCRIPT "${CMAKE_BINARY_DIR}/postinstall.sh")
+
+    file(WRITE ${CMAKE_BINARY_DIR}/postinstall.sh
+        "#!/bin/sh\n"
+        "echo 'export CNH_TEMPLATES=\"/Library/Application Support/cnh/cnh_templates\"' >> ~/.bash_profile\n"
+    )
     set(CPACK_PACKAGE_FILE_NAME "cnh-macos-${CPACK_PACKAGE_VERSION}")
 else()
     set(CPACK_GENERATOR "DEB")  # Use DEB for Linux
+    set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_BINARY_DIR}/postinst")
+
+    file(WRITE ${CMAKE_BINARY_DIR}/postinst
+      "#!/bin/sh
+      set -e
+      echo 'export CNH_TEMPLATES=/usr/share/cnh/cnh_templates' > /etc/profile.d/cnh.sh
+      chmod 644 /etc/profile.d/cnh.sh"
+    )
+
+
     set(CPACK_PACKAGE_FILE_NAME "cnh-linux-${CPACK_PACKAGE_VERSION}")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Sergio Ortiz Paz")  # Required for DEB
 endif()
