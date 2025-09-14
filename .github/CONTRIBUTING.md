@@ -1,11 +1,11 @@
 # Contributing Guidelines
 
-* Remember that this is an inclusive community, committed to creating a safe, positive environment.  See the full [Code of Conduct](https://github.com/alucardthefish/CodeNowHere/CODE_OF_CONDUCT.md).
+* Remember that this is an inclusive community, committed to creating a safe, positive environment.  See the full [Code of Conduct](https://github.com/alucardthefish/CodeNowHere/blob/master/CODE_OF_CONDUCT.md).
 * Please consider raising an issue before submitting a pull request (PR) to solve a problem that is not present in our [issue tracker](https://github.com/alucardthefish/CodeNowHere/issues). This allows maintainers to first validate the issue you are trying to solve and also reference the PR to a specific issue.
 * When developing a new feature, include at least one test when applicable.
-* When submitting a PR, please follow [this template](PULL_REQUEST_TEMPLATE.md) (which will probably be already filled up once you create the PR).
-* When creating an issue to report a bug in the project, please follow our [bug_report.md](ISSUE_TEMPLATE/bug_report.md) template.
-* When creating an issue to request new feature in the project, please follow our [bug_report.md](ISSUE_TEMPLATE/feature_request.md) template.
+* When submitting a PR, please follow [this template](https://github.com/alucardthefish/CodeNowHere/blob/master/.github/PULL_REQUEST_TEMPLATE.md) (which will probably be already filled up once you create the PR).
+* When creating an issue to report a bug in the project, please follow our [bug_report.md](https://github.com/alucardthefish/CodeNowHere/blob/master/.github/ISSUE_TEMPLATE/bug_report.md) template.
+* When creating an issue to request new feature in the project, please follow our [bug_report.md](https://github.com/alucardthefish/CodeNowHere/blob/master/.github/ISSUE_TEMPLATE/feature_request.md) template.
 
 
 ## General Guidelines
