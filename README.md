@@ -363,6 +363,7 @@ The created files come with blank description in their comment headers.
 * Logo
 * Lua
 * Nemerle
+* Nim
 * ObjectiveC
 * Pawn
 * Pascal
@@ -385,6 +386,7 @@ The created files come with blank description in their comment headers.
 * VisualBasic
 * Xml
 * Yaml
+* Zig
 
 Whether you enter a different programming language from the list above or an unknown file into the program, it will ask you for the inline comment character to create the header commentary. Otherwise, the comment header is omitted.
 
