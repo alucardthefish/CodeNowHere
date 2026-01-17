@@ -383,6 +383,7 @@ The created files come with blank description in their comment headers.
 * Sql
 * Swift
 * Toml
+* TypeScript
 * VisualBasic
 * Xml
 * Yaml
