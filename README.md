@@ -362,6 +362,7 @@ The created files come with blank description in their comment headers.
 * Kotlin
 * Logo
 * Lua
+* MATLAB
 * Nemerle
 * Nim
 * ObjectiveC
@@ -370,6 +371,7 @@ The created files come with blank description in their comment headers.
 * Perl
 * Php
 * Picat
+* PowerShell
 * PL/SQL
 * Prolog
 * Pony
@@ -380,10 +382,13 @@ The created files come with blank description in their comment headers.
 * Rust
 * Scala
 * Scheme
+* Solidity
 * Sql
+* Svelte
 * Swift
 * Toml
 * TypeScript
+* V
 * VisualBasic
 * Xml
 * Yaml
