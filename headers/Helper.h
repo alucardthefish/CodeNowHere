@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <vector>
 
 using namespace std;
 
@@ -29,6 +30,9 @@ class Helper {
     string dataPath;
     string templatePath;
     Helper();   //Disallow creating an instance
+    
+    // Helper method to find resources in standard locations
+    static string findResourcePath(const vector<string>& candidatePaths);
 
     public:
     static bool validateFileName(const string& fileName);

@@ -17,8 +17,6 @@ include_directories(headers ${CMAKE_BINARY_DIR} )
 add_definitions("-DHAVE_CONFIG_H")
 # stop MSVC complaining
 add_definitions("-D_CRT_SECURE_NO_WARNINGS")
-add_definitions("-DDATA_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh\"")
-add_definitions("-DTEMPLATE_LOCATION=\"${CMAKE_INSTALL_PREFIX}/cnh_templates\"")
 add_subdirectory(src)
 add_subdirectory(tests)
 # install(DIRECTORY "extdata/"

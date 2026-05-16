@@ -17,3 +17,4 @@ list(APPEND ${project}_SOURCES
 add_executable(cnh ${${project}_SOURCES} )
 
 target_link_options(cnh PRIVATE -static-libgcc -static-libstdc++)
+target_link_libraries(cnh stdc++fs)

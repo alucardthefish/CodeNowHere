@@ -7,8 +7,28 @@
 
 #include "../headers/Helper.h"
 #include <cstring>
+#include <filesystem>
 
 using namespace std;
+namespace fs = std::filesystem;
+
+// Helper method to find resources in multiple candidate paths
+string Helper::findResourcePath(const vector<string>& candidatePaths) {
+    for (const auto& path : candidatePaths) {
+        try {
+            if (!path.empty() && fs::exists(path) && fs::is_directory(path)) {
+                return path;
+            }
+        } catch (const fs::filesystem_error&) {
+            // Path doesn't exist or can't be accessed, continue to next candidate
+            continue;
+        }
+    }
+    
+    // If no path found, return the first candidate as fallback
+    // (typically the local development path or relative path)
+    return candidatePaths.empty() ? "" : candidatePaths[0];
+}
 
 bool Helper::validateFileName(const string& fileName)
 // validateFileName: receives the file name string and evaluates if its a correct format
@@ -83,47 +103,73 @@ void Helper::replaceClassName(string& className, const string& fileName) {
 }
 
 string Helper::getDataPath() {
+    // Priority 1: Check environment variable
     char *envPath = getenv("CNH_EXTDATA");
     if (envPath != NULL) {
         size_t len = strlen(envPath);
         if (len > 0) {
-            if (envPath[len - 1] != '/' && envPath[len - 1] != '\\') {
-                return string(envPath) + "/";
+            string result(envPath);
+            if (result[result.length() - 1] != '/' && result[result.length() - 1] != '\\') {
+                result += "/";
             }
-            else {
-                return envPath;
-            }
+            return result;
         }
     }
 
-    string dataPath = LibConstants::LOCAL_DATA;
-    #ifdef DATA_LOCATION
-        dataPath = DATA_LOCATION;
-        dataPath += "/";
-    #endif
-    return dataPath;
+    // Priority 2: Check multiple standard locations
+    vector<string> candidatePaths = {
+        // Local development paths (relative to build directory)
+        LibConstants::LOCAL_DATA,
+        // Standard Linux/Unix paths
+        "/usr/share/cnh/cnh/",
+        "/usr/local/share/cnh/cnh/",
+        // macOS paths
+        "/usr/local/share/cnh/cnh/",
+        // Windows paths (relative to installation)
+        "./share/cnh/cnh/",
+        "../share/cnh/cnh/",
+    };
+    
+    string foundPath = findResourcePath(candidatePaths);
+    if (foundPath[foundPath.length() - 1] != '/' && foundPath[foundPath.length() - 1] != '\\') {
+        foundPath += "/";
+    }
+    return foundPath;
 }
 
 string Helper::getTemplatePath() {
+    // Priority 1: Check environment variable
     char *envPath = getenv("CNH_TEMPLATES");
     if (envPath != NULL) {
         size_t len = strlen(envPath);
         if (len > 0) {
-            if (envPath[len - 1] != '/' && envPath[len - 1] != '\\') {
-                return string(envPath) + "/";
+            string result(envPath);
+            if (result[result.length() - 1] != '/' && result[result.length() - 1] != '\\') {
+                result += "/";
             }
-            else {
-                return envPath;
-            }
+            return result;
         }
     }
 
-    string templatePath = LibConstants::LOCAL_TEMPLATES;
-    #ifdef TEMPLATE_LOCATION
-        templatePath = TEMPLATE_LOCATION;
-        templatePath += "/";
-    #endif
-    return templatePath;
+    // Priority 2: Check multiple standard locations
+    vector<string> candidatePaths = {
+        // Local development paths (relative to build directory)
+        LibConstants::LOCAL_TEMPLATES,
+        // Standard Linux/Unix paths
+        "/usr/share/cnh/cnh_templates/",
+        "/usr/local/share/cnh/cnh_templates/",
+        // macOS paths
+        "/usr/local/share/cnh/cnh_templates/",
+        // Windows paths (relative to installation)
+        "./share/cnh/cnh_templates/",
+        "../share/cnh/cnh_templates/",
+    };
+    
+    string foundPath = findResourcePath(candidatePaths);
+    if (foundPath[foundPath.length() - 1] != '/' && foundPath[foundPath.length() - 1] != '\\') {
+        foundPath += "/";
+    }
+    return foundPath;
 }
 
 bool Helper::RequireHeaderAssistance(const string& fileName, string &initCommentChar, string &finalCommentChar) {

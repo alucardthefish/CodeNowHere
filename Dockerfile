@@ -7,7 +7,7 @@ COPY . /usr/src/cnh
 WORKDIR /usr/src/cnh
 
 # Change ending lines of files for possible issues when building app CRLF to LF
-RUN find . -type f | xargs dos2unix
+RUN find . -type f -print0 | xargs -0 dos2unix || true
 
 RUN ./linux_release.sh
 
