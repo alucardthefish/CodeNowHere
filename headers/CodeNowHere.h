@@ -13,16 +13,18 @@
 #include "BunchFileBehavior.h"
 
 #include "../headers/cnh_structs.h"
+#include <memory>
 
 using namespace std;
 
 class CodeNowHere {
     private:
     cnh::arguments data;
-    ICommandBehavior *iCB; //Abstract class
+    std::unique_ptr<ICommandBehavior> iCB; //Abstract class
 
     public:
     CodeNowHere(cnh::arguments argStruct);
+    ~CodeNowHere(); // Destructor to clean up unique_ptr
     void Controller();
     void Execute();
 

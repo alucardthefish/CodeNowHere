@@ -12,14 +12,17 @@ CodeNowHere::CodeNowHere(cnh::arguments argStruct) {
     Controller();
 }
 
+CodeNowHere::~CodeNowHere() {
+    // std::unique_ptr automatically deletes iCB when out of scope
+}
+
 void CodeNowHere::Controller() {
-    //ICommandBehavior *iCB;
     if (data.optThis) {
-        iCB = new OnlyFileBehavior();
+        iCB = std::make_unique<OnlyFileBehavior>();
     } else if (data.optThese) {
-        iCB = new ManyFileBehavior();
+        iCB = std::make_unique<ManyFileBehavior>();
     } else if (data.optBunch) {
-        iCB = new BunchFileBehavior();
+        iCB = std::make_unique<BunchFileBehavior>();
     }
 }
 

@@ -7,6 +7,9 @@
 
 #include "../headers/ICommandBehavior.h"
 #include <cstring>
+#include <iomanip>
+#include <sstream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -115,6 +118,12 @@ void ICommandBehavior::WriteFile(bool unknownFile)
     if (unknownFile){
         templates = engine.FindTemplates("filename.unknown_ext_type");
     }
+
+    // CRITICAL FIX: Add bounds check to prevent segmentation fault
+    if (templates.empty()) {
+        throw std::runtime_error("No templates found for file: " + fileName);
+    }
+
     auto result = engine.RenderFile(std::get<0>(templates[0]).string());
     fstream file = startUsingFile();
     for (auto& line: result) {
@@ -145,12 +154,15 @@ void ICommandBehavior::loadArgsToCNHEngine()
 }
 
 void ICommandBehavior::RegisterDateOfCreation() {
-    time_t now = time(0);
-    char* dt = ctime(&now);
-    dt[strlen(dt) - 1] = '\0';
-    dateOfCreation = string(dt);
+    time_t now = time(nullptr);
+    std::tm *ltm = std::localtime(&now);
 
-    tm *ltm = localtime(&now);
+    // Safe date formatting using std::put_time
+    std::ostringstream oss;
+    oss << std::put_time(ltm, "%a %b %d %H:%M:%S %Y");
+    dateOfCreation = oss.str();
+
+    // Extract year for copyright
     year = 1900 + ltm->tm_year;
 }
 
