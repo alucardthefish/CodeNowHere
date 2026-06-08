@@ -7,18 +7,22 @@
 
 #include <cstdio>
 #include <csignal>
+#include <cstdlib>
 #include "../headers/OnlyFileBehavior.h"
 
 using namespace std;
 
-// Signal handler function
+// Signal handler function - async-signal-safe
 void signalHandler(int signum) {
-    cout << "The program was not able to find a template for this file type" << endl;
-    exit(signum);
+    // Only async-signal-safe functions allowed here
+    // std::cout and exit() are NOT async-signal-safe
+    std::_Exit(1);
 }
 
 OnlyFileBehavior::OnlyFileBehavior() {
     // Set up signal handler for segmentation faults
+    // Note: This is still not ideal (constructors shouldn't set signal handlers)
+    // Consider moving to main() for better thread-safety
     signal(SIGSEGV, signalHandler);
 }
 
