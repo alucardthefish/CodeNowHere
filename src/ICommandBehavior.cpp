@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <sstream>
 #include <stdexcept>
+#include <limits>
 
 using namespace std;
 
@@ -271,8 +272,12 @@ void ICommandBehavior::feed(cnh::arguments args) {
 }
 
 std::string ICommandBehavior::nTimesThisString (std::string text, int times) {
+    // Ensure times is non-negative to prevent undefined behavior
+    if (times < 0) {
+        return "";
+    }
     std::string tmp;
-    for (int i = 0; i < times; i++) {
+    for (int i = 0; i < times; ++i) {
         tmp += text;
     }
     return tmp;
@@ -280,6 +285,11 @@ std::string ICommandBehavior::nTimesThisString (std::string text, int times) {
 
 std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::string text, int size)
 {
+    // Validate size parameter
+    if (size <= 0) {
+        return title;
+    }
+
     // word variable to store word
     std::string word;
 
@@ -295,21 +305,25 @@ std::string ICommandBehavior::includeHeaderAttribute(std::string title, std::str
     // Read and process each word.
     while (iss >> word) {
         tmpSize += (getStringLength(word) + 1);
-        if (tmpSize <= size) {
+        if (tmpSize <= static_cast<size_t>(size)) {
             chain += word + space;
         } else {
             size_t lineLength = tmpSize - getStringLength(word) - 1;
-            size_t numSpaces = size - lineLength;
+            size_t numSpaces = (lineLength < static_cast<size_t>(size)) ? 
+                                (static_cast<size_t>(size) - lineLength) : 0;
 
-            chain += nTimesThisString(space, (int)numSpaces);
+            chain += nTimesThisString(space, static_cast<int>(numSpaces));
             chain += "  " + commentClosureOpt + "\n";
-            std::string newLine = comment + nTimesThisString(space, (int)title.size()+1) + word + " ";
+            std::string newLine = comment + nTimesThisString(space, static_cast<int>(title.size()+1)) + word + " ";
             tmpSize = newLine.size();
             chain += newLine;
-            size = (int)newLineTmpSize;
+            size = static_cast<int>(newLineTmpSize);
         }
     }
-    chain += nTimesThisString(space, size - (int)tmpSize + 1);
+    // Safe cast with bounds checking
+    int spacing = (tmpSize < static_cast<size_t>(size)) ? 
+                  (size - static_cast<int>(tmpSize) + 1) : 1;
+    chain += nTimesThisString(space, spacing);
     return chain;
 }
 

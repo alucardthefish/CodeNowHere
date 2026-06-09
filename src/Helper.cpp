@@ -105,11 +105,12 @@ void Helper::replaceClassName(string& className, const string& fileName) {
 string Helper::getDataPath() {
     // Priority 1: Check environment variable
     char *envPath = getenv("CNH_EXTDATA");
-    if (envPath != NULL) {
+    if (envPath != nullptr) {
         size_t len = strlen(envPath);
         if (len > 0) {
             string result(envPath);
-            if (result[result.length() - 1] != '/' && result[result.length() - 1] != '\\') {
+            // Safe string access - check length before accessing
+            if (!result.empty() && result.back() != '/' && result.back() != '\\') {
                 result += "/";
             }
             return result;
@@ -131,7 +132,8 @@ string Helper::getDataPath() {
     };
     
     string foundPath = findResourcePath(candidatePaths);
-    if (foundPath[foundPath.length() - 1] != '/' && foundPath[foundPath.length() - 1] != '\\') {
+    // Safe string access - check length before accessing
+    if (!foundPath.empty() && foundPath.back() != '/' && foundPath.back() != '\\') {
         foundPath += "/";
     }
     return foundPath;
@@ -140,11 +142,12 @@ string Helper::getDataPath() {
 string Helper::getTemplatePath() {
     // Priority 1: Check environment variable
     char *envPath = getenv("CNH_TEMPLATES");
-    if (envPath != NULL) {
+    if (envPath != nullptr) {
         size_t len = strlen(envPath);
         if (len > 0) {
             string result(envPath);
-            if (result[result.length() - 1] != '/' && result[result.length() - 1] != '\\') {
+            // Safe string access - check length before accessing
+            if (!result.empty() && result.back() != '/' && result.back() != '\\') {
                 result += "/";
             }
             return result;
@@ -166,7 +169,8 @@ string Helper::getTemplatePath() {
     };
     
     string foundPath = findResourcePath(candidatePaths);
-    if (foundPath[foundPath.length() - 1] != '/' && foundPath[foundPath.length() - 1] != '\\') {
+    // Safe string access - check length before accessing
+    if (!foundPath.empty() && foundPath.back() != '/' && foundPath.back() != '\\') {
         foundPath += "/";
     }
     return foundPath;
