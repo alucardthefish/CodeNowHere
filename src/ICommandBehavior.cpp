@@ -96,8 +96,8 @@ void ICommandBehavior::CreateMainTemplate() {
         } catch(const ifstream::failure& e) {
             cout << "There was a problem with the extension provider:" << e.what() << endl;
         }
-
-        templateFile.close();
+        // RAII: Let ifstream destructor handle file closing automatically
+        // templateFile.close() is not needed; scoping handles cleanup
     }
     file.close();
 }
@@ -261,7 +261,8 @@ void ICommandBehavior::feed(cnh::arguments args) {
     fileName = args.fileName;
     char const* user = getenv("USER");
     char const* username = getenv("USERNAME");
-    string myUser = user != NULL ? string(user) : username != NULL ? string(username) : string();
+    // Modernized: Use nullptr instead of NULL (C++11 standard)
+    string myUser = user != nullptr ? string(user) : username != nullptr ? string(username) : string();
     myUser = myUser != "" ? myUser : "Unknown User";
     author = args.author != "" ? args.author : myUser;
     description = args.description;

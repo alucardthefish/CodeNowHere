@@ -54,8 +54,9 @@ vector<tuple<fs::path, string>> CnhEngine::FindTemplates(string_view fileName) {
     string suffix;
     if (off != string::npos) {
         suffix = fileName.substr(off + 1);
-        for (int i = 0; i < suffix.length(); i++) {
-            suffix[i] = std::tolower(suffix[i]);
+        // Fixed: Use size_t for loop counter to match string::length() return type
+        for (size_t i = 0; i < suffix.length(); ++i) {
+            suffix[i] = std::tolower(static_cast<unsigned char>(suffix[i]));
         }
     }
     if (suffix.empty()) {
@@ -108,8 +109,9 @@ bool CnhEngine::IsFileExtensionTypeSupported(string ext)
 
     if (off != string::npos) {
         ext = ext.substr(off + 1);
-        for (int i = 0; i < ext.length(); i++) {
-            ext[i] = std::tolower(ext[i]);
+        // Fixed: Use size_t for loop counter to match string::length() return type
+        for (size_t i = 0; i < ext.length(); ++i) {
+            ext[i] = std::tolower(static_cast<unsigned char>(ext[i]));
         }
     }
 
