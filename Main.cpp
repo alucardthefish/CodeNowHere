@@ -35,7 +35,28 @@ cnh::arguments getDocoptAsArgStructure(map<string, docopt::value> args) {
   bool hasCopyRight = args["--cr"].asBool();
   std::vector<std::string> fileNames = args["<filenames>"].asStringList();
   std::string  bunchExt = args["--ext"].asString();
-  int numOfFiles = (args["<numfiles>"].isString()) ? stoi(args["<numfiles>"].asString()) : 0;
+  
+  // Validate CLI input: Parse numfiles with error handling
+  int numOfFiles = 0;
+  if (args["<numfiles>"].isString()) {
+    try {
+      int parsed = stoi(args["<numfiles>"].asString());
+      // Validate parsed value is non-negative
+      if (parsed < 0) {
+        cerr << "Error: Number of files must be non-negative." << endl;
+        numOfFiles = 0;
+      } else {
+        numOfFiles = parsed;
+      }
+    } catch (const std::invalid_argument& e) {
+      cerr << "Error: Invalid number of files argument. Must be a valid integer." << endl;
+      numOfFiles = 0;
+    } catch (const std::out_of_range& e) {
+      cerr << "Error: Number of files argument is out of range." << endl;
+      numOfFiles = 0;
+    }
+  }
+  
   bool optThis = args["this"].asBool();
   bool optThese = args["these"].asBool();
   bool optBunch = args["bunchof"].asBool();
